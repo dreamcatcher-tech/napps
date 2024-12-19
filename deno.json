@@ -26,7 +26,8 @@
     "cov": "deno coverage --ignore=\"**/*.generated.mjs,**/_test_utils.ts,.github\"",
     "cov:gen": "deno task cov --lcov --output=cov.lcov",
     "cov:view": "deno task cov --html",
-    "ok": "deno task lint && deno fmt --check && deno task test"
+    "ok": "deno task lint && deno fmt --check && deno task test",
+    "watch": "clear && DENO_KV_PATH=:memory: deno test --watch --trace-leaks"
   },
   "exclude": [
     ".git",
@@ -48,14 +49,40 @@
       ]
     }
   },
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true,
+    "exclude": [
+      "_tools",
+      ".github"
+    ]
+  },
   "workspace": [
-    "./files",
-    "./openai",
+    "./actors",
+    "./api",
+    "./compartment",
     "./dumb-bot",
-    "./reasoner",
+    "./engine",
+    "./evals",
+    "./execution",
+    "./files",
     "./fixture",
+    "./git-kv",
     "./hamr",
     "./info",
-    "./test-file-runner"
+    "./napp-tools",
+    "./openai",
+    "./processes",
+    "./reasoner",
+    "./server",
+    "./shockwave",
+    "./snapshots",
+    "./stateboard",
+    "./stucks",
+    "./utils/pdfs",
+    "./utils/youtube",
+    "./utils/concat",
+    "./utils/chat",
+    "./utils/crawl"
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "name": "@artifact/snapshots",
+  "version": "0.0.1",
+  "exports": {
+    ".": "./mod.ts",
+    "./napp.json": "./napp.json",
+    "./tip": "./tip.ts",
+    "./mock-provider": "./mock-provider.ts"
+  }
+}

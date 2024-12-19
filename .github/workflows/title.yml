@@ -1,4 +1,4 @@
-name: "Lint PR title"
+name: 'Lint PR title'
 
 on:
   pull_request_target:
@@ -42,4 +42,4 @@ jobs:
             fixture(/unstable)?
             hamr(/unstable)?
             info(/unstable)?
-            test-file-runner(/unstable)?
+            evals(/unstable)?

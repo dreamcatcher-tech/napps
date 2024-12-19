@@ -1,0 +1,151 @@
+{
+  "name": "napp-name",
+  "version": "0.0.1",
+  "napp-format": "v1",
+  "description": "This is a description of the napp",
+  // what species of runtime needs to be used to execute this napp, such as
+  // rust, go, python, deno, c++, etc.
+  "runtime": "deno",
+  // folder containing the branding assets of the napp
+  "branding": "path/to/branding/",
+
+  "stucks": {
+    "napp": "@artifact/stucks",
+    "tool": "create",
+    "parameters": {
+      "title": "This is the title of the stuck",
+      "description": "This is the description of the stuck",
+      "snapshotId": "snapshot-id",
+      "crypto": "crypto-id", // universally and securely id the repo
+      "branch": "main",
+      "expections": [
+        "Mrs Miggins should have two pies, not one"
+      ]
+    }
+  },
+  "agent": {
+    // entry point that takes plain text in and returns text plus files
+    "napp": "@artifact/openai",
+    "tool": "some-exported-function", // if use a function other than main
+    "parameters": {
+      // parameters for the chat runner, based on what the runner is.  This is
+      // the exact same format as a tool call.
+      "model": "gpt-4o",
+      "parallel_tool_calls": false,
+      // if any of these tool calls are made, the agent will stop
+      "stop_on_tools": ["tool1", "tool3"],
+      // "tools" is a special key that is resolved back to the calling napp if
+      // not given
+      "tools": ["some-function"],
+      // "content" is the reserved name for the input text, so it is an error to
+      // specify it here
+
+      // the default name for instructions is instructions.md but this can be
+      // overridden to any other file
+      "instructions": "instructions.md"
+    }
+  },
+  "tools": {
+    "some-function": {
+      "description": "This function does something",
+      "parameters": {
+        "param1": {
+          "description": "This is the first parameter",
+          "type": "string",
+          "required": true
+        },
+        "param2": {
+          "description": "This is the second parameter",
+          "type": "number",
+          "required": false
+        }
+      },
+      "returns": {
+        "description": "This is what the function returns",
+        "type": "string"
+      },
+      // optionally, can include a list of errors
+      "throws": {
+        "FileNotFoundError": {
+          // list of expected error types and what to do about it
+        }
+      },
+      // if path is not given, then the default export must include a function
+      // that satisfies this signature and that matches the name of the tool.
+      // if path is given, the default export must be a tool function
+      "path": "./path/to/function.ts"
+    },
+    // by referring to a napp directly, it will be called as an agent
+    "some-other-function": "dependent-napp-name",
+    // passes thru to a tool of the same name
+    "modified-passthru": {
+      // optionally can modify the parameters so long as it is narrowing not
+      // expanding
+      "parameters": {},
+      "napp": {
+        "name": "dependent-napp-name",
+        // if the tool is omitted, then we assume it has the same name
+        "tool": "some-exported-function"
+        // this key could be "agent", which would allow rewriting of the agent parameters
+      }
+    },
+    // if no parameters object is given, an empty object is assumed
+    // if no returns object is given, the function must return undefined
+    // if no description is given, an empty string is assumed
+    "empty-function": {}
+  },
+  "evals": {
+    "napp": "napp-test-runner-name",
+    "parameters": {
+      // config for the test runner, based on what the runner is
+      "files": [
+        // list of eval files that can be run to verify the napp is working correctly
+      ]
+    }
+  },
+  "dependencies": {
+    // list of napps that this napp depends on, including version numbers and
+    // commits so that every reference to the napp can be by simple name.
+    "dependent-napp-name": {
+      // if name is left out, it is assumed to be the same
+      "version": "0.0.1"
+    },
+    "napp-test-runner-name": {
+      "name": "@artifact/evals",
+      "version": "0.0.1"
+    }
+  },
+  "graphics": {
+    // a list of exported widgets that can be displayed on the stateboard
+    "googleMapsViewer": {
+      // for now, only react is supported, but we can support other frameworks
+      "type": "react",
+      // if path is not given, then check the module default export
+      "path": "./path/to/component.tsx",
+      "parameters": {
+        // react props that can be configured by the LLM
+        // same format as the tool call parameters
+      }
+    },
+    // same naming conventions as tools apply.  This shows passing thru to a
+    // napp named "@artifact/truck-routes" and using the graphics element named
+    // "truckRoutes" from that napp
+    "truckRoutes": "@artifact/truck-routes",
+    // allows renaming the graphics component during passthru
+    "weatherDisplay": {
+      "napp": "@artifact/weather",
+      "graphics": "weatherDisplayInCelsius"
+      // could modify the react props here as well
+    }
+  },
+  "effects": {
+    "mount": {
+      // path to a tool that takes no parameters and returns nothing but might
+      // throw. Used to set up a side effect.
+    },
+    "unmount": {
+      // path to a tool that takes no parameters and returns nothing but might
+      // throw. Used to clean up a side effect.
+    }
+  }
+}

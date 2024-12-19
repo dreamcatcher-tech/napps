@@ -1,0 +1,71 @@
+{
+  "name": "@artifact/openai",
+  "version": "0.0.1",
+  "napp-format": "v1",
+  "description": "OpenAI API integration in napp format",
+  "runtime": "deno",
+  "branding": "./avatar.jpg",
+  "agent": {
+    "parameters": {
+      "instructions": "./instructions.md",
+      "model": "gpt-4o",
+      "tools": []
+    }
+  },
+  "main": "completions",
+  "tools": {
+    "completions": {
+      "description": "Creates a model response for the given chat conversation",
+      "parameters": {
+        "param1": {
+          "description": "This is the first parameter",
+          "type": "string",
+          "required": true
+        },
+        "param2": {
+          "description": "This is the second parameter",
+          "type": "number",
+          "required": false
+        },
+        "permissions": [],
+        "gateways": []
+      },
+      "returns": {
+        "description": "This is what the function returns",
+        "type": "string"
+      },
+      "throws": {
+        "FileNotFoundError": {
+        }
+      }
+    },
+    "transcribe": {
+      "description": "Transcribes an audio file to text, returning the filepath of the transcription",
+      "parameters": {
+        "filepath": {
+          "description": "The path to the audio file to transcribe",
+          "type": "string",
+          "required": true
+        }
+      },
+      "returns": {
+        "description": "The path to the transcription file",
+        "type": "string"
+      }
+    }
+  },
+  "sideEffects": {
+  },
+  "testSideEffects": {
+  },
+  "mockSideEffects": {
+  },
+  "graphics": {
+    "googleMapsViewer": {
+      "type": "react",
+      "component": "./path/to/component",
+      "parameters": {
+      }
+    }
+  }
+}

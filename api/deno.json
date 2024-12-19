@@ -1,0 +1,11 @@
+{
+  "name": "@artifact/api",
+  "version": "0.0.1",
+  "exports": {
+    ".": "./mod.ts",
+    "./napp.json": "./napp.json",
+    "./actions": "./actions.ts",
+    "./addressing": "./addressing.ts",
+    "./napp-api": "./napp-api.ts"
+  }
+}

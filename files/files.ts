@@ -1,17 +1,30 @@
-// import { Debug } from '@utils'
-// import { Functions, print } from '@/constants.ts'
-// import { type Api, parameters, returns } from '@/api/isolates/files.ts'
-// export { type Api, parameters, returns }
+import type { NappApi } from '@artifact/api/napp-api'
+import type { z, ZodSchema } from 'zod'
+import type * as schemas from './zod.ts'
+import Debug from 'debug'
+const log = Debug('@artifact/files')
 
-// const log = Debug('AI:files')
+type ToExternalApi<P extends ZodSchema, R extends ZodSchema> = (
+  params: z.infer<P>,
+) => z.infer<R> | Promise<z.infer<R>>
 
-// export const functions: Functions<Api> = {
-//   // TODO this should be a full mirror of the IsolateApi functions
-//   write: ({ path, content = '' }, api) => {
-//     log('add', path, content)
-//     api.write(path, content)
-//     return { charactersWritten: content.length }
-//   },
+type ToInternalApi<T> = T extends (...args: infer Args) => infer R
+  ? (...args: [...Args, NappApi]) => R
+  : never
+
+type Write = ToExternalApi<
+  typeof schemas.write.parameters,
+  typeof schemas.write.returns
+>
+
+type WriteApi = ToInternalApi<Write>
+
+export const write: WriteApi = async ({ path, content = '' }, api) => {
+  log('write', path, content)
+  await api.write.text(path, content)
+  return { charactersWritten: content.length }
+}
+
 //   ls: async ({ path = '.', count, all }, api) => {
 //     log('ls', path)
 //     let result = await api.ls(path)
@@ -68,17 +81,12 @@
 //     return ls.map((path) => ({ path, description: '' }))
 //   },
 // }
-// export const replace = (
-//   contents: string,
-//   regex: string,
-//   replacement: string,
-// ) => {
-//   const matches = contents.match(new RegExp(regex, 'g')) || []
-//   const result = contents.replace(new RegExp(regex, 'g'), replacement)
-//   return { matches, result }
-// }
-
-/**
- * This is a comment
- */
-export const m = 43;
+export const replace = (
+  contents: string,
+  regex: string,
+  replacement: string,
+) => {
+  const matches = contents.match(new RegExp(regex, 'g')) || []
+  const result = contents.replace(new RegExp(regex, 'g'), replacement)
+  return { matches, result }
+}

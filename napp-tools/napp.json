@@ -1,0 +1,80 @@
+{
+  "name": "@artifact/napp-tools",
+  "version": "0.0.1",
+  "napp-format": "v1",
+  "description": "tooling for working with napps",
+  "runtime": "deno",
+  "agent": {
+    "parameters": {
+      "model": "gpt-4o"
+    }
+  },
+  "tools": {
+    "versions": {
+      "description": "Lists prior versions of a given napp",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name of the napp"
+          }
+        },
+        "required": ["name"]
+      },
+      "returns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "manifest": {
+      "description": "Returns the manifest of a given napp, which is an array of all paths of all the files in the napp",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name of the napp"
+          },
+          "version": {
+            "type": "string",
+            "description": "version of the napp.  If not given, the latest version will be used by default.  This must be a string that came from the 'versions' tool."
+          }
+        },
+        "required": ["name"]
+      },
+      "returns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "read": {
+      "description": "Reads the contents of a file in a given napp",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name of the napp"
+          },
+          "path": {
+            "type": "string",
+            "description": "path of the file to read.  This must be a valid path that came from the 'manifest' tool."
+          },
+          "version": {
+            "type": "string",
+            "description": "version of the napp.  If not given, the latest version will be used by default.  This must be a string that came from the 'versions' tool."
+          }
+        },
+        "required": ["name", "path"]
+      },
+      "returns": {
+        "type": "string"
+      }
+    }
+  }
+}

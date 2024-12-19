@@ -1,0 +1,58 @@
+{
+  "name": "@artifact/files",
+  "version": "0.0.1",
+  "napp-format": "v1",
+  "description": "filesystem access using the artifact api",
+  "runtime": "deno",
+  "branding": "./avatar.jpg",
+  "agent": {
+    "napp": "@artifact/openai",
+    "parameters": {
+      "model": "gpt-4o",
+      "parallel_tool_calls": false
+    }
+  },
+  "tools": {
+    "show": "@artifact/stateboard",
+    "write": {
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "content": { "type": "string" }
+        },
+        "required": ["path", "content"]
+      },
+      "returns": {
+        "type": "object",
+        "properties": { "charactersWritten": { "type": "number" } }
+      }
+    }
+  },
+  "evals": {
+    "napp": "@artifact/evals",
+    "parameters": { "files": ["./files.eval.md"] }
+  },
+  "imports": {
+    "@artifact/evals": {
+      "version": "0.0.1",
+      "commit": "some-commit-hash"
+    },
+    "@artifact/stateboard": {
+      "version": "0.0.1",
+      "commit": "some-commit-hash"
+    },
+    "@artifact/openai": {
+      "version": "0.0.1",
+      "commit": "some-commit-hash"
+    }
+  },
+  "graphics": {
+    "googleMapsViewer": {
+      "type": "react",
+      "component": "./path/to/component",
+      "parameters": {
+      }
+    }
+  }
+}

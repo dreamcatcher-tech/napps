@@ -1,56 +1,50 @@
-// import { loadAgent } from '@/isolates/utils/load-agent.ts'
-// import { complete, image } from '@/isolates/ai-completions.ts'
-// import { functions, safeAssistantName } from '@/isolates/ai-completions.ts'
-// import { expect } from '@utils'
-// import { createMockApi } from '@/tests/fixtures/mock-api.ts'
+import * as openai from '@artifact/openai'
+import { expect } from '@std/expect'
+import { loadAgent } from '@/isolates/utils/load-agent.ts'
+import { complete, functions, image, safeAssistantName } from './completions.ts'
+import { createMockApi } from '@/tests/fixtures/mock-api.ts'
 
-// Deno.test('test the regex for agent name sanitization', () => {
-//   const result = safeAssistantName({
-//     role: 'assistant',
-//     name: 'agents/o1.md',
-//   })
-//   expect(result).toEqual({ role: 'assistant', name: 'agents_o1_md' })
-// })
-// Deno.test('generate images', async (t) => {
-//   image.mock.useRecorder(t)
-//   const { api, stop } = await createMockApi('test/images')
-//   const path = 'images/test.jpg'
-//   const result = await functions.image({
-//     path,
-//     prompt: 'a dystopian robot overlord mecha',
-//     lowQuality: true,
-//     size: '1024x1024',
-//     style: 'natural',
-//   }, api)
-//   const file = await api.readBinary(path)
-//   expect(file.byteLength).toBeGreaterThan(0)
-//   expect(file.byteLength).toEqual(result.size)
+Deno.test('test the regex for agent name sanitization', () => {
+  const result = safeAssistantName({
+    role: 'assistant',
+    name: 'agents/o1.md',
+  })
+  expect(result).toEqual({ role: 'assistant', name: 'agents_o1_md' })
+})
 
-//   image.mock.teardown()
-//   stop()
-// })
+Deno.test('generate images', async (t) => {
+  image.mock.useRecorder(t)
+  const { api, stop } = await createMockApi('test/images')
+  const path = 'images/test.jpg'
+  const result = await functions.image({
+    path,
+    prompt: 'a dystopian robot overlord mecha',
+    lowQuality: true,
+    size: '1024x1024',
+    style: 'natural',
+  }, api)
+  const file = await api.readBinary(path)
+  expect(file.byteLength).toBeGreaterThan(0)
+  expect(file.byteLength).toEqual(result.size)
 
-// Deno.test('inject empty', async (t) => {
-//   complete.mock.useRecorder(t)
-//   const { api, stop } = await createMockApi('test/inject-single')
-//   const path = 'fake/agent.md'
-//   api.write(path, '')
-//   const agent = await loadAgent(path, api)
+  image.mock.teardown()
+  stop()
+})
 
-//   const result = await complete(agent, [{
-//     role: 'system',
-//     content: 'say cheese in emoji',
-//   }], api)
-//   expect(result).toHaveProperty('assistant')
-//   expect(result).toHaveProperty('stats')
+Deno.test('inject empty', async (t) => {
+  complete.mock.useRecorder(t)
+  const { api, stop } = await createMockApi('test/inject-single')
+  const path = 'fake/agent.md'
+  api.write(path, '')
+  const agent = await loadAgent(path, api)
 
-//   complete.mock.teardown()
-//   stop()
-// })
+  const result = await complete(agent, [{
+    role: 'system',
+    content: 'say cheese in emoji',
+  }], api)
+  expect(result).toHaveProperty('assistant')
+  expect(result).toHaveProperty('stats')
 
-import * as m from "./completions.ts";
-import { expect } from "@std/expect";
-
-Deno.test("publish", () => {
-  expect(m.n).toBe(84);
-});
+  complete.mock.teardown()
+  stop()
+})
