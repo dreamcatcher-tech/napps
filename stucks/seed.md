@@ -18,3 +18,7 @@ solutions are a similar structure to a stuck, but they point to some stucks as
 their targets.
 
 Solutions can reach different lifecycles / milestones, like passed by QA or not.
+
+tagging of napps into different categories, like "core", "community",
+"experimental" - this might be a wrapper around the stuck, or a separate
+structure.
