@@ -23,3 +23,9 @@
 
 4. How can I get a prize from the commander ? like a medal or a badge of honour
    ? and how can I be punished for not doing the recommended actions ?
+
+5. define consensus level stucks, things that we quickly need to reach agreement
+   on, since this affects the smooth flow of communications, such as defining
+   what a solution is, how I would split some stucks, or merge them, and the
+   same with solutions, plus indicate expected solution delivery, like non napp,
+   new napp, or patched napp.
