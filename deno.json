@@ -68,6 +68,7 @@
     "./files",
     "./fixture",
     "./git-kv",
+    "./graph",
     "./hamr",
     "./info",
     "./napp-tools",
