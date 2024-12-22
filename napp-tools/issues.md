@@ -25,3 +25,6 @@ to enable legacy code to work. recommedned way is using the api. throw if not
 present since this is a requirement of the call being made. Might be sent as a
 3rd channel in all the actions - so the json action, the filesystem, and the
 secrets.
+
+Need to add reasoning key for linking to reasoning dependencies. Possibly also a
+generator key for linking to the generator of the napp.

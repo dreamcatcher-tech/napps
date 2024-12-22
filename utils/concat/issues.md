@@ -41,3 +41,5 @@ If I run `concat . ../../reasoner/PROJECT_MAP_INSTRUCTIONS.md` then it does not
 pull in everything recursively from . however seems to be shell globbing again
 
 Should supply a file system overview in the concat, optionally
+
+nested concat.txt files specified by glob are not being ignored
