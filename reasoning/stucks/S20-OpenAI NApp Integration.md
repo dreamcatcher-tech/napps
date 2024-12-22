@@ -1,73 +1,64 @@
-# OpenAI NApp Integration
+# S20-openai-napp-integration.md
 
-priority: 20
+## Stuck ID & Name
 
-## Situation
+- **ID**: S20
+- **Name**: openai-napp-integration
 
-- Need a NApp to interface with OpenAI models, allowing text prompts/tool usage.
+## Rationale
 
-## Background
+Integrate OpenAI models as a NApp for reasoning, content generation, and tool
+usage, expanding AI capabilities within the platform.
 
-- Adds intelligent reasoning and content generation capabilities.
+## Description
 
-## Done
+A NApp that sends prompts to OpenAI, receives responses, and leverages tool
+calls, enhancing system intelligence.
 
-- NApp can send prompts to OpenAI, get responses, integrate tools.
+## Context & References
 
-### Evals
+- **Transcripts**: Discussed adding powerful AI features.
+- **Domains/Definitions**: NApp execution environment, tool call interfaces.
+- **External References**: OpenAI API docs.
 
-- Test queries, measure response quality, tool usage correctness.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: NApp format stable (S8) helps integration.
+- **Resource/Domain Dependencies**: OpenAI API credentials and stable network
+  access.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Prompt OpenAI, parse responses, integrate tools.
+NApp can send prompts to OpenAI, get coherent responses, and integrate tool
+usage. Tests confirm correct response handling.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by user/NApp request.
+- **Tests & Verifications**:
+  - Test queries, measure response quality, check tool calls.
+- **Metrics for Success**:
+  - High response coherence, stable integration with no errors.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Coherent answers, effective tool calls.
+- **Subtasks**:
+  1. OpenAI API calls
+  2. Response parsing
+  3. Tool call integration
+- **Capabilities Needed**: API handling, JSON parsing, error management.
 
-### Key Functionalities
+## Constraints & Risks
 
-- OpenAI API calls, result parsing, error handling.
+- **Known Limitations**: API costs, latency.
+- **Potential Risks**: Future API changes.
 
-### Potential Impact
+## Progress & Effort
 
-- Adds powerful AI features.
+- **Effort Expended**: Some testing with APIs.
+- **Future Estimate**: 1 sprint basic version.
+- **Current Status**: Prototyping begun.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Costs, latency.
-
-#### Unknown Limitations
-
-- Future OpenAI API changes.
-
-## Current Situation
-
-### Cost
-
-- Moderate; known OpenAI integration patterns.
-
-#### Effort Expended
-
-- Some testing with APIs.
-
-#### Future Estimate
-
-- 1 sprint basic version.
-
-### Progress
-
-- Prototyping begun.
-
-## Recommendation
-
-- Implement minimal OpenAI NApp, test basic prompts, expand tool usage later.
+Implement minimal functionality, test basic prompts, then expand tool usage
+gradually.

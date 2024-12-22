@@ -1,74 +1,68 @@
-# Auto-Commander Updates on Commits
+# S21-auto-commander-updates-on-commits.md
 
-priority: 21
+## Stuck ID & Name
 
-## Situation
+- **ID**: S21
+- **Name**: auto-commander-updates-on-commits
 
-- Trigger Commander updates whenever certain repo commits occur.
+## Rationale
 
-## Background
+Automatically updating the Commander after certain repo commits ensures the
+Commander’s insights remain current, improving responsiveness to code and stuck
+changes.
 
-- Keeps Commander insights in sync with latest code/stuck states.
+## Description
 
-## Done
+Implement hooks or triggers so that whenever commits occur, the Commander
+re-runs analysis or refreshes summaries, maintaining up-to-date project
+intelligence.
 
-- Committing changes triggers Commander to re-run analysis or update summaries
-  automatically.
+## Context & References
 
-### Evals
+- **Transcripts**: Discussed as a step towards fully automated complexity
+  management.
+- **Domains/Definitions**: Depends on stable Commander (S25) and unified repo
+  (S28).
+- **External References**: Git hooks, CI pipelines for triggering updates.
 
-- Test commit hooks, confirm Commander outputs after new commits.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S25 (Commander), S28 (Unified code/knowledge repos).
+- **Resource/Domain Dependencies**: Requires a stable environment where
+  Commander runs automatically.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Git hooks calling Commander, updated metadata generation.
+Commits trigger Commander re-assessment, confirmed by tests showing updated
+reports or priorities post-commit without manual intervention.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by commit events.
+- **Tests & Verifications**:
+  - Commit code changes and verify Commander output updates.
+- **Metrics for Success**:
+  - Timely Commander updates, no stale data after commits.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Fresh Commander updates post-commit.
+- **Subtasks**:
+  1. Implement commit hooks or CI triggers
+  2. Invoke Commander on new commits
+  3. Validate updated outputs
+- **Capabilities Needed**: Hook integration, Commander CLI/API calls.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Hooks, Commander CLI/API calls.
+- **Known Limitations**: Performance if Commander is slow.
+- **Potential Risks**: Handling complex merges or large commit batches.
 
-### Potential Impact
+## Progress & Effort
 
-- Always up-to-date project intelligence.
+- **Effort Expended**: Idea stage.
+- **Future Estimate**: 1-2 sprints after Commander stable.
+- **Current Status**: None.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Performance if Commander slow.
-
-#### Unknown Limitations
-
-- Handling complex merges.
-
-## Current Situation
-
-### Cost
-
-- Moderate; setting up hooks and integration.
-
-#### Effort Expended
-
-- Idea stage.
-
-#### Future Estimate
-
-- 1-2 sprints after Commander stable.
-
-### Progress
-
-- None yet.
-
-## Recommendation
-
-- After Commander stabilizes, add commit hooks and test auto-updates.
+Wait until Commander matures, then add commit hooks and test auto-updates on
+sample commits.

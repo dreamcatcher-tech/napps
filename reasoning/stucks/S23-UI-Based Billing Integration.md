@@ -1,74 +1,64 @@
-# UI-Based Billing Integration
+# S23-ui-based-billing-integration.md
 
-priority: 23
+## Stuck ID & Name
 
-## Situation
+- **ID**: S23
+- **Name**: ui-based-billing-integration
 
-- Eventually need to track token usage/costs in the UI.
+## Rationale
 
-## Background
+Eventually tracking token usage/costs in the UI supports monetization and
+transparent billing, essential for a sustainable business model.
 
-- Prepares for a future monetization scenario.
+## Description
 
-## Done
+Add a billing dashboard in the UI to show usage metrics, costs, and payment
+methods, preparing for future revenue streams.
 
-- A billing dashboard showing costs, usage, payment methods.
+## Context & References
 
-### Evals
+- **Transcripts**: Monetization considered as future scenario.
+- **Domains/Definitions**: Payment and usage metrics domains.
+- **External References**: Payment gateway APIs, invoicing standards.
 
-- Validate cost calculations with test accounts, check currency formats.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: Stabilized code and usage metrics, possibly Commander
+  insights.
+- **Resource/Domain Dependencies**: Payment provider integration, stable metrics
+  collection.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Display usage metrics, process payments, show invoices.
+A UI dashboard displays usage, costs, and invoices. Tests confirm correct cost
+calculations and secure payment flows.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by user accessing billing page or exceeding free tiers.
+- **Tests & Verifications**:
+  - Test with mock accounts, validate cost accuracy.
+- **Metrics for Success**:
+  - Users can understand their costs easily, no billing errors.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Transparent billing info, secure payment flows.
+- **Subtasks**:
+  1. Integrate billing API
+  2. Show usage metrics and invoices in UI
+  3. Test with sample billing scenarios
+- **Capabilities Needed**: Payment integration, UI design for financial data.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Billing API integration, usage metrics, invoicing.
+- **Known Limitations**: Not needed until actual demand arises.
+- **Potential Risks**: Currency conversions, regulatory compliance.
 
-### Potential Impact
+## Progress & Effort
 
-- Monetization and cost recovery.
+- **Effort Expended**: None yet, deferred.
+- **Future Estimate**: Multiple sprints when needed.
+- **Current Status**: None, waiting on need.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Not needed until demand arises.
-
-#### Unknown Limitations
-
-- Different billing models/currencies.
-
-## Current Situation
-
-### Cost
-
-- Moderate-high; payment integration tricky.
-
-#### Effort Expended
-
-- None, deferred.
-
-#### Future Estimate
-
-- Multiple sprints when needed.
-
-### Progress
-
-- None, waiting on need.
-
-## Recommendation
-
-- Defer until there's actual demand, then evaluate payment providers and UI
-  design.
+Defer until there's demand, then evaluate payment providers and UI design.

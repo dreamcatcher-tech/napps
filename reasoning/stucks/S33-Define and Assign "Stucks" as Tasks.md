@@ -1,77 +1,64 @@
-# Define and Assign "Stucks" as Tasks
+# S33-define-and-assign-stucks-as-tasks.md
 
-## Situation
+## Stuck ID & Name
 
-- Use “stucks” consistently as tasks.
-- Clarify hierarchical task structure.
-- References: (20:02, 25:02)
+- **ID**: S33
+- **Name**: define-and-assign-stucks-as-tasks
 
-## Background
+## Rationale
 
-- “Stucks” emerged as a concept for tasks; must formalize their use.
-- A unified naming and structure reduces confusion.
+Using "stucks" as a uniform concept for all tasks simplifies management,
+automation, and planning. A unified naming/format reduces confusion.
 
-## Done
+## Description
 
-- All tasks represented as stucks with a standardized format.
+Treat all tasks as "stucks," formalizing their use and ensuring a single
+conceptual model for project activities.
 
-### Evals
+## Context & References
 
-- Check if team uniformly uses stucks and finds them intuitive.
-- Validate that Commander interprets stucks correctly.
+- **Transcripts**: (20:02, 25:02) mention simplifying task definitions.
+- **Domains/Definitions**: Stuck schema (S16) critical here.
+- **External References**: Standard task management principles.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S16 (formal stuck schema) to ensure consistency.
+- **Resource/Domain Dependencies**: Knowledge that all tasks can be represented
+  as stucks.
 
-- Uniform task representation, no unnecessary distinctions.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+All tasks use stuck definition format, tested by uniform usage, no separate task
+concepts causing confusion, and Commander integration.
 
-- Triggered at task creation or retrieval.
-- Inputs: Task details, parent-child relationships.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Convert existing tasks into stucks, check no loss of info.
+- **Metrics for Success**:
+  - All team members find stuck format intuitive, no more ad-hoc task
+    definitions.
 
-- Consistent, predictable task definitions improve tool usage and planning.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Document guidelines for using stucks as tasks
+  2. Convert existing tasks to stuck format
+- **Capabilities Needed**: Documentation, schema application.
 
-- Stuck creation, linking, updating in a standard format.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Might require retraining team habits.
+- **Potential Risks**: Minor initial confusion during transition.
 
-- Simpler management, better automation, improved collaboration.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Concept ready.
+- **Future Estimate**: <1 sprint to standardize once schema ready.
+- **Current Status**: Awaiting dependencies.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Requires the previous stuck management infrastructure.
-
-#### Unknown Limitations
-
-- May refine stuck schema over time.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Concept stage.
-
-#### Future Estimate
-
-- <1 sprint to formalize once prerequisites are met.
-
-### Progress
-
-- Concept ready, waiting on dependencies.
-
-## Recommendation
-
-- Define stuck format clearly.
-- Document guidelines and train team.
+Define stuck format clearly (S16), then adopt stuck concept for all tasks, train
+team accordingly.

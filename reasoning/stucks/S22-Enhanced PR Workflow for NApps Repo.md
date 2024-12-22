@@ -1,73 +1,63 @@
-# Enhanced PR Workflow for NApps Repo
+# S22-enhanced-pr-workflow-for-napps-repo.md
 
-priority: 22
+## Stuck ID & Name
 
-## Situation
+- **ID**: S22
+- **Name**: enhanced-pr-workflow-for-napps-repo
 
-- Need smoother PR process: automated checks, CI/CD, code reviews.
+## Rationale
 
-## Background
+A smoother PR process with automated checks, CI/CD, and code reviews ensures
+higher code quality and fewer regressions in NApp development.
 
-- Improves collaboration and code quality in NApp development.
+## Description
 
-## Done
+Enhance the PR workflow by adding automated tests, lint checks, and review
+steps, merging only when checks pass.
 
-- Pull requests trigger automated tests, lint checks, review steps.
+## Context & References
 
-### Evals
+- **Transcripts**: Mentioned to improve collaboration and code quality.
+- **Domains/Definitions**: Ties into CI/CD pipelines and repository maintenance.
+- **External References**: GitHub Actions, common CI/CD practices.
 
-- Confirm PR checks run automatically, test a sample PR merge.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: Unified repo (S28) might help streamline checks.
+- **Resource/Domain Dependencies**: Test suites, lint rules, and stable CI
+  tools.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- CI pipelines, linting, unit tests on PRs.
+PRs trigger automated checks, code merges only occur after passing QA steps.
+Confirmed by testing sample PRs and seeing consistent results.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by PR events.
+- **Tests & Verifications**:
+  - Submit sample PRs, confirm tests run automatically.
+- **Metrics for Success**:
+  - Reduced defects, positive dev feedback on CI flow.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Merge only if checks pass.
+- **Subtasks**:
+  1. Add CI scripts (lint, test)
+  2. Integrate with GitHub Actions or similar
+  3. Validate workflow on sample PRs
+- **Capabilities Needed**: CI/CD integration, automated test coverage.
 
-### Key Functionalities
+## Constraints & Risks
 
-- GitHub Actions (or similar), automated tests.
+- **Known Limitations**: CI might slow merges slightly.
+- **Potential Risks**: Edge cases in testing.
 
-### Potential Impact
+## Progress & Effort
 
-- Higher code quality, fewer regressions.
+- **Effort Expended**: Basic CI setup attempted.
+- **Future Estimate**: <1 sprint to refine pipeline.
+- **Current Status**: Initial CI scripts exist.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- CI can slow merges.
-
-#### Unknown Limitations
-
-- Edge cases in testing.
-
-## Current Situation
-
-### Cost
-
-- Low-medium; standard CI/CD setup.
-
-#### Effort Expended
-
-- Basic CI setup attempted.
-
-#### Future Estimate
-
-- <1 sprint to refine pipeline.
-
-### Progress
-
-- Initial CI scripts exist.
-
-## Recommendation
-
-- Add automated tests, integrate GitHub Actions, refine workflow as needed.
+Add automated tests, integrate actions, refine workflow as needed.

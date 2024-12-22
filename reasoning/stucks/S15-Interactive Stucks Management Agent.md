@@ -1,73 +1,69 @@
-# Interactive Stucks Management Agent
+# S15-interactive-stucks-management-agent.md
 
-priority: 15
+## Stuck ID & Name
 
-## Situation
+- **ID**: S15
+- **Name**: interactive-stucks-management-agent
 
-- A conversational interface to add/remove/modify stucks interactively.
+## Rationale
 
-## Background
+A conversational interface simplifies stuck management, enabling users to
+add/remove/modify stucks via natural language commands, reducing manual editing
+overhead.
 
-- Simplifies stuck management as complexity grows.
+## Description
 
-## Done
+Implement an agent that responds to user chat commands to update stuck
+definitions or dependencies, streamlining complexity management as the project
+grows.
 
-- Users can chat with an agent to adjust stuck definitions/dependencies.
+## Context & References
 
-### Evals
+- **Transcripts**: Increasing complexity noted, need for easier stuck
+  adjustments mentioned in discussions.
+- **Domains/Definitions**: Stuck schema (S16) must be stable for smooth updates.
+- **External References**: NLP interfaces, conversational agents.
 
-- Test agent’s accuracy in updating stucks as commanded.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S16 (Formal Stuck Schema) for consistent updates.
+- **Resource/Domain Dependencies**: NLP tools and stable stuck storage backend.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- NLP parsing, stuck CRUD operations.
+Users can chat with the agent to accurately update stuck fields, link stucks, or
+remove them. Tests verify correctness and minimal confusion in commands.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by user chat commands.
+- **Tests & Verifications**:
+  - Issue user commands to add/remove stucks.
+  - Validate stuck data matches instructions.
+- **Metrics for Success**:
+  - High accuracy in interpreting commands.
+  - Reduced manual stuck editing.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Agent understands and updates stuck data.
+- **Subtasks**:
+  1. NLP integration for command parsing
+  2. Stuck CRUD operations via API
+  3. Logging and validation steps
+- **Capabilities Needed**: NLP parsing, schema validation, stuck API
+  integration.
 
-### Key Functionalities
+## Constraints & Risks
 
-- NLP, stuck API integration, logs.
+- **Known Limitations**: Agent accuracy depends on NLP quality.
+- **Potential Risks**: Ambiguous user commands might cause incorrect updates.
 
-### Potential Impact
+## Progress & Effort
 
-- Less manual editing, faster adjustments.
+- **Effort Expended**: Concept stage only.
+- **Future Estimate**: Several sprints post-schema finalization.
+- **Current Status**: None.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Agent accuracy depends on NLP.
-
-#### Unknown Limitations
-
-- Handling ambiguous commands.
-
-## Current Situation
-
-### Cost
-
-- High; NLP + stable schema needed.
-
-#### Effort Expended
-
-- Concept only.
-
-#### Future Estimate
-
-- Several sprints post-schema finalization.
-
-### Progress
-
-- None.
-
-## Recommendation
-
-- Finalize stuck schema, then build a simple agent and refine.
+Finalize stuck schema (S16), then implement a simple agent and refine with user
+feedback.

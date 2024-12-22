@@ -1,73 +1,62 @@
-# NApp CLI Tool
+# S18-napp-cli-tool.md
 
-priority: 18
+## Stuck ID & Name
 
-## Situation
+- **ID**: S18
+- **Name**: napp-cli-tool
 
-- Provide a CLI for interacting with NApps (running, listing, logs).
+## Rationale
 
-## Background
+A CLI tool eases developer interaction with NApps, allowing listing, running,
+and inspecting them from the terminal, improving productivity.
 
-- Improves developer productivity and accessibility without a UI.
+## Description
 
-## Done
+Provide a CLI for discovering, running, and managing NApps without a UI,
+streamlining dev workflows.
 
-- A CLI to discover, run, and manage NApps from terminal.
+## Context & References
 
-### Evals
+- **Transcripts**: Mentioned need for faster dev cycles.
+- **Domains/Definitions**: NApp definitions (S8).
+- **External References**: CLI best practices, standard command-line interfaces.
 
-- Test `napp list`, `napp run <name>`, `napp status`.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S8 (NApp format) for consistent discovery.
+- **Resource/Domain Dependencies**: Execution environment stable.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- CLI operation, quick debugging, scripting.
+A CLI command `napp` that can list available NApps, run a selected NApp, and
+show logs/status, tested with sample NApps.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- User terminal commands.
+- **Tests & Verifications**:
+  - `napp list`, `napp run <name>`, `napp status` commands tested.
+- **Metrics for Success**:
+  - Seamless dev experience, positive developer feedback.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Shows available NApps, runs them, outputs results.
+- **Subtasks**:
+  1. Implement `napp list`
+  2. Implement `napp run <name>`
+  3. Implement `napp status`
+- **Capabilities Needed**: API access to NApps, command parsing.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Argument parsing, NApp API calls.
+- **Known Limitations**: OS compatibility differences.
+- **Potential Risks**: Dependencies required for advanced features.
 
-### Potential Impact
+## Progress & Effort
 
-- Faster dev workflows.
+- **Effort Expended**: None yet.
+- **Future Estimate**: 1 sprint after NApp APIs stable.
+- **Current Status**: Conceptual.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- OS compatibility.
-
-#### Unknown Limitations
-
-- Dependencies.
-
-## Current Situation
-
-### Cost
-
-- Low-medium; standard CLI patterns.
-
-#### Effort Expended
-
-- None.
-
-#### Future Estimate
-
-- 1 sprint after core NApp APIs stable.
-
-### Progress
-
-- Concept only.
-
-## Recommendation
-
-- Wait for NApp format/execution stability, then build CLI incrementally.
+Wait for stable NApp execution environment, then build CLI incrementally.

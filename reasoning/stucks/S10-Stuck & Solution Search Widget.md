@@ -1,74 +1,59 @@
-# Stuck & Solution Search Widget
+# S10-stuck-solution-search-widget.md
 
-priority: 10
+## Stuck ID & Name
 
-## Situation
+- **ID**: S10
+- **Name**: stuck-solution-search-widget
 
-- Extend existing live search widget to locate stucks/solutions data.
+## Rationale
 
-## Background
+Quickly finding stucks and solutions speeds project management, allowing instant
+reference to known issues/fixes.
 
-- Similar to customer search, but for internal project issues and their
-  resolutions.
+## Description
 
-## Done
+Extend the live search widget to query stuck/solution data, returning relevant
+entries instantly on user input.
 
-- Users can type a query and find stucks/solutions instantly.
+## Context & References
 
-### Evals
+- **Transcripts**: Analogous to customer search widget logic.
+- **Domains/Definitions**: Requires stuck data indexing.
+- **External References**: Indexed search techniques.
 
-- Test queries against known stuck sets, validate speed/accuracy.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: Stable stuck storage (S16).
+- **Resource/Domain Dependencies**: Data must be indexed and queryable.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Indexed search over stuck/solution data.
+User queries yield immediate stuck/solution listings, improving efficiency in
+resolving issues.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by user input in search field.
+- **Tests & Verifications**: Test queries, validate speed/accuracy.
+- **Metrics for Success**: Low latency, high relevance.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Immediate listing of relevant stucks/solutions.
+- **Subtasks**:
+  1. Integrate stuck/solution dataset into search index
+  2. Adapt UI for these results
+- **Capabilities Needed**: Efficient indexing, UI integration.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Similar logic to customer search, different dataset.
+- **Known Limitations**: Depends on stable stuck data.
+- **Potential Risks**: Handling large stuck sets efficiently.
 
-### Potential Impact
+## Progress & Effort
 
-- Faster project management, quicker reference to issues/fixes.
+- **Effort Expended**: Concept only.
+- **Future Estimate**: <1 sprint once data stable.
+- **Current Status**: Pending stuck data integration.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Depends on stable stuck storage.
-
-#### Unknown Limitations
-
-- Handling large sets of stucks.
-
-## Current Situation
-
-### Cost
-
-- Low; reuse existing widget logic.
-
-#### Effort Expended
-
-- Concept only.
-
-#### Future Estimate
-
-- <1 sprint once stuck data stable.
-
-### Progress
-
-- Pending stuck data integration.
-
-## Recommendation
-
-- After stuck data stable, point widget to that dataset, test and refine.
+After stuck data stable, point widget to that dataset, test and refine.

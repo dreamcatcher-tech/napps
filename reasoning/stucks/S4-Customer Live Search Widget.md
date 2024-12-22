@@ -1,76 +1,61 @@
-# Customer Live Search Widget
+# S4-customer-live-search-widget.md
 
-priority: 4
+## Stuck ID & Name
 
-## Situation
+- **ID**: S4
+- **Name**: customer-live-search-widget
 
-- Need a fast, responsive search tool to find customer records quickly.
+## Rationale
 
-## Background
+Enables fast retrieval of customer records as user types, improving CRM
+efficiency and user experience.
 
-- Emerged to rapidly locate customer data from MoneyWorks now stored in
-  Artifact, supporting CRM visibility.
+## Description
 
-## Done
+A real-time search widget that returns relevant customer records instantly,
+leveraging the Artifact data and reducing search latency.
 
-- A widget that returns relevant customer records as the user types, integrated
-  into the UI.
+## Context & References
 
-### Evals
+- **Transcripts**: Emerged from CRM visibility needs.
+- **Domains/Definitions**: Depends on data stored in Artifact.
+- **External References**: Known search indexing techniques.
 
-- Test queries against known datasets, measure latency and accuracy.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S1 for data availability in Artifact.
+- **Resource/Domain Dependencies**: Stable artifact data indexing.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Incremental search over stored data, display results in real-time.
+Typing queries yields immediate, accurate customer results without delays,
+enhancing user productivity.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by user typing; inputs are search strings.
+- **Tests & Verifications**: Test sample queries, measure latency and accuracy.
+- **Metrics for Success**: Low latency (ms range), high relevance score.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Results appear instantly with each keystroke.
+- **Subtasks**:
+  1. Implement indexing for customer data
+  2. Integrate search logic into widget
+  3. Test on sample datasets
+- **Capabilities Needed**: Efficient search algorithms, UI updates on keystroke.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Efficient indexing, responsive UI updates, highlighting matches.
+- **Known Limitations**: Requires stable data from Artifact.
+- **Potential Risks**: Handling large datasets or fuzzy matches.
 
-### Potential Impact
+## Progress & Effort
 
-- Improves user experience, reduces time to locate customer info.
+- **Effort Expended**: Preliminary code snippet for string matching.
+- **Future Estimate**: <1 sprint once data is ready.
+- **Current Status**: Prototype pending integration.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Depends on stable Git-based data availability.
-
-#### Unknown Limitations
-
-- Handling fuzzy matches or partial information.
-
-## Current Situation
-
-### Cost
-
-- Low-medium; search algorithms are well-known.
-
-#### Effort Expended
-
-- Preliminary code snippet for string matching done.
-
-#### Future Estimate
-
-- <1 sprint with a stable data source.
-
-### Progress
-
-- Prototype ready, awaiting integrated data.
-
-## Recommendation
-
-- Integrate with finalized UI widget framework and artifact data store, optimize
-  for speed.
+Integrate with finalized UI widget framework and stable data sources, optimize
+for speed.

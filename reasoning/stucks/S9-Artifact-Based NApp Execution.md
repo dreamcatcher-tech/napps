@@ -1,74 +1,60 @@
-# Artifact-Based NApp Execution
+# S9-artifact-based-napp-execution.md
 
-priority: 9
+## Stuck ID & Name
 
-## Situation
+- **ID**: S9
+- **Name**: artifact-based-napp-execution
 
-- Execute NApps directly from Artifact’s Git-based data store.
+## Rationale
 
-## Background
+Integrating NApp execution directly from Artifact’s Git-based data store ties
+code and data seamlessly, enabling dynamic pipelines.
 
-- Integrates code/data tightly, letting NApps run where their data lives.
+## Description
 
-## Done
+Trigger and run NApps using data/code in Artifact’s Git repo, ensuring no
+external tooling needed and allowing branching/versioning of both code and data
+together.
 
-- NApps can be triggered and run using data/code in Artifact’s Git repo.
+## Context & References
 
-### Evals
+- **Transcripts**: Mentioned as deeper integration after S1.
+- **Domains/Definitions**: Relates to `artifact.md` and NApp schema (S8).
+- **External References**: Git-based CI/CD concepts.
 
-- Confirm a NApp can be invoked from Artifact commits, test outputs stored as
-  commits.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S1 (Git-based data), S8 (NApp format).
+- **Resource/Domain Dependencies**: Execution runtime stable.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Fetch NApp code from Git, run it, commit results.
+NApps invoked directly from Artifact commits, outputs stored as commits. Tests
+confirm reliable execution without external setups.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by commit events or user commands.
+- **Tests & Verifications**: Invoke a NApp from Artifact, check output commits.
+- **Metrics for Success**: Reliable runs, easy rollback, consistent state.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Smooth execution pipeline without external tooling.
+- **Subtasks**:
+  1. Integrate NApp runtime with Artifact data
+  2. Test sample NApp execution from commits
+- **Capabilities Needed**: Execution runtime tied to Git data.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Execution runtime, branching, rollback.
+- **Known Limitations**: Complexity in streaming outputs from Artifact states.
+- **Potential Risks**: Scaling issues under heavy usage.
 
-### Potential Impact
+## Progress & Effort
 
-- Dynamic pipelines, deeper integration.
+- **Effort Expended**: Preliminary design only.
+- **Future Estimate**: Several sprints for stability.
+- **Current Status**: Conceptual phase.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Complexity in streaming outputs.
-
-#### Unknown Limitations
-
-- Scaling issues under load.
-
-## Current Situation
-
-### Cost
-
-- High; complex integration.
-
-#### Effort Expended
-
-- Preliminary design only.
-
-#### Future Estimate
-
-- Several sprints for stable execution.
-
-### Progress
-
-- Conceptual phase.
-
-## Recommendation
-
-- Start with simple NApp runs, measure performance, iterate execution model.
+Start with simple NApp runs, measure performance, refine execution model.

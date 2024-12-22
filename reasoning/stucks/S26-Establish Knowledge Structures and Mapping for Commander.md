@@ -1,80 +1,65 @@
-# Establish Knowledge Structures and Mapping for Commander
+# S26-establish-knowledge-structures-and-mapping-for-commander.md
 
-## Situation
+## Stuck ID & Name
 
-- Commander needs well-defined knowledge frameworks.
-- Must manage data, tasks, dependencies in a structured format.
-- References: (33:07, 34:40, 39:54, 42:05, 44:50)
+- **ID**: S26
+- **Name**: establish-knowledge-structures-and-mapping-for-commander
 
-## Background
+## Rationale
 
-- Without structured knowledge, Commander can’t reason effectively.
-- Hierarchical and graph-based structures are required.
+Commander needs well-defined knowledge frameworks to handle data, tasks, and
+dependencies. Without it, reasoning fails.
 
-## Done
+## Description
 
-- Knowledge structures in place, enabling Commander to navigate and reason about
-  data.
+Define hierarchical and graph-based knowledge structures so the Commander can
+navigate data efficiently and make informed decisions.
 
-### Evals
+## Context & References
 
-- Validate that Commander can locate and use relevant information efficiently.
-- Check performance on complex queries.
+- **Transcripts**: (33:07, 34:40, 39:54, 42:05, 44:50) emphasize structured
+  knowledge.
+- **Domains/Definitions**: Ties into stuck definitions, domain narratives.
+- **External References**: Ontology/knowledge graph best practices.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S28 (unify repos) for easy access to definitions, S16
+  (stuck schema).
+- **Resource/Domain Dependencies**: Well-structured domain definitions.
 
-- Organizing tasks, stucks, and solutions into a knowledge graph.
-- Providing quick retrieval and contextual linking.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+Knowledge structures in place, Commander queries run efficiently, tests show
+Commander can find and use relevant info quickly.
 
-- Triggered during Commander’s reasoning processes.
-- Inputs: Stuck definitions, project metadata, documentation.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Test Commander queries under structured knowledge.
+- **Metrics for Success**:
+  - Reduced confusion, faster Commander responses.
 
-- Commander can answer questions, find dependencies, and support
-  decision-making.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Implement hierarchical storage
+  2. Index and link domain concepts
+  3. Test with sample queries
+- **Capabilities Needed**: Indexing, graph queries.
 
-- Hierarchical storage, indexing, referencing multiple data sources.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Needs stable schemas.
+- **Potential Risks**: Adapting structure as project evolves.
 
-- Enhanced clarity, reduced confusion, faster decision-making.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Conceptual design in progress.
+- **Future Estimate**: 1-2 sprints for initial setup.
+- **Current Status**: Preliminary schema proposals.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Depends on stable formats and schemas.
-
-#### Unknown Limitations
-
-- Adapting the structure as project evolves.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Conceptual design in progress.
-
-#### Future Estimate
-
-- 1-2 sprints to establish initial structures.
-
-### Progress
-
-- Preliminary schema proposals.
-
-## Recommendation
-
-- Implement after Commander’s basic framework exists.
-- Refine iteratively as project scales.
+Implement after Commander’s basic framework, refine iteratively as project
+scales.

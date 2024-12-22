@@ -68,13 +68,12 @@
     "./files",
     "./fixture",
     "./git-kv",
-    "./graph",
     "./hamr",
     "./info",
     "./napp-tools",
     "./openai",
     "./processes",
-    "./reasoner",
+    "./generator",
     "./server",
     "./shockwave",
     "./snapshots",
@@ -82,8 +81,10 @@
     "./stucks",
     "./utils/pdfs",
     "./utils/youtube",
+    "./utils/graph",
     "./utils/concat",
     "./utils/chat",
-    "./utils/crawl"
+    "./utils/crawl",
+    "./blockchain/tendermint"
   ]
 }

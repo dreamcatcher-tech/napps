@@ -1,78 +1,68 @@
-# Deploy and Integrate "Concat" Tool
+# S29-deploy-and-integrate-concat-tool.md
 
-## Situation
+## Stuck ID & Name
 
-- Need a tool to manage and summarize domain files.
-- Facilitates better context management for O1 Pro.
-- References: (45:50–46:40)
+- **ID**: S29
+- **Name**: deploy-and-integrate-concat-tool
 
-## Background
+## Rationale
 
-- Large context windows difficult to manage manually.
-- Concat tool helps create condensed summaries of domain-specific files.
+Managing large context windows manually is tough. The concat tool creates
+condensed summaries of domain files, improving O1 Pro’s reasoning efficiency and
+reducing token usage.
 
-## Done
+## Description
 
-- Concat tool operational, integrated with workflow, providing summaries on
-  demand.
+Deploy the concat tool to summarize domain files, integrate it into workflows so
+that O1 Pro can access clearer, more concise contexts.
 
-### Evals
+## Context & References
 
-- Validate tool output correctness and relevance.
-- Check if it improves O1 Pro’s reasoning efficiency.
+- **Transcripts**: (45:50–46:40) hint at improving context management.
+- **Domains/Definitions**: Ties into domain definitions and commander's
+  knowledge structures.
+- **External References**: Summarization techniques, text processing tools.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S28 (unified repo) ensures all files accessible.
+- **Resource/Domain Dependencies**: Stable domain definitions and file
+  structures.
 
-- Summarizes files/folders, reduces noise, highlights key points.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+Concat tool deployed, providing reliable summaries on-demand. Tests confirm O1
+Pro reasoning improves with these summaries, measured by reduced token usage and
+quicker solution times.
 
-- Triggered by user or Commander requests.
-- Inputs: Source files/directories.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Test concat tool on sample files.
+  - Check O1 Pro performance with/without summaries.
+- **Metrics for Success**:
+  - Measurable reduction in tokens used, faster O1 Pro responses.
 
-- Reliable, coherent summaries available for O1 Pro.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Integrate concat tool in workflow
+  2. Generate summaries for key domains
+  3. Evaluate O1 Pro improvements
+- **Capabilities Needed**: File scanning, text summarization logic.
 
-- File scanning, summary generation, storage of summary outputs.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Depends on stable knowledge structures.
+- **Potential Risks**: Summary quality may vary; tuning needed.
 
-- Faster reasoning, reduced token consumption, clearer context.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Tool concept known, needs deployment.
+- **Future Estimate**: <1 sprint once environment ready.
+- **Current Status**: Awaiting stable environment.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Depends on stable knowledge structures.
-
-#### Unknown Limitations
-
-- Quality of summaries may vary with file complexity.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Tool concept known, needs deployment.
-
-#### Future Estimate
-
-- <1 sprint to integrate tool once basic infrastructure is ready.
-
-### Progress
-
-- Awaiting stable environment.
-
-## Recommendation
-
-- Deploy after Commander and knowledge structures are in place.
-- Test on sample files before production use.
+Deploy after Commander (S25) and knowledge structures (S26) are in place, test
+on sample files, iterate as needed.

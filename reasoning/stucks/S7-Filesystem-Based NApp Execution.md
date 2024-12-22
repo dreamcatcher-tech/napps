@@ -1,76 +1,60 @@
-# Filesystem-Based NApp Execution
+# S7-filesystem-based-napp-execution.md
 
-priority: 7
+## Stuck ID & Name
 
-## Situation
+- **ID**: S7
+- **Name**: filesystem-based-napp-execution
 
-- Need a local environment for executing NApps without relying on Artifact or
-  complex infrastructure.
+## Rationale
 
-## Background
+Speeds dev/testing by running NApps locally via the filesystem, independent of
+complex infrastructure or Artifact integration.
 
-- Simplifies dev/testing by running NApps directly on the filesystem.
+## Description
 
-## Done
+Execute NApps directly from local files, enabling quick iteration, debugging,
+and validation before Artifact integration.
 
-- NApps run locally using files as inputs/outputs, enabling quick iteration and
-  debugging.
+## Context & References
 
-### Evals
+- **Transcripts**: Mentioned as a simpler dev workflow.
+- **Domains/Definitions**: NApp execution environments.
+- **External References**: Standard file I/O operations.
 
-- Test with sample NApps, confirm no external dependencies required.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: None strictly required.
+- **Resource/Domain Dependencies**: Basic NApp format (S8) might help.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Execute NApp logic from a filesystem context.
+NApps run locally with file inputs/outputs, no external dependencies. Tests
+confirm correct behavior in a local environment.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by a CLI call or script. Inputs: local files.
+- **Tests & Verifications**: Run sample NApps locally, check correct output.
+- **Metrics for Success**: Quick dev cycles, easy debugging.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- NApp reads input files, processes them, writes output files.
+- **Subtasks**:
+  1. Implement file I/O runtime
+  2. Run a test NApp locally
+- **Capabilities Needed**: Basic file handling, error reporting.
 
-### Key Functionalities
+## Constraints & Risks
 
-- File I/O, runtime environment, error handling.
+- **Known Limitations**: Purely local, no concurrency.
+- **Potential Risks**: Path issues across different OSes.
 
-### Potential Impact
+## Progress & Effort
 
-- Faster dev cycles, easier debugging before Artifact integration.
+- **Effort Expended**: Basic scripts tested.
+- **Future Estimate**: <1 sprint.
+- **Current Status**: Early prototype working.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Purely local, no concurrency features.
-
-#### Unknown Limitations
-
-- Path issues across OSes.
-
-## Current Situation
-
-### Cost
-
-- Low; simpler than Artifact integration.
-
-#### Effort Expended
-
-- Basic scripts tested.
-
-#### Future Estimate
-
-- <1 sprint to finalize.
-
-### Progress
-
-- Early prototype working locally.
-
-## Recommendation
-
-- Finalize local execution scripts, test with a small set of NApps, then
-  integrate into the larger workflow.
+Finalize local execution scripts, test with a small set of NApps, then integrate
+into broader workflow.

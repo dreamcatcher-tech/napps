@@ -29,3 +29,9 @@
    what a solution is, how I would split some stucks, or merge them, and the
    same with solutions, plus indicate expected solution delivery, like non napp,
    new napp, or patched napp.
+
+6. where to insert goals, and justifications of those goals, so they are well
+   reasoned ? for example, figuring out consensus is important, but where should
+   that rank ? how can we account for the pattern of seeing how to do it so its
+   easy right away, vs labouring hard just because I was told it was time ? The
+   difference between opportunity and discipline.

@@ -1,73 +1,62 @@
-# Automated O1 Code Generation
+# S19-automated-o1-code-generation.md
 
-priority: 19
+## Stuck ID & Name
 
-## Situation
+- **ID**: S19
+- **Name**: automated-o1-code-generation
 
-- Currently manually integrating O1 outputs. Need to automate the pipeline.
+## Rationale
 
-## Background
+Automate O1 outputs directly into code commits, reducing manual overhead and
+speeding development cycles.
 
-- Saves time, reduces error, no manual copy/paste.
+## Description
 
-## Done
+Integrate O1 model outputs with version control, so generated code applies
+automatically, removing copy/paste steps and lowering error risks.
 
-- O1 outputs directly produce code changes and commits automatically.
+## Context & References
 
-### Evals
+- **Transcripts**: Mentioned need to accelerate dev, reduce manual tasks.
+- **Domains/Definitions**: NApp code integration, CI/CD environments.
+- **External References**: Git automation pipelines, codegen best practices.
 
-- Validate generated code compiles/runs, check commit correctness.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S8 (NApp format) for consistent code structures
+  helpful.
+- **Resource/Domain Dependencies**: Stable O1 integration, CI pipeline.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Integrate O1 model output with version control.
+O1 outputs directly produce code changes/commits. Tests confirm code compiles,
+runs, and meets quality checks without manual steps.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by O1 commands.
+- **Tests & Verifications**:
+  - Run O1 commands, validate code compiles and passes lint/tests.
+- **Metrics for Success**:
+  - Reduced manual effort, fewer integration errors.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Auto-committed code, no manual step.
+- **Subtasks**:
+  1. Connect O1 output pipeline to Git
+  2. Add safeguards/tests before commit
+- **Capabilities Needed**: Scripted integration with O1 and Git.
 
-### Key Functionalities
+## Constraints & Risks
 
-- O1 integration, code formatting, automated commits.
+- **Known Limitations**: Bad O1 output = bad code.
+- **Potential Risks**: Complex refactors might need human review.
 
-### Potential Impact
+## Progress & Effort
 
-- Speeds dev, reduces tedious tasks.
+- **Effort Expended**: Early attempts done.
+- **Future Estimate**: 1-2 sprints for stable pipeline.
+- **Current Status**: Early prototypes exist.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Bad O1 output = bad code.
-
-#### Unknown Limitations
-
-- Complex refactors need human review.
-
-## Current Situation
-
-### Cost
-
-- Moderate; scripting and pipelines needed.
-
-#### Effort Expended
-
-- Initial attempts.
-
-#### Future Estimate
-
-- 1-2 sprints stable pipeline.
-
-### Progress
-
-- Early prototypes done.
-
-## Recommendation
-
-- Add safeguards/tests, automate simple tasks first, expand as confidence grows.
+Add safeguards, start with simple tasks, expand as confidence grows.

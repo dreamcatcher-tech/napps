@@ -1,78 +1,66 @@
-# Map Tasks, Dependencies, and Risks
+# S32-map-tasks-dependencies-and-risks.md
 
-## Situation
+## Stuck ID & Name
 
-- Complex project with many tasks requires clear dependency mapping.
-- Identify risks to allocate resources effectively.
-- References: (19:04, 26:09, 28:16)
+- **ID**: S32
+- **Name**: map-tasks-dependencies-and-risks
 
-## Background
+## Rationale
 
-- Without a task graph, complexity leads to confusion.
-- Risk assessment improves strategic decisions.
+Clear dependency mapping and risk identification helps manage complexity,
+ensuring proactive resource allocation and strategic planning.
 
-## Done
+## Description
 
-- Comprehensive task map with dependencies and identified risks.
+Construct a dependency graph of tasks, identify risks, and provide this map to
+the Commander and stakeholders, aiding in scheduling and prioritization.
 
-### Evals
+## Context & References
 
-- Validate that Commander can navigate and prioritize tasks.
-- Check if risk-aware decisions improve outcomes.
+- **Transcripts**: (19:04, 26:09, 28:16) highlight need for better planning,
+  risk assessment.
+- **Domains/Definitions**: Stuck schema (S16), Commander logic (S25).
+- **External References**: Project management risk mapping techniques.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S16 for structured tasks, S25 for Commander
+  integration.
+- **Resource/Domain Dependencies**: Task data and known dependencies.
 
-- Visualizing task chains, highlighting risk areas.
-- Informing Commander’s decisions.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+A comprehensive task map with dependencies and identified risks, validated by
+Commander using it for improved scheduling and fewer surprises.
 
-- Triggered when planning or adjusting timelines.
-- Inputs: Task list, known dependencies, risk factors.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Check correctness of mapped dependencies.
+  - Simulate risk scenarios.
+- **Metrics for Success**:
+  - Better strategic decisions, reduced missed dependencies.
 
-- Commander easily sees which tasks block others and manages them accordingly.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Extract and record dependencies
+  2. Assign risk levels
+  3. Provide a visualization or data structure for Commander
+- **Capabilities Needed**: Dependency graph generation, risk scoring logic.
 
-- Dependency graphs, risk scoring, dynamic updates.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Requires stable stuck structure.
+- **Potential Risks**: Risk models may evolve over time.
 
-- Reduced blind spots, proactive mitigation strategies.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Conceptual phase.
+- **Future Estimate**: 1 sprint after Commander functional.
+- **Current Status**: Awaiting foundational structures.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Requires stable stuck/task structure.
-
-#### Unknown Limitations
-
-- Risk models may evolve over time.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Conceptual phase.
-
-#### Future Estimate
-
-- 1 sprint after Commander is fully functional.
-
-### Progress
-
-- Awaiting foundational structures.
-
-## Recommendation
-
-- Implement after main Commander functionalities are stable.
-- Start with a simple dependency map and refine.
+Implement once main Commander functions stable, start with a simple dependency
+map and refine risk assessments iteratively.
