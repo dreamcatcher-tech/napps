@@ -1,79 +1,63 @@
-# Develop Module Mapping System
+# S34-develop-module-mapping-system.md
 
-## Situation
+## Stuck ID & Name
 
-- Multi-package projects need a system to manage modules in NApps.
-- Seamless integration and navigation required.
-- References: (21:00)
+- **ID**: S34
+- **Name**: develop-module-mapping-system
 
-## Background
+## Rationale
 
-- Complex projects split into modules/packages.
-- Need a system to track and integrate them.
+As projects scale into multiple packages, a mapping system for modules in NApps
+ensures easy navigation, integration, and maintenance.
 
-## Done
+## Description
 
-- Module mapping system implemented, enabling easy navigation and integration of
-  packages.
+Create a system to track and relate modules across NApps, enabling the Commander
+and developers to find and integrate modules smoothly.
 
-### Evals
+## Context & References
 
-- Validate that developers and Commander can find and integrate modules easily.
-- Check if this reduces integration errors.
+- **Transcripts**: (21:00) references complexity in module-level organization.
+- **Domains/Definitions**: NApp schema (S8), Commander logic (S25).
+- **External References**: Modular architecture patterns.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S8 for NApp format, stable stuck structure.
+- **Resource/Domain Dependencies**: Access to codebase to identify modules.
 
-- Identify modules, their functions, and dependencies.
-- Provide a map for Commander to select appropriate modules.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+A module mapping system that identifies modules, their dependencies, and
+versions, tested by easy module lookups and fewer integration errors.
 
-- Triggered by building or executing NApps.
-- Inputs: Module definitions, code repositories.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Test module lookups, verify correct dependency chains.
+- **Metrics for Success**:
+  - Faster development, fewer integration issues.
 
-- Smooth integration of multi-package projects.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Module registry creation
+  2. Dependency mapping per module
+  3. UI or CLI queries for modules
+- **Capabilities Needed**: Module discovery, dependency graphing.
 
-- Module registry, dependency mapping, version tracking.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Requires stable code organization.
+- **Potential Risks**: Growing complexity as modules increase.
 
-- Faster development, fewer integration issues, scalable architecture.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Concept phase.
+- **Future Estimate**: 1 sprint after task structures stable.
+- **Current Status**: Awaiting prerequisites.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Requires stable stuck/task structures and Commander.
-
-#### Unknown Limitations
-
-- Might need adaptation as modules grow in number.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Concept phase.
-
-#### Future Estimate
-
-- 1 sprint after task structures stabilized.
-
-### Progress
-
-- Awaiting prerequisites.
-
-## Recommendation
-
-- Implement once stucks and Commander are well-defined.
-- Start with a few modules and scale up.
+Implement once stucks and Commander well-defined, start with a few modules and
+scale as needed.

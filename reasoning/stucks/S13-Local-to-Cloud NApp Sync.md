@@ -1,74 +1,60 @@
-# Local-to-Cloud NApp Sync
+# S13-local-to-cloud-napp-sync.md
 
-priority: 13
+## Stuck ID & Name
 
-## Situation
+- **ID**: S13
+- **Name**: local-to-cloud-napp-sync
 
-- Local NApps run on premises need to sync data with cloud-based Artifact.
+## Rationale
 
-## Background
+Supports hybrid architectures by syncing local NApps with cloud Artifact,
+ensuring data consistency and edge computing scenarios.
 
-- Supports hybrid architectures with edge computing scenarios.
+## Description
 
-## Done
+Allow secure push/pull of data between local NApps and cloud Artifact,
+maintaining up-to-date states.
 
-- Local NApps can securely push/pull data to/from the cloud, keeping systems in
-  sync.
+## Context & References
 
-### Evals
+- **Transcripts**: Implied need for hybrid approaches.
+- **Domains/Definitions**: Artifact data handling.
+- **External References**: Sync patterns (push/pull).
 
-- Test local→cloud and cloud→local sync, validate data integrity.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S1 for Git-based artifact storage, possibly S5/S6 for
+  auth.
+- **Resource/Domain Dependencies**: Networked sync protocols.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Local processing, secure transfer, conflict resolution.
+Smooth data flow between local and cloud, verified by sync tests ensuring
+integrity.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by scheduled sync or command.
+- **Tests & Verifications**: Local→cloud and cloud→local sync tests.
+- **Metrics for Success**: No data loss, seamless updates.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Seamless data flow between on-prem and cloud.
+- **Subtasks**:
+  1. Implement pull-only sync
+  2. Add bi-directional sync
+- **Capabilities Needed**: Authenticated APIs, version tracking.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Authenticated APIs, sync protocols, partial updates.
+- **Known Limitations**: Needs stable auth layers.
+- **Potential Risks**: Conflict resolution complexity.
 
-### Potential Impact
+## Progress & Effort
 
-- Edge computing, reduced latency.
+- **Effort Expended**: Basic planning.
+- **Future Estimate**: Several sprints.
+- **Current Status**: Conceptual only.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Requires stable auth and repo structure.
-
-#### Unknown Limitations
-
-- Version conflicts between local and remote.
-
-## Current Situation
-
-### Cost
-
-- Moderate-high; networking and version complexity.
-
-#### Effort Expended
-
-- Basic planning.
-
-#### Future Estimate
-
-- Several sprints for robust sync.
-
-### Progress
-
-- Conceptual only.
-
-## Recommendation
-
-- Start with one-way sync (pull-only), then add bi-directional syncing.
+Start with one-way sync, then refine and add bi-directional capabilities.

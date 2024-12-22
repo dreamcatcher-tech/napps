@@ -1,79 +1,63 @@
-# Git-Based Artifact Database
+# S1-git-based-artifact-database.md
 
-priority: 1
+## Stuck ID & Name
 
-## Situation
+- **ID**: S1
+- **Name**: git-based-artifact-database
 
-- Artifact currently relies on a traditional database; we want to store and
-  version data in Git.
-- References: Existing Git repos, Artifact’s current storage mechanism.
+## Rationale
 
-## Background
+Foundational for trust, versioning, and a developer-friendly workflow. Ensures
+auditability, rollback, and branching of Artifact data, critical for long-term
+integrity.
 
-- Raised to leverage Git’s versioning and branching for data management,
-  aligning Artifact storage with a developer-friendly workflow.
+## Description
 
-## Done
+Replace the traditional database with Git-based storage, allowing deterministic,
+auditable changes and collaborative workflows.
 
-- Artifact data can be stored, retrieved, and version-controlled entirely via
-  Git without data loss or integrity issues.
+## Context & References
 
-### Evals
+- **Transcripts**: Discussed early as a foundational step.
+- **Domains/Definitions**: `domains/innovation/artifact.md`
+- **External References**: Git operations, VCS best practices.
 
-- Tests: Confirm commit/branch integrity, ensure no data corruption, and
-  validate read/write operations from Git storage.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: None initially.
+- **Resource/Domain Dependencies**: Git integration layer, possibly NApp format
+  (S8).
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Enable read/write of structured data through Git commits and branches.
+Artifact data fully managed in Git commits/branches, passing integrity tests,
+supporting rollback without data loss.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered when saving or retrieving data from Artifact.
+- **Tests & Verifications**: Commit/branch integrity, read/write ops validation,
+  revert tests.
+- **Metrics for Success**: 100% integrity test pass, seamless version retrieval.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Data is stored as a series of commits, easily revertible or branchable.
+- **Subtasks**:
+  1. Implement Git commit on write
+  2. Git checkout on read
+  3. Branch/merge support
+- **Capabilities Needed**: Git integration, data-to-commit formatting.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Git commit on write, Git checkout on read, branch and merge support.
+- **Known Limitations**: Requires stable Git integration.
+- **Potential Risks**: Performance with large datasets.
 
-### Potential Impact
+## Progress & Effort
 
-- Improves data auditability, rollback, and collaboration.
+- **Effort Expended**: Some Git API exploration.
+- **Future Estimate**: 1-2 sprints.
+- **Current Status**: Planning (prototype pending).
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Requires stable Git integration layer.
-
-#### Unknown Limitations
-
-- Potential performance issues at scale.
-
-## Current Situation
-
-### Cost
-
-- Moderate complexity; similar to previous Git integrations.
-
-#### Effort Expended
-
-- Some initial exploration of Git APIs.
-
-#### Future Estimate
-
-- 1-2 sprints for stable integration.
-
-### Progress
-
-- Early planning done, prototype pending.
-
-## Recommendation
-
-- Implement a proof-of-concept Git integration and run tests on small datasets.
-  Iterate from there.
+Implement a proof-of-concept on small datasets, then refine and scale.

@@ -1,77 +1,67 @@
-# Deploy O1 Pro as Commander AI
+# S30-deploy-o1-pro-as-commander-ai.md
 
-## Situation
+## Stuck ID & Name
 
-- O1 Pro model to serve as central AI for command and control.
-- Manage tasks, decisions, and resource allocation.
-- References: (18:00)
+- **ID**: S30
+- **Name**: deploy-o1-pro-as-commander-ai
 
-## Background
+## Rationale
 
-- Need a capable AI to orchestrate tasks.
-- O1 Pro offers tool calls, structured outputs.
+O1 Pro can serve as the core AI for command and control, orchestrating tasks,
+decisions, and resource allocation, enhancing autonomy and scaling without
+linear human effort.
 
-## Done
+## Description
 
-- O1 Pro integrated as the Commander AI, orchestrating the project autonomously.
+Integrate O1 Pro as the Commander AI, enabling it to use tool calls, structured
+outputs, and continuously update plans based on the project's state.
 
-### Evals
+## Context & References
 
-- Validate O1 Pro’s command effectiveness.
-- Confirm it reduces manual overhead and improves outcomes.
+- **Transcripts**: Mentioned to achieve a fully integrated AI-driven project
+  manager (18:00).
+- **Domains/Definitions**: Commander concepts from S25.
+- **External References**: AI orchestration best practices.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S25 (Commander), stable environment from S28 (unify
+  repo), S26 (knowledge structures).
+- **Resource/Domain Dependencies**: O1 Pro API access, stable tool call
+  interfaces.
 
-- Decision-making, tool usage, guiding other NApps.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+O1 Pro integrated as Commander AI, tested by improved decision loops, reduced
+manual overhead, and consistent task management outputs.
 
-- Triggered by project demands, user queries.
-- Inputs: Project state, stuck definitions, resource data.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Trigger decision cycles, measure improvements in workflow.
+- **Metrics for Success**:
+  - Better strategic outcomes, positive feedback on reduced manual intervention.
 
-- Proactively manage tasks, call tools, propose solutions.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Connect O1 Pro to Commander logic
+  2. Test decision loops and tool usage
+  3. Fine-tune prompts if needed
+- **Capabilities Needed**: O1 integration, tool invocation framework.
 
-- Tool calls, reasoning steps, structured outputs.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Requires stable Commander and tool integration.
+- **Potential Risks**: Prompt tuning challenges.
 
-- Enhanced autonomy, scaling without linear human effort.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Preliminary integration ideas only.
+- **Future Estimate**: Several sprints after infrastructure ready.
+- **Current Status**: Planning phase.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Requires stable Commander and tool integration.
-
-#### Unknown Limitations
-
-- May need fine-tuning prompts for best results.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Preliminary integration ideas only.
-
-#### Future Estimate
-
-- Several sprints after infrastructure is ready.
-
-### Progress
-
-- Planning phase.
-
-## Recommendation
-
-- Integrate O1 Pro after Commander and concat tool are operational.
-- Incrementally test decision loops.
+Integrate O1 Pro post-Commander stabilization, incrementally test decision loops
+and refine.

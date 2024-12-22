@@ -1,80 +1,64 @@
-# Implement Quality Assurance (QA) Processes to Control Complexity and Costs
+# S38-implement-quality-assurance-qa-processes-to-control-complexity-and-costs.md
 
-priority: TBD
+## Stuck ID & Name
 
-## Situation
+- **ID**: S38
+- **Name**:
+  implement-quality-assurance-qa-processes-to-control-complexity-and-costs
 
-- Complexity and fast development risk quality and cost overruns.
-- Need QA processes integrated into workflows.
-- References: (33:07, 34:40, 39:54, 42:05, 44:50)
+## Rationale
 
-## Background
+As complexity and speed increase, QA processes prevent accumulating defects and
+tech debt, ensuring stable growth and controlled costs.
 
-- Without QA, errors accumulate, tech debt grows.
-- QA ensures consistent standards.
+## Description
 
-## Done
+Integrate QA into workflows: automated testing, code reviews, performance
+checks. Merge only stable, verified changes to maintain high-quality output.
 
-- QA integrated, preventing regressions, ensuring code and decisions remain
-  sound.
+## Context & References
 
-### Evals
+- **Transcripts**: (33:07, 34:40, 39:54, 42:05, 44:50) highlight the need for
+  controlling complexity and ensuring quality.
+- **Domains/Definitions**: Integrates with CI/CD and NApp pipelines.
+- **External References**: Standard QA frameworks, unit/integration tests.
 
-- Check code quality metrics, defect rates.
-- Validate reduced rework and stable deployments.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: Unified repo (S28) to run consistent QA checks.
+- **Resource/Domain Dependencies**: Test suites, lint rules, stable toolchains.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Automated testing, code reviews, performance checks.
+QA integrated, preventing regressions and improving code quality. Tests confirm
+defect rates drop, stable deployments increase.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered at code commit, release preparation.
-- Inputs: Code diffs, test suites, performance logs.
+- **Tests & Verifications**:
+  - Check code quality metrics, defect rates pre/post QA.
+- **Metrics for Success**:
+  - Reduced rework, stable release cycles.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Consistent, high-quality outputs despite complexity.
+- **Subtasks**:
+  1. Set up automated tests and lint checks
+  2. Integrate into CI/CD pipeline
+  3. Monitor code quality metrics
+- **Capabilities Needed**: Testing frameworks, CI integration.
 
-### Key Functionalities
+## Constraints & Risks
 
-- CI/CD integration, test coverage reports, QA gating.
+- **Known Limitations**: Requires stable main repo and task structures.
+- **Potential Risks**: QA tools may need refinement as complexity grows.
 
-### Potential Impact
+## Progress & Effort
 
-- Lower defect rates, controlled costs, better user experience.
+- **Effort Expended**: Initial QA concepts identified.
+- **Future Estimate**: 1-2 sprints for initial QA pipeline.
+- **Current Status**: Ready to integrate once tasks stable.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Requires stable main repo and task structures.
-
-#### Unknown Limitations
-
-- QA tools may need refinement as complexity grows.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Initial QA concepts identified.
-
-#### Future Estimate
-
-- 1-2 sprints to implement basic QA pipelines.
-
-### Progress
-
-- Ready to integrate once tasks and structures are stable.
-
-## Recommendation
-
-- Implement QA early to prevent accumulation of technical debt.
-- Expand test coverage incrementally.
+Implement QA early to prevent tech debt, expand test coverage incrementally.

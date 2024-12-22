@@ -1,73 +1,59 @@
-# Multi-Repo User Support
+# S12-multi-repo-user-support.md
 
-priority: 12
+## Stuck ID & Name
 
-## Situation
+- **ID**: S12
+- **Name**: multi-repo-user-support
 
-- A single user may manage multiple Artifact repos.
+## Rationale
 
-## Background
+A single user managing multiple Artifact repos increases organizational
+flexibility and modular data management.
 
-- Allows flexible data partitioning and organization.
+## Description
 
-## Done
+Enable one user to seamlessly select and operate on multiple Artifact repos,
+providing clear repo contexts.
 
-- A single user can switch between multiple repos seamlessly.
+## Context & References
 
-### Evals
+- **Transcripts**: Not explicitly referenced.
+- **Domains/Definitions**: Related to `artifact.md`.
+- **External References**: Multi-repo strategies in Git.
 
-- Test repo navigation, data retrieval across multiple repos.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S1 for Git-based data.
+- **Resource/Domain Dependencies**: Repo registry or indexing mechanism.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Repo listing, selection, context switching.
+User can list, select, and operate on multiple repos effortlessly, tested by
+navigating and retrieving data from various repos.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by user selecting a repo.
+- **Tests & Verifications**: Repo navigation tests, correct data retrieval.
+- **Metrics for Success**: Smooth switching, no confusion in repo context.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- User can view/edit/commit to chosen repo.
+- **Subtasks**:
+  1. Implement repo listing/selection
+  2. Ensure read/write per chosen repo
+- **Capabilities Needed**: Repo registry, permission handling per repo.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Repo registry, permissions per repo.
+- **Known Limitations**: UI complexity.
+- **Potential Risks**: Confusion if not clearly labeling repos.
 
-### Potential Impact
+## Progress & Effort
 
-- Enhances organization, modularity.
+- **Effort Expended**: Idea stage.
+- **Future Estimate**: 1-2 sprints.
+- **Current Status**: Conceptual.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- UI/UX complexity.
-
-#### Unknown Limitations
-
-- Naming/ID scheme for repos.
-
-## Current Situation
-
-### Cost
-
-- Moderate.
-
-#### Effort Expended
-
-- Idea stage.
-
-#### Future Estimate
-
-- 1-2 sprints basic support.
-
-### Progress
-
-- Conceptual only.
-
-## Recommendation
-
-- Implement simple repo selector, test read-only, then add write ops.
+Implement a basic repo selector, test read-only, then allow writing.

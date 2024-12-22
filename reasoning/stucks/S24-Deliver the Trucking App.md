@@ -1,82 +1,67 @@
-# Deliver the Trucking App
+# S24-deliver-the-trucking-app.md
 
-## Situation
+## Stuck ID & Name
 
-- Urgent client need for a trucking solution.
-- Rapid code generation now possible, reducing development time.
-- References: (6:35, 14:40, 15:50, 26:09, 28:16)
+- **ID**: S24
+- **Name**: deliver-the-trucking-app
 
-## Background
+## Rationale
 
-- Previous coding advantage diminishing due to AI.
-- Need immediate revenue and tangible results.
+Urgent client need for a trucking solution delivers near-term revenue and
+establishes credibility, taking advantage of rapid AI-driven development.
 
-## Done
+## Description
 
-- Trucking app is delivered, functional, and meeting the client’s needs.
-- Generates near-term revenue.
+Build and deliver a functional trucking app quickly, meeting the client’s
+operational needs and generating immediate value.
 
-### Evals
+## Context & References
 
-- Test that the trucking app meets client requirements.
-- Confirm performance, reliability, and client satisfaction.
+- **Transcripts**: Urgent need for near-term revenue (6:35, 14:40, 15:50, 26:09,
+  28:16).
+- **Domains/Definitions**: Integrates with existing data flows and possibly CRM
+  elements.
+- **External References**: Logistics software best practices.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: NApp format (S8) and QA processes (S38) help ensure
+  quality.
+- **Resource/Domain Dependencies**: Stable dev pipeline, AI code generation
+  tools.
 
-- Rapid code development using AI.
-- Integration with client’s workflows and data sources.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+Trucking app delivered, functional, client satisfied, generating revenue. Tests
+confirm reliability, performance, and user acceptance.
 
-- Triggered by client need and request.
-- Inputs: Client specifications, existing data formats.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Feature tests against client specs.
+- **Metrics for Success**:
+  - Client satisfaction, app stability, initial revenue generated.
 
-- The trucking app should streamline the client’s operations.
-- Users can access reliable features quickly.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Implement core logistics features (scheduling, tracking)
+  2. UI/UX integration
+  3. Test and refine until client approval
+- **Capabilities Needed**: Rapid AI-driven coding, stable QA.
 
-- Core trucking logistics features (scheduling, tracking, reporting).
-- Stable UI/UX for end-users.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Time-sensitive delivery.
+- **Potential Risks**: Changing client requirements after delivery.
 
-- Immediate revenue.
-- Builds trust and establishes market credibility.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Planning phase.
+- **Future Estimate**: Few sprints with AI assistance.
+- **Current Status**: Ready for development start.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Time-sensitive delivery required.
-
-#### Unknown Limitations
-
-- Potential changes in client requirements as they start using the tool.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Planning phase.
-
-#### Future Estimate
-
-- Short development cycle with AI assistance (a few sprints).
-
-### Progress
-
-- Initial planning done; ready for development start.
-
-## Recommendation
-
-- Begin coding immediately using AI-driven generation.
-- Prioritize stable, basic features first, then iterate.
+Begin coding immediately, prioritize stable basics, iterate after initial
+delivery.

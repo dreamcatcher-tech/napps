@@ -1,76 +1,62 @@
-# Web-to-Artifact Auth Bridge
+# S6-web-to-artifact-auth-bridge.md
 
-priority: 6
+## Stuck ID & Name
 
-## Situation
+- **ID**: S6
+- **Name**: web-to-artifact-auth-bridge
 
-- After Privy auth on the web, ensure secure authenticated calls to Artifact
-  data.
+## Rationale
 
-## Background
+Maintain a trusted chain of authentication from the web UI to the Artifact
+layer, ensuring user-level permissions are respected end-to-end.
 
-- Maintains a trusted chain of authentication from UI to Artifact layer.
+## Description
 
-## Done
+After Privy-based web auth, securely pass authenticated credentials to Artifact
+so that only authorized requests succeed.
 
-- Secure tokens/credentials passed from web layer to Artifact so user-level
-  permissions are respected.
+## Context & References
 
-### Evals
+- **Transcripts**: Implied need for secure pipeline.
+- **Domains/Definitions**: Authentication and artifact access rules.
+- **External References**: Token exchange protocols, secure bridging methods.
 
-- Validate only authenticated requests reach Artifact. Check token integrity.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S5 (Privy auth) for initial user authentication.
+- **Resource/Domain Dependencies**: Stable artifact auth model.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Translate web auth sessions into Artifact-recognized credentials.
+Web-authenticated sessions produce tokens recognized by Artifact, ensuring that
+Artifact operations require valid user creds.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered on data requests. Inputs: user token.
+- **Tests & Verifications**: Verify only authenticated requests reach Artifact,
+  check token integrity.
+- **Metrics for Success**: 100% authenticated calls succeed, unauthorized fail.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Artifact operations only allowed if user’s token is valid.
+- **Subtasks**:
+  1. Implement token exchange or passing mechanism
+  2. Auth middleware at Artifact layer
+  3. Test with sample requests
+- **Capabilities Needed**: Secure token handling, request signing.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Token exchange, auth middleware, request signing.
+- **Known Limitations**: Requires stable artifact auth integration.
+- **Potential Risks**: Handling token expiration, refresh flows.
 
-### Potential Impact
+## Progress & Effort
 
-- Enhances overall security and trust in the data pipeline.
+- **Effort Expended**: Conceptual token flow design.
+- **Future Estimate**: ~1 sprint to implement/test.
+- **Current Status**: Planning.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Requires stable Artifact auth integration.
-
-#### Unknown Limitations
-
-- Handling token expiration and refresh flows.
-
-## Current Situation
-
-### Cost
-
-- Moderate; involves coordinating web and Artifact auth models.
-
-#### Effort Expended
-
-- Conceptual design of token flow.
-
-#### Future Estimate
-
-- 1 sprint to implement and test thoroughly.
-
-### Progress
-
-- Still in planning.
-
-## Recommendation
-
-- Establish a standardized token/key exchange process, test with sample
-  requests, refine as needed.
+Establish a standardized token/key exchange, test with sample requests, refine
+as needed.

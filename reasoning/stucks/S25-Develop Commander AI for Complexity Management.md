@@ -1,77 +1,65 @@
-# Develop Commander AI for Complexity Management
+# S25-develop-commander-ai-for-complexity-management.md
 
-## Situation
+## Stuck ID & Name
 
-- Complexity is the new bottleneck, not coding speed.
-- Need a tool (Commander) to manage tasks, data, and reasoning.
-- References: (19:30, 23:01, 24:05)
+- **ID**: S25
+- **Name**: develop-commander-ai-for-complexity-management
 
-## Background
+## Rationale
 
-- With rapid code generation, complexity overwhelms humans.
-- Commander will structure projects, allocate resources, and guide decisions.
+With rapid code generation, complexity is the new bottleneck. A Commander AI can
+manage tasks, data, and reasoning, reducing confusion and enhancing scalability.
 
-## Done
+## Description
 
-- Commander AI operational, managing complexity and workflow efficiently.
+Implement a Commander AI to structure projects, allocate resources, and guide
+decisions, turning chaos into coherent action plans.
 
-### Evals
+## Context & References
 
-- Validate Commander’s ability to handle multiple tasks.
-- Check if Commander reduces confusion and improves decision-making.
+- **Transcripts**: Complexity and need for Commander (19:30, 23:01, 24:05).
+- **Domains/Definitions**: Relies on structured stucks and knowledge mapping.
+- **External References**: Project management AIs.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S27 (robust task structure), S8 (NApp format), S28
+  (unify repos).
+- **Resource/Domain Dependencies**: Stable schemas, domain definitions.
 
-- Complexity analysis, resource allocation, dependency management.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+Commander AI operational, managing complexity efficiently, validated by improved
+decision-making and reduced confusion in planning.
 
-- Triggered by ongoing project tasks.
-- Inputs: Project data, stuck definitions, and resource info.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Check Commander’s handling of multiple tasks.
+  - Evaluate decision quality and user feedback.
+- **Metrics for Success**:
+  - Reduced confusion, better forecasting.
 
-- Commander provides structured plans, suggests priorities, and reduces chaos.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Complexity analysis modules
+  2. Dependency resolution
+  3. Progress tracking interface
+- **Capabilities Needed**: Reasoning algorithms, knowledge structures.
 
-- Task organization, dependency resolution, progress tracking.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Needs stable schemas and data structures.
+- **Potential Risks**: Tuning complexity as project scales.
 
-- Scalability, better forecasting, improved team efficiency.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Conceptual design only.
+- **Future Estimate**: Several sprints for MVP.
+- **Current Status**: Preliminary planning.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Requires stable schemas and data structures.
-
-#### Unknown Limitations
-
-- Might need tuning as complexity scales.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Conceptual design only.
-
-#### Future Estimate
-
-- Several sprints to achieve a stable Commander MVP.
-
-### Progress
-
-- Preliminary planning done; awaiting robust task structure.
-
-## Recommendation
-
-- Begin foundational work after initial trucking app delivery.
-- Incrementally refine Commander’s capabilities.
+Start foundational work after initial trucking app delivery, refine Commander
+capabilities incrementally.

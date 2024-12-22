@@ -1,80 +1,66 @@
-# Allocate Resources Based on Value Units
+# S31-allocate-resources-based-on-value-units.md
 
-## Situation
+## Stuck ID & Name
 
-- Introduce “value units” (e.g., tokens) to prioritize tasks.
-- Efficient resource allocation by importance and impact.
-- References: (32:49)
+- **ID**: S31
+- **Name**: allocate-resources-based-on-value-units
 
-## Background
+## Rationale
 
-- Without a priority system, risk of misallocating resources.
-- Value units quantify task importance.
+Introducing "value units" to quantify task importance ensures rational resource
+allocation, focusing on high-impact tasks first.
 
-## Done
+## Description
 
-- Value units system in place, guiding resource distribution to high-impact
-  tasks.
+Assign value units (tokens) to tasks, prioritizing those with higher strategic
+importance. Commander uses these units to guide resource distribution
+effectively.
 
-### Evals
+## Context & References
 
-- Check if priority aligns with project goals.
-- Validate that tasks with higher value units get done first.
+- **Transcripts**: (32:49) suggests a token-based or metric-driven priority
+  system.
+- **Domains/Definitions**: Ties into Commander decision-making.
+- **External References**: Weighted prioritization techniques.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S25 (Commander) to leverage these metrics.
+- **Resource/Domain Dependencies**: Stable stuck definitions to assign values.
 
-- Ranking tasks by strategic importance.
-- More rational decision-making on what to do next.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+A system that ranks tasks by assigned value units, proven to optimize task
+selection, confirmed by test scenarios showing improved strategic outcomes.
 
-- Triggered when scheduling tasks or choosing next steps.
-- Inputs: Task importance metrics, strategic objectives.
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**:
+  - Assign values to sample tasks, verify Commander chooses highest-value tasks
+    first.
+- **Metrics for Success**:
+  - Better strategic outcomes, feedback from team on improved focus.
 
-- High-value tasks always addressed first.
-- Efficient token usage and reduced waste.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Define a mechanism to assign value units
+  2. Integrate unit-based ranking in Commander logic
+- **Capabilities Needed**: Data structure for value units, sorting by priority
+  metric.
 
-- Value assignment, sorting, and resource tracking.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Requires stable Commander environment.
+- **Potential Risks**: Tuning value assignment criteria as strategy evolves.
 
-- Better strategic outcomes, improved ROI.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Conceptual only.
+- **Future Estimate**: 1 sprint after Commander stable.
+- **Current Status**: Awaiting foundation.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Requires stable Commander and NApp execution environment.
-
-#### Unknown Limitations
-
-- May need tuning as strategy evolves.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Conceptual only.
-
-#### Future Estimate
-
-- 1 sprint after Commander is stable.
-
-### Progress
-
-- Awaiting foundational components.
-
-## Recommendation
-
-- Implement once Commander can use these metrics.
-- Start simple and refine weighting system over time.
+Implement once Commander can utilize these metrics, start with a simple
+weighting system, refine over time.

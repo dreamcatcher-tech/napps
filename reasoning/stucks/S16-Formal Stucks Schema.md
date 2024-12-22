@@ -1,73 +1,64 @@
-# Formal Stucks Schema
+# S16-formal-stucks-schema.md
 
-priority: 16
+## Stuck ID & Name
 
-## Situation
+- **ID**: S16
+- **Name**: formal-stucks-schema
 
-- Stucks currently ad-hoc; need a formal structure.
+## Rationale
 
-## Background
+A formal schema ensures stuck definitions are machine-readable, consistent, and
+easily parsable, supporting automation and tooling.
 
-- Ensures machine-readable, consistent stuck definitions.
+## Description
 
-## Done
+Define a stable schema for stucks, including fields like ID, name, dependencies,
+status, estimates, and retrospectives.
 
-- A stable schema for stucks (fields, dependencies, statuses).
+## Context & References
 
-### Evals
+- **Transcripts**: Mentioned need for structured stucks.
+- **Domains/Definitions**: Aligns with overall stuck management process.
+- **External References**: Schema design best practices.
 
-- Validate sample stucks against the schema, check no ambiguity.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: None critical, but beneficial if basic NApp format
+  (S8) is done.
+- **Resource/Domain Dependencies**: Agreement from stakeholders on required
+  fields.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Defined fields, easy parsing, querying.
+A documented schema that all stucks must follow, validated against sample stuck
+sets, ensuring no ambiguity.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered when creating/updating stucks.
+- **Tests & Verifications**:
+  - Validate a set of known stucks against the schema.
+- **Metrics for Success**:
+  - All test stucks conform, no parsing errors.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Conformity to one schema.
+- **Subtasks**:
+  1. Draft schema (JSON/YAML)
+  2. Validate sample stucks
+  3. Document schema usage
+- **Capabilities Needed**: Schema validation tools.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Field validation, schema versioning.
+- **Known Limitations**: Future changes may require schema updates.
+- **Potential Risks**: Overly rigid schema might limit future flexibility.
 
-### Potential Impact
+## Progress & Effort
 
-- Enables search, visualization, management tools.
+- **Effort Expended**: Early draft proposed.
+- **Future Estimate**: ~1 sprint to finalize.
+- **Current Status**: Draft under review.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Future migrations may be needed.
-
-#### Unknown Limitations
-
-- Edge cases.
-
-## Current Situation
-
-### Cost
-
-- Moderate; similar to NApp schema work.
-
-#### Effort Expended
-
-- Discussions ongoing.
-
-#### Future Estimate
-
-- 1 sprint to finalize initial schema.
-
-### Progress
-
-- Early draft proposed.
-
-## Recommendation
-
-- Align with NApp schema, finalize stuck schema, test with known stuck set.
+Finalize schema, run sample stucks through it, then enforce schema in workflows.

@@ -1,75 +1,61 @@
-# Standard NApp Format Definition
+# S8-standard-napp-format-definition.md
 
-priority: 8
+## Stuck ID & Name
 
-## Situation
+- **ID**: S8
+- **Name**: standard-napp-format-definition
 
-- Need a canonical schema defining NApps (metadata, inputs, outputs, tools).
+## Rationale
 
-## Background
+A canonical schema for NApps ensures consistency and interoperability,
+simplifying tooling and automation.
 
-- Ensures consistency and interoperability between different NApps.
+## Description
 
-## Done
+Define a standard format for NApps (metadata, inputs, outputs, tools), making
+them portable, understandable, and integrable.
 
-- A documented, agreed-upon format that all NApps follow (e.g., JSON/YAML
-  schema).
+## Context & References
 
-### Evals
+- **Transcripts**: Broad need for standardization.
+- **Domains/Definitions**: Possibly `napp.md` and related instructions.
+- **External References**: Schema definitions (JSON/YAML), best practices from
+  package managers.
 
-- Validate test NApps against the schema, check that tools/params fit the
-  format.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: None mandatory, but stable environment helpful.
+- **Resource/Domain Dependencies**: Agreement on fields required.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Structured definition makes NApps portable and understandable.
+A documented schema all NApps must follow, validated against test NApps to
+confirm no ambiguity.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered when creating/loading a NApp.
+- **Tests & Verifications**: Validate sample NApps against schema.
+- **Metrics for Success**: All test NApps conform with no errors.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Any NApp adhering to the format is runnable and integrable.
+- **Subtasks**:
+  1. Draft schema (e.g., JSON)
+  2. Validate sample NApps
+  3. Document schema usage
+- **Capabilities Needed**: Schema validation tools.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Schema validation, standard fields.
+- **Known Limitations**: May require revisions if new features emerge.
+- **Potential Risks**: Future changes in NApp requirements.
 
-### Potential Impact
+## Progress & Effort
 
-- Reduces confusion, improves tooling automation.
+- **Effort Expended**: Draft schema proposed.
+- **Future Estimate**: ~1 sprint to finalize & document.
+- **Current Status**: Initial draft under review.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Requires consensus on fields and format.
-
-#### Unknown Limitations
-
-- Future features may require schema revisions.
-
-## Current Situation
-
-### Cost
-
-- Moderate; requires design and agreement.
-
-#### Effort Expended
-
-- Draft schema proposed.
-
-#### Future Estimate
-
-- 1 sprint to finalize and document.
-
-### Progress
-
-- Initial draft under review.
-
-## Recommendation
-
-- Finalize schema with stakeholders, run sample NApps through it.
+Finalize schema with stakeholders, test on sample NApps.

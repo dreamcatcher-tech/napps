@@ -1,73 +1,64 @@
-# Plain-Text NApp-to-NApp Calls
+# S17-plain-text-napp-to-napp-calls.md
 
-priority: 17
+## Stuck ID & Name
 
-## Situation
+- **ID**: S17
+- **Name**: plain-text-napp-to-napp-calls
 
-- Enable NApps to interact with each other via a plain-text protocol.
+## Rationale
 
-## Background
+Allow NApps to interact simply via plain-text protocols, increasing modularity
+and enabling chains of NApps to solve complex tasks together.
 
-- Increases modularity, allowing NApps to request services from peers.
+## Description
 
-## Done
+Implement a minimal plain-text request/response protocol so one NApp can call
+another and receive results.
 
-- A NApp can send a plain-text query/command to another and get a response.
+## Context & References
 
-### Evals
+- **Transcripts**: Modularity and chaining tasks discussed.
+- **Domains/Definitions**: NApp execution and communication domain.
+- **External References**: Simple RPC or text-based protocols.
 
-- Test two NApps in loop, verify correct request/response.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S8 (NApp format) beneficial for consistent NApp
+  definitions.
+- **Resource/Domain Dependencies**: Execution environment that supports calling
+  another NApp.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Inter-NApp communication, request/response pattern.
+A NApp can send a text query to another NApp and receive a coherent response,
+tested with sample pairs of NApps.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by a NApp invoking another.
+- **Tests & Verifications**:
+  - Two NApps in a loop, verifying correct request/response.
+- **Metrics for Success**:
+  - High success rate in message interpretation.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Target NApp processes request, returns response.
+- **Subtasks**:
+  1. Define a minimal text protocol
+  2. Implement sending/receiving logic
+  3. Test with a sample NApp pair
+- **Capabilities Needed**: Simple text parsing, stable addressing of NApps.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Text parsing, routing, stable interface.
+- **Known Limitations**: Without a schema, text misunderstandings may occur.
+- **Potential Risks**: Scalability under many calls.
 
-### Potential Impact
+## Progress & Effort
 
-- Composable NApps, complex tasks solved by chaining.
+- **Effort Expended**: Concept only.
+- **Future Estimate**: 1-2 sprints post NApp schema.
+- **Current Status**: None.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Risk of misunderstandings without schema.
-
-#### Unknown Limitations
-
-- Scalability under many calls.
-
-## Current Situation
-
-### Cost
-
-- Moderate; need protocol definition and implementation.
-
-#### Effort Expended
-
-- Concept only.
-
-#### Future Estimate
-
-- 1-2 sprints post NApp schema finalization.
-
-### Progress
-
-- None.
-
-## Recommendation
-
-- Define minimal protocol, test with a simple NApp pair, expand as needed.
+Define minimal protocol, test on simple NApps, and expand as needed.

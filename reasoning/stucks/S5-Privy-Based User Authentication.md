@@ -1,76 +1,64 @@
-# Privy-Based User Authentication
+# S5-privy-based-user-authentication.md
 
-priority: 5
+## Stuck ID & Name
 
-## Situation
+- **ID**: S5
+- **Name**: privy-based-user-authentication
 
-- Need secure login before revealing customer data, replacing template’s basic
-  auth with Privy.
+## Rationale
 
-## Background
+Secures access to sensitive CRM data by replacing basic auth with Privy,
+ensuring proper user authentication and identity management.
 
-- Ensures proper user access control and identity management as data becomes
-  sensitive.
+## Description
 
-## Done
+Integrate Privy for user login, enforcing that only authenticated users can view
+CRM data, enhancing security and compliance.
 
-- Users must authenticate via Privy before accessing CRM data, ensuring access
-  control is enforced.
+## Context & References
 
-### Evals
+- **Transcripts**: Security concerns raised as data grows sensitive.
+- **Domains/Definitions**: Auth-related domains.
+- **External References**: Privy documentation and identity frameworks.
 
-- Confirm successful login flow, test unauthorized access rejections.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: None specific, but stable UI and data environment
+  helps.
+- **Resource/Domain Dependencies**: Need stable front-end integration.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Handle secure login, session management, identity verification.
+Users must authenticate via Privy to access CRM data, unauthorized access is
+blocked, and login flow is smooth.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered on accessing the CRM page. Input: user credentials.
+- **Tests & Verifications**: Test login flow, ensure unauthorized users can’t
+  see data.
+- **Metrics for Success**: 100% rejection of unauthenticated requests, seamless
+  login UX.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Authenticated users see data; unauthenticated are redirected.
+- **Subtasks**:
+  1. Integrate Privy login form
+  2. Token/session handling
+  3. Validate permissions on data requests
+- **Capabilities Needed**: Auth token management, secure session handling.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Login form, token exchange, session validation.
+- **Known Limitations**: Requires stable Privy integration.
+- **Potential Risks**: None identified yet.
 
-### Potential Impact
+## Progress & Effort
 
-- Protects sensitive data, enabling production-level security.
+- **Effort Expended**: Reviewed Privy docs.
+- **Future Estimate**: <1 sprint if integration is straightforward.
+- **Current Status**: Planning.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Requires stable Privy integration.
-
-#### Unknown Limitations
-
-- None identified yet.
-
-## Current Situation
-
-### Cost
-
-- Moderate; standard auth integration steps.
-
-#### Effort Expended
-
-- Some reading of Privy docs.
-
-#### Future Estimate
-
-- <1 sprint if straightforward integration.
-
-### Progress
-
-- Planning stage only.
-
-## Recommendation
-
-- Implement Privy login flow, test on a dev environment, deploy once stable.
+Implement Privy login flow in dev environment, test thoroughly, then deploy once
+stable.

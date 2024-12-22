@@ -1,73 +1,65 @@
-# Stuck Graph Visualization
+# S14-stuck-graph-visualization.md
 
-priority: 14
+_(Already provided as an example, repeating for completeness)_
 
-## Situation
+## Stuck ID & Name
 
-- Desire a visual map of stucks as nodes and edges.
+- **ID**: S14
+- **Name**: stuck-graph-visualization
 
-## Background
+## Rationale
 
-- Helps understand complex dependencies among stucks/solutions.
+Visualizing stuck dependencies helps teams understand complexity, identify
+bottlenecks, and improve decision-making.
 
-## Done
+## Description
 
-- A force-directed graph shows stucks and connections.
+Render stucks and their dependencies as an interactive graph for better
+comprehension of relationships and dependencies.
 
-### Evals
+## Context & References
 
-- Test rendering performance, user navigation, accuracy of links.
+- **Transcripts**: General need for visualization.
+- **Domains/Definitions**: Requires stuck structure (S16) and dependency data
+  (S32).
+- **External References**: Graph visualization libraries.
 
-## Assessment
+## Dependencies
 
-### Capabilities
+- **Stuck Dependencies**: S16, S32 for stable structure and mapping.
+- **Resource/Domain Dependencies**: Accessible dependency metadata.
 
-- Graphical visualization, node/edge definitions, tooltips.
+## Desired Outcome (Definition of Done)
 
-### Inputs & Trigger Conditions
+An interactive graph showing stuck nodes, edges as dependencies, with tests
+confirming accuracy and usability.
 
-- Triggered by user selecting “map view.”
+## QA/Evals
 
-### Expected Behaviour
+- **Tests & Verifications**: Load tests, correctness checks against known
+  dependencies.
+- **Metrics for Success**: Positive user feedback on clarity, fast rendering.
 
-- Interactive, zoomable graph.
+## Tasks & Key Functionalities
 
-### Key Functionalities
+- **Subtasks**:
+  1. Data extraction for stuck/dependencies
+  2. Graph rendering integration
+  3. Interactivity (tooltips, zoom)
+- **Capabilities Needed**: Graph library, stable data access.
 
-- Graph rendering, dependency mapping.
+## Constraints & Risks
 
-### Potential Impact
+- **Known Limitations**: Performance for large graphs.
+- **Potential Risks**: Dense graphs requiring filtering later.
 
-- Faster comprehension, better decisions.
+## Progress & Effort
 
-### Constraints
+- **Effort Expended**: Conceptual only.
+- **Future Estimate**: 1-2 sprints after data stable.
+- **Current Status**: Planning.
 
-#### Known Limitations
+## Next Steps & Recommendations
 
-- Performance for large graphs.
-
-#### Unknown Limitations
-
-- Requires fully defined stuck dependencies.
-
-## Current Situation
-
-### Cost
-
-- Moderate; need graph libs and stable data.
-
-#### Effort Expended
-
-- None yet.
-
-#### Future Estimate
-
-- 1-2 sprints once data stable.
-
-### Progress
-
-- Conceptual only.
-
-## Recommendation
-
-- Wait until stuck structure stable, then implement prototype graph.
+Wait for stuck structure & dependency mapping, implement a prototype, gather
+feedback.

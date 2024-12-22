@@ -1,79 +1,66 @@
-# Prioritize and Deliver the Trucking App Using AI Capabilities
+# S36-prioritize-and-deliver-the-trucking-app-using-ai-capabilities.md
 
-priority: TBD
+## Stuck ID & Name
 
-## Situation
+- **ID**: S36
+- **Name**: prioritize-and-deliver-the-trucking-app-using-ai-capabilities
 
-- Similar to Stuck-001 but emphasizes using improved AI pipeline.
-- Rapid AI-driven code generation to secure near-term revenue.
-- References: (20:02, 55:02, 56:09)
+## Rationale
 
-## Background
+Similar to S24, but now leveraging improved AI pipeline for faster, cheaper
+delivery, securing near-term revenue even more efficiently.
 
-- Now that pipeline and tools are improving, must leverage them to deliver
-  quickly.
+## Description
 
-## Done
+Use enhanced AI-driven coding and tooling to deliver the trucking app with
+greater speed and lower overhead, meeting or exceeding previous delivery
+timescales.
 
-- Trucking app delivered, faster and cheaper using advanced AI coding tools.
+## Context & References
 
-### Evals
+- **Transcripts**: (20:02, 55:02, 56:09) indicate improved AI pipeline.
+- **Domains/Definitions**: Ties into Commander and O1 Pro integration.
+- **External References**: Advanced automation in software delivery.
 
-- Compare delivery speed, cost, and quality to previous methods.
-- Confirm client satisfaction and revenue impact.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S24 for trucking app concept, plus stable AI pipeline
+  from previous stucks.
+- **Resource/Domain Dependencies**: QA and automated code generation stable.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Faster coding cycles, automated testing, improved resource allocation.
+Trucking app delivered faster than before using advanced AI tools, client happy,
+revenue generated. Tests confirm no quality regressions.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered by finalizing pipeline and tool integration.
-- Inputs: Client specs, AI coding environment.
+- **Tests & Verifications**:
+  - Compare delivery speed, cost, and quality to previous attempts.
+- **Metrics for Success**:
+  - Shorter delivery time, client satisfaction.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Rapid development and deployment with minimal human overhead.
+- **Subtasks**:
+  1. Leverage AI pipeline for coding core features
+  2. Integrate QA checks
+  3. Deliver to client, gather feedback
+- **Capabilities Needed**: Automated code generation, QA integration.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Automated code generation, QA integration, continuous delivery.
+- **Known Limitations**: Relies on established pipeline and previous learnings
+  from S24.
+- **Potential Risks**: Client feature requests changing scope.
 
-### Potential Impact
+## Progress & Effort
 
-- Boost immediate revenue, showcase AI-driven capabilities.
+- **Effort Expended**: Planning in tandem with improved AI pipeline.
+- **Future Estimate**: Very short once tools ready.
+- **Current Status**: Awaiting tool readiness.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Relies on previously established stuck structures and tools.
-
-#### Unknown Limitations
-
-- Client may request features beyond initial scope.
-
-## Current Situation
-
-### Cost
-
-- TBD
-
-#### Effort Expended
-
-- Planning in tandem with AI pipeline improvements.
-
-#### Future Estimate
-
-- Very short once tools are ready.
-
-### Progress
-
-- Awaiting tool and pipeline readiness.
-
-## Recommendation
-
-- Execute as soon as AI pipeline is confirmed stable.
-- Deliver quickly, get client feedback, iterate.
+Execute as soon as pipeline confirmed stable, deliver quickly, iterate based on
+feedback.

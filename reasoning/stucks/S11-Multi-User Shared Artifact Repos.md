@@ -1,73 +1,60 @@
-# Multi-User Shared Artifact Repos
+# S11-multi-user-shared-artifact-repos.md
 
-priority: 11
+## Stuck ID & Name
 
-## Situation
+- **ID**: S11
+- **Name**: multi-user-shared-artifact-repos
 
-- Multiple users need to collaborate on the same Artifact data repo.
+## Rationale
 
-## Background
+Enables team collaboration on Artifact data, scaling platform usage for multiple
+contributors.
 
-- Enables team versioning, branching, and shared data access.
+## Description
 
-## Done
+Allow multiple users to access and contribute to the same Artifact repo,
+supporting branching, merging, permissions, and conflict resolution.
 
-- Participants can access and contribute to the same repo without conflict.
+## Context & References
 
-### Evals
+- **Transcripts**: Needed for team scenarios.
+- **Domains/Definitions**: Builds on `artifact.md`.
+- **External References**: Git multi-user workflows.
 
-- Test multiple user edits, merging branches, resolving conflicts gracefully.
+## Dependencies
 
-## Assessment
+- **Stuck Dependencies**: S1 for Git-based data.
+- **Resource/Domain Dependencies**: Permission system, concurrency handling.
 
-### Capabilities
+## Desired Outcome (Definition of Done)
 
-- Multi-user write access, permission controls, branch merges.
+Smooth multi-user collaboration with no data corruption, tested by concurrent
+edits and merges.
 
-### Inputs & Trigger Conditions
+## QA/Evals
 
-- Triggered when multiple users commit changes.
+- **Tests & Verifications**: Multiple user commit tests, conflict resolution
+  scenarios.
+- **Metrics for Success**: Successful merges, stable multi-user flows.
 
-### Expected Behaviour
+## Tasks & Key Functionalities
 
-- Smooth collaboration with no data corruption.
+- **Subtasks**:
+  1. Implement permissions
+  2. Branch/merge workflows
+- **Capabilities Needed**: Access control, conflict resolution tools.
 
-### Key Functionalities
+## Constraints & Risks
 
-- Permissions, branching workflows, conflict resolution.
+- **Known Limitations**: Complex conflicts.
+- **Potential Risks**: Performance under concurrency.
 
-### Potential Impact
+## Progress & Effort
 
-- Scales platform for teams.
+- **Effort Expended**: Conceptual planning.
+- **Future Estimate**: Several sprints.
+- **Current Status**: Ideas only.
 
-### Constraints
+## Next Steps & Recommendations
 
-#### Known Limitations
-
-- Complex conflict scenarios.
-
-#### Unknown Limitations
-
-- Performance under concurrency.
-
-## Current Situation
-
-### Cost
-
-- Moderate-high; Git supports it but integration careful.
-
-#### Effort Expended
-
-- Conceptual planning.
-
-#### Future Estimate
-
-- Several sprints for stable multi-user flows.
-
-### Progress
-
-- Ideas only.
-
-## Recommendation
-
-- Start read-only shared repos, then add write permissions and test merges.
+Start read-only shared repos, then add write and merging, test incrementally.
