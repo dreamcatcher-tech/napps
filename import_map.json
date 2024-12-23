@@ -52,6 +52,7 @@
     "zod-to-json-schema": "npm:zod-to-json-schema",
     "gpt-tokenizer": "npm:gpt-tokenizer",
     "humanize-number": "npm:humanize-number",
-    "commander": "npm:commander"
+    "commander": "npm:commander",
+    "@deepgram/sdk": "npm:@deepgram/sdk"
   }
 }
