@@ -35,3 +35,8 @@
    that rank ? how can we account for the pattern of seeing how to do it so its
    easy right away, vs labouring hard just because I was told it was time ? The
    difference between opportunity and discipline.
+
+7. Automated GitHub Issue Resolution System
+
+8. concentrate on getting house rules correct and a process for optimizing, so
+   we can continue on efficiently.
