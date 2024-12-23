@@ -1,0 +1,15 @@
+{
+  "name": "@artifact/transcriber",
+  "version": "0.0.1",
+  "napp-format": "v1",
+  "description": "Transcribe a youtube video into a speaker identified diarized transcript, with timestamps",
+  "runtime": "deno",
+  "tools": {
+    "transcribe": {
+      "description": "Transcribe a youtube video into a speaker identified diarized transcript, with timestamps",
+      "parameters": {
+        "youtube_url": "The url of the youtube video to transcribe"
+      }
+    }
+  }
+}

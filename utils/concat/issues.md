@@ -43,3 +43,5 @@ pull in everything recursively from . however seems to be shell globbing again
 Should supply a file system overview in the concat, optionally
 
 nested concat.txt files specified by glob are not being ignored
+
+ignore .env files, or any . files at all

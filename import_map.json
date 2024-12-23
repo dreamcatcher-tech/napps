@@ -18,7 +18,7 @@
     "@std/cli": "jsr:@std/cli",
     "@std/io": "jsr:@std/io",
     "@std/testing": "jsr:@std/testing",
-    
+
     "@artifact/files": "jsr:@artifact/files@^0.0.1",
     "@artifact/openai": "jsr:@artifact/openai@^0.0.1",
     "@artifact/dumb-bot": "jsr:@artifact/dumb-bot@^0.0.16",
@@ -51,6 +51,7 @@
     "zod": "npm:zod",
     "zod-to-json-schema": "npm:zod-to-json-schema",
     "gpt-tokenizer": "npm:gpt-tokenizer",
-    "humanize-number": "npm:humanize-number"
+    "humanize-number": "npm:humanize-number",
+    "commander": "npm:commander"
   }
 }

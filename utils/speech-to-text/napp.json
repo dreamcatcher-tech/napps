@@ -1,0 +1,15 @@
+{
+  "name": "@artifact/speech-to-text",
+  "version": "0.0.1",
+  "napp-format": "v1",
+  "description": "Transcribe an audio file into a diarized json object, using a range of transcription services, starting with deepgram",
+  "runtime": "deno",
+  "tools": {
+    "transcribe": {
+      "description": "Transcribe an audio file into a diarized json object",
+      "parameters": {
+        "path": "The path to the audio file to transcribe, which must in one of the supported formats: "
+      }
+    }
+  }
+}

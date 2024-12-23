@@ -45,6 +45,7 @@
       "instructions": "instructions.md"
     }
   },
+  "main": "some-function", // the default function to run.  If not given, and there is only exported tool, then that is default.  If not given, and there is a tool named "main", then that is default.
   "tools": {
     "some-function": {
       "description": "This function does something",

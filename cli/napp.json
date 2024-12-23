@@ -1,0 +1,5 @@
+{
+  "name": "@artifact/cli",
+  "version": "0.0.1",
+  "description": "The CLI for running napps on the command line"
+}

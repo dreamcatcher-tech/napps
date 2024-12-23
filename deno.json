@@ -60,6 +60,7 @@
   "workspace": [
     "./actors",
     "./api",
+    "./cli",
     "./isolation",
     "./dumb-bot",
     "./engine",
@@ -85,6 +86,8 @@
     "./utils/concat",
     "./utils/chat",
     "./utils/crawl",
+    "./utils/speech-to-text",
+    "./utils/transcriber",
     "./blockchain/tendermint"
   ]
 }
