@@ -25,11 +25,15 @@ const pickFormatAndName = async (
   return prefix.endsWith(`.${ext}`) ? prefix : `${prefix}.${ext}`
 }
 
-export const audio = async (url: string, prefix: string): Promise<string> => {
+export const audio = async (
+  url: string,
+  prefix: string,
+  lowQuality = false,
+): Promise<string> => {
   console.log('ytdl.version', ytdl.version)
   const options: downloadOptions = {
     filter: 'audioonly',
-    quality: 'highestaudio',
+    quality: lowQuality ? 'lowestaudio' : 'highestaudio',
   }
   const fileName = await pickFormatAndName(url, prefix, options)
   console.log('fileName', fileName)
@@ -63,9 +67,13 @@ export const audio = async (url: string, prefix: string): Promise<string> => {
   }
 }
 
-export const video = async (url: string, prefix: string): Promise<string> => {
+export const video = async (
+  url: string,
+  prefix: string,
+  lowQuality = false,
+): Promise<string> => {
   console.log('ytdl.version', ytdl.version)
-  const options = { quality: 'highestvideo' }
+  const options = { quality: lowQuality ? 'lowestvideo' : 'highestvideo' }
   const fileName = await pickFormatAndName(url, prefix, options)
 
   let file: Deno.FsFile | null = null
