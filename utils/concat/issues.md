@@ -45,3 +45,25 @@ Should supply a file system overview in the concat, optionally
 nested concat.txt files specified by glob are not being ignored
 
 ignore .env files, or any . files at all
+
+Each file output should indicate how many tokens it is.
+
+Each folder that was processed with more than one file should indicate how many
+tokens it is.
+
+Files should be output in a filesystem tree
+
+ignore .png or other binary files.
+
+ignore .gitignore files ?
+
+ignore package-lock.json - basically should honour .gitignore
+
+When working in a monorepo or workspace, can use the import map, and the shared
+vendor-docs folders
+
+Vendor docs would be a configurable param for the concat file and can have
+multiple locations
+
+select a prompt to go with the concat, which is based on purpose - probably
+better as a separate package that combines with the concat

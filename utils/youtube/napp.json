@@ -1,0 +1,35 @@
+{
+  "name": "@dreamcatcher/youtube",
+  "version": "0.0.1",
+  "napp-format": "v1",
+  "description": "Download a youtube video or just the audio",
+  "runtime": "deno",
+  "tools": {
+    "audio": {
+      "description": "Download a youtube video and return the path to the audio",
+      "parameters": {
+        "url": {
+          "type": "string",
+          "description": "The url of the youtube video to download"
+        },
+        "prefix": {
+          "type": "string",
+          "description": "The prefix of the output path of the audio from the youtube video"
+        }
+      }
+    },
+    "video": {
+      "description": "Download a youtube video and return the path to the video",
+      "parameters": {
+        "url": {
+          "type": "string",
+          "description": "The url of the youtube video to download"
+        },
+        "prefix": {
+          "type": "string",
+          "description": "The prefix of the output path of the video from the youtube video"
+        }
+      }
+    }
+  }
+}

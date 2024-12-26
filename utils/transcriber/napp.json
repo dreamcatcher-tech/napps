@@ -5,11 +5,35 @@
   "description": "Transcribe a youtube video into a speaker identified diarized transcript, with timestamps",
   "runtime": "deno",
   "tools": {
-    "transcribe": {
+    "youtube": {
       "description": "Transcribe a youtube video into a speaker identified diarized transcript, with timestamps",
       "parameters": {
-        "youtube_url": "The url of the youtube video to transcribe"
+        "url": {
+          "type": "string",
+          "description": "The url of the youtube video to transcribe"
+        },
+        "path": {
+          "type": "string",
+          "description": "The path to the transcript of the youtube video"
+        }
+      }
+    },
+    "file": {
+      "description": "Transcribe a file into a speaker identified diarized transcript, with timestamps.  Will detect what format the file is in and attempt to transcribe it as best it can.",
+      "parameters": {
+        "input": {
+          "type": "string",
+          "description": "The path to the file to transcribe"
+        },
+        "output": {
+          "type": "string",
+          "description": "The path to the transcript of the file"
+        }
       }
     }
+  },
+  "dependencies": {
+    "@artifact/youtube": "latest",
+    "@artifact/speech-to-text": "latest"
   }
 }

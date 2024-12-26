@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "exports": "./mod.ts",
   "tasks": {
-    "dev": "deno test --watch mod.ts"
+    "dev": "deno test --watch mod.ts",
+    "napp": "deno run --watch -A ../../cli/local.ts . youtube --url 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"
   }
 }

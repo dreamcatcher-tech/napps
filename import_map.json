@@ -18,6 +18,7 @@
     "@std/cli": "jsr:@std/cli",
     "@std/io": "jsr:@std/io",
     "@std/testing": "jsr:@std/testing",
+    "@std/streams": "jsr:@std/streams",
 
     "@artifact/files": "jsr:@artifact/files@^0.0.1",
     "@artifact/openai": "jsr:@artifact/openai@^0.0.1",
@@ -53,6 +54,7 @@
     "gpt-tokenizer": "npm:gpt-tokenizer",
     "humanize-number": "npm:humanize-number",
     "commander": "npm:commander",
-    "@deepgram/sdk": "npm:@deepgram/sdk"
+    "@deepgram/sdk": "npm:@deepgram/sdk",
+    "@ffmpeg/ffmpeg": "npm:@ffmpeg/ffmpeg"
   }
 }

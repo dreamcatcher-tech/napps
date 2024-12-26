@@ -2,10 +2,8 @@ import type { ZodRecord, ZodTypeAny } from 'zod'
 import { z } from 'zod'
 import type { NappTypes } from './napps-list.ts'
 import { type Action, jsonSchema, type JsonValue } from './actions.ts'
-import Debug from 'debug'
 import type { Outcome } from './actions.ts'
 import { deserializeError } from 'serialize-error'
-const log = Debug('@artifact/api')
 
 export type TreeEntry = {
   /** the 6 digit hexadecimal mode */
@@ -184,12 +182,33 @@ interface NappEffects {
   get context(): unknown
 }
 
+/**
+ * Branching manages multiple lines of data modification.  It is separate from
+ * processes as it provides the ability to modify the data of a branch
+ * separately from a process that does it on the branch.
+ */
+interface NappGraph {
+  readonly fork: () => Promise<void>
+  readonly merge: () => Promise<void>
+  readonly commit: () => Promise<void>
+  readonly reset: () => Promise<void>
+  readonly tag: () => Promise<void>
+  readonly fetch: () => Promise<void>
+  readonly push: () => Promise<void>
+  readonly pull: () => Promise<void>
+  readonly diff: () => Promise<void>
+  readonly remote: () => Promise<void>
+  readonly clone: () => Promise<void>
+  // ?? should remote writes be part of branching ?
+}
+
 export interface NappApi {
   readonly state: NappState
   readonly read: NappRead
   readonly write: NappWrite
   readonly processes: NappProcesses
   readonly effects: NappEffects
+  readonly graph: NappGraph
 }
 
 /**

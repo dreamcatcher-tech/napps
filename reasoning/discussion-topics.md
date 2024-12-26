@@ -40,3 +40,7 @@
 
 8. concentrate on getting house rules correct and a process for optimizing, so
    we can continue on efficiently.
+
+9. Additional house rules:
+   - use key words to indicate that you have finished speaking and that the llm
+     should start processing

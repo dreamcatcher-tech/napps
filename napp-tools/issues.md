@@ -28,3 +28,8 @@ secrets.
 
 Need to add reasoning key for linking to reasoning dependencies. Possibly also a
 generator key for linking to the generator of the napp.
+
+In general, we have some conventions, like the default module name, and we have
+some conventions for allowing implied configs to be very terse. We should
+analyse the napp format and see if we can make it more terse and check if the
+conventions make sense and are easy to use.

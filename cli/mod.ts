@@ -80,6 +80,7 @@ async function setupCommands() {
 }
 
 if (import.meta.main) {
+  console.log('Running napp')
   await setupCommands()
   program.parseAsync(Deno.args, { from: 'user' })
 }

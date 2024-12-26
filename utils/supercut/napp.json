@@ -1,0 +1,49 @@
+{
+  "name": "@dreamcatcher/supercut",
+  "version": "0.0.1",
+  "napp-format": "v1",
+  "description": "Create a supercut from a collection of audio and video files, given a list of segments and sources",
+  "runtime": "deno",
+  "tools": {
+    "supercut": {
+      "description": "Create a supercut from a collection of audio and video files, given a list of segments and sources.  The sources can be audio or video files, and the segments can be a list of start and end times.  The format of the segments is a list of objects that reference the sources by index, with start and end times.",
+      "parameters": {
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sourceIndex": {
+                "type": "integer",
+                "description": "Index of the source file in the sources array"
+              },
+              "start": {
+                "type": "number",
+                "description": "Start time in seconds with floating point precision"
+              },
+              "end": {
+                "type": "number",
+                "description": "End time in seconds with floating point precision"
+              }
+            },
+            "required": ["sourceIndex", "start", "end"],
+            "description": "A segment to extract from the source files"
+          },
+          "description": "Array of segments to extract from the source files"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Filename of a source audio or video file"
+          },
+          "description": "Array of source audio or video files"
+        },
+        "output": {
+          "type": "string",
+          "description": "Filename of the resulting supercut"
+        }
+      }
+    }
+  }
+}
