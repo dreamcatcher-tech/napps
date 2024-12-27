@@ -15,3 +15,7 @@ default tools should be supported, so no need to specify the tool name
 
 if there is a default tool, then we should allow it to be called by name as well
 as by default
+
+when running local, should be able to set it to use a ramdisk for the fs
+
+booleans should be true if present, false if not, or explicitly set

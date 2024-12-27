@@ -28,12 +28,12 @@ const pickFormatAndName = async (
 export const audio = async (
   url: string,
   prefix: string,
-  lowQuality = false,
+  lowest = false,
 ): Promise<string> => {
   console.log('ytdl.version', ytdl.version)
   const options: downloadOptions = {
     filter: 'audioonly',
-    quality: lowQuality ? 'lowestaudio' : 'highestaudio',
+    quality: lowest ? 'lowestaudio' : 'highestaudio',
   }
   const fileName = await pickFormatAndName(url, prefix, options)
   console.log('fileName', fileName)
@@ -70,10 +70,10 @@ export const audio = async (
 export const video = async (
   url: string,
   prefix: string,
-  lowQuality = false,
+  lowest = false,
 ): Promise<string> => {
   console.log('ytdl.version', ytdl.version)
-  const options = { quality: lowQuality ? 'lowestvideo' : 'highestvideo' }
+  const options = { quality: lowest ? 'lowestvideo' : 'highestvideo' }
   const fileName = await pickFormatAndName(url, prefix, options)
 
   let file: Deno.FsFile | null = null

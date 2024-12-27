@@ -7,6 +7,7 @@
   "tools": {
     "audio": {
       "description": "Download a youtube video and return the path to the audio",
+      "required": ["url", "prefix"],
       "parameters": {
         "url": {
           "type": "string",
@@ -15,11 +16,16 @@
         "prefix": {
           "type": "string",
           "description": "The prefix of the output path of the audio from the youtube video"
+        },
+        "lowest": {
+          "type": "boolean",
+          "description": "Whether to download the lowest quality audio"
         }
       }
     },
     "video": {
       "description": "Download a youtube video and return the path to the video",
+      "required": ["url", "prefix"],
       "parameters": {
         "url": {
           "type": "string",
@@ -28,6 +34,10 @@
         "prefix": {
           "type": "string",
           "description": "The prefix of the output path of the video from the youtube video"
+        },
+        "lowest": {
+          "type": "boolean",
+          "description": "Whether to download the lowest quality video"
         }
       }
     }

@@ -45,7 +45,14 @@
       "instructions": "instructions.md"
     }
   },
-  "main": "some-function", // the default function to run.  If not given, and there is only exported tool, then that is default.  If not given, and there is a tool named "main", then that is default.
+  // the default function to run.  If not given, and there is only exported tool, then that is default.  If not given, and there is a tool named "main", then that is default.
+  "main": "some-function",
+
+  // if the tool exports are not in the default module export, then this path
+  // can be used to specify where to import code from.  Each tool call can also
+  // specify a path to import code from, which will override this path.
+  "module": "./path/to/module.ts",
+
   "tools": {
     "some-function": {
       "description": "This function does something",
