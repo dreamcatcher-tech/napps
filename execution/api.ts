@@ -196,10 +196,13 @@ const createProcesses = (trail: Trail) => {
     spawn() {
       return Promise.reject('Not implemented')
     },
-    kill() {
+    rm() {
       return Promise.reject('Not implemented')
     },
     async() {
+      return Promise.reject('Not implemented')
+    },
+    cp() {
       return Promise.reject('Not implemented')
     },
     mv() {

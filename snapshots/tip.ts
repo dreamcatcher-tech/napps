@@ -1,10 +1,10 @@
 import * as posix from '@std/path/posix'
 import { assert } from '@std/assert/assert'
 import type {
-  Address,
   NappRead,
   NappSnapshots,
   NappWrite,
+  ProcessAddress,
   SnapshotsProvider,
   TreeEntry,
   Upsert,
@@ -17,7 +17,7 @@ type NoAddressingOptions = Record<string, never>
 
 const log = Debug('@artifact/snapshots')
 
-type LocalReadOptions = Pick<Address, 'snapshot'>
+type LocalReadOptions = Pick<ProcessAddress, 'snapshot'>
 
 export interface NappLocal {
   readonly read: NappRead<LocalReadOptions>

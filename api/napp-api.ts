@@ -25,11 +25,11 @@ export type Upsert =
   | { readonly text: string }
   | { readonly data: Uint8Array }
 
-export const addressSchema = z
+export const processAddressSchema = z
   .object({
     /** Posix style path that locates what process thread we want to communicate
      * with. In git, this would be branch names, for example: `exe/proc-1/child-2` */
-    process: z.string(),
+    path: z.string(),
     /** The cryptographic identifier of the whole repository. This would be the
      * chainId in conventional blockchains, but could be a group of public keys,
      * or some other root of trust */
@@ -44,9 +44,9 @@ export const addressSchema = z
   })
   .partial()
 
-export type Address = z.infer<typeof addressSchema>
+export type ProcessAddress = z.infer<typeof processAddressSchema>
 
-export interface NappSnapshots<ReadOptions = Address> {
+export interface NappSnapshots<ReadOptions = ProcessAddress> {
   /** Posix style path that locates what process thread we want to communicate
    * with. In git, this would be branch names, for example: `exe/proc-1/child-2` */
   readonly latest: (
@@ -58,7 +58,7 @@ export interface NappSnapshots<ReadOptions = Address> {
   ) => Promise<string[]>
 }
 
-export interface NappRead<ReadOptions = Address> {
+export interface NappRead<ReadOptions = ProcessAddress> {
   readonly meta: (path: string, options?: ReadOptions) => Promise<TreeEntry>
   readonly json: <T extends ZodTypeAny = typeof jsonSchema>(
     path: string,
@@ -70,7 +70,7 @@ export interface NappRead<ReadOptions = Address> {
   readonly ls: (path?: string, options?: ReadOptions) => Promise<TreeEntry[]>
 }
 
-export interface SnapshotsProvider<ReadOptions = Address> {
+export interface SnapshotsProvider<ReadOptions = ProcessAddress> {
   readonly snapshots: NappSnapshots<ReadOptions>
   readonly read: NappRead<ReadOptions>
   readonly commit: (
@@ -79,7 +79,7 @@ export interface SnapshotsProvider<ReadOptions = Address> {
   ) => Promise<void>
 }
 
-export interface NappWrite<WriteOptions = Address> {
+export interface NappWrite<WriteOptions = ProcessAddress> {
   readonly json: (
     path: string,
     content: JsonValue,
@@ -107,7 +107,7 @@ export interface NappWrite<WriteOptions = Address> {
 }
 
 type SpawnOptions =
-  & Address
+  & ProcessAddress
   & (
     | { readonly name: string; prefix?: never }
     | { name?: never; readonly prefix: string }
@@ -121,7 +121,7 @@ type SpawnOptions =
   }
 
 type MetaResult = {
-  readonly meta: Required<Address>
+  readonly meta: Required<ProcessAddress>
   readonly outcome: Outcome
 }
 
@@ -131,31 +131,45 @@ interface NappProcesses {
     napp: keyof NappTypes,
     options: SpawnOptions,
   ) => Promise<void>
+
   /** tear down the specified process, and resturn the result of teardown */
-  readonly kill: (options: Address) => Promise<JsonValue>
+  readonly rm: (options: ProcessAddress) => Promise<JsonValue>
+
   /** spawns a new process, installs the napp specified in the action, awaits
    * the execution, and then returns, killing the process */
   readonly async: (action: Action, options: SpawnOptions) => Promise<JsonValue>
-  /** move a process to another parent.  Can be used to daemonize a running
-   * process by moving it to be a child of init */
-  readonly mv: (to: Address, from?: Address) => Promise<void>
-  /** change the priority of a process */
-  readonly nice: (level: number, options: Address) => void
 
+  /** move a process to another parent.  Can be used to daemonize a running
+   * process by moving it to be a child of init.  Allows moving between branches
+   * and even different repositories */
+  readonly mv: (to: ProcessAddress, from?: ProcessAddress) => Promise<void>
+
+  /** copy a process to another parent.  Can be used to daemonize a running
+   * process by moving it to be a child of init.  Allows moving between branches
+   * and even different repositories */
+  readonly cp: (to: ProcessAddress, from?: ProcessAddress) => Promise<void>
+
+  /** change the priority of a process */
+  readonly nice: (level: number, options: ProcessAddress) => void
+
+  /** dispatch an action to the given process and await the result */
   readonly dispatch: (
     action: Action,
-    options: Address,
+    options: ProcessAddress,
   ) => Promise<JsonValue | void>
+
+  /** dispatch an action to the given process and await the result, returning
+   * the metadata of the action as well as the result */
   readonly dispatchWithMeta: (
     action: Action,
-    options: Address,
+    options: ProcessAddress,
   ) => Promise<MetaResult>
 }
 
 export const stateSchema = z.record(jsonSchema)
 
 /** State is stored in the process json files */
-interface NappState<ReadOptions = Address> {
+interface NappState<ReadOptions = ProcessAddress> {
   readonly get: <T extends ZodRecord = typeof stateSchema>(
     options: ReadOptions & { schema?: T; fallback?: z.infer<T> },
   ) => Promise<z.infer<T>>

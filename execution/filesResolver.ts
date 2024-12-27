@@ -1,7 +1,10 @@
 import { entries, type Trail, type TrailStruct } from './trail.ts'
 import type { NappLocal, Tip } from '@artifact/snapshots/tip'
 import { assert } from '@std/assert/assert'
-import { type Address, addressSchema } from '@artifact/api/napp-api'
+import {
+  type ProcessAddress,
+  processAddressSchema,
+} from '@artifact/api/napp-api'
 
 export const resolveLocalFiles = async (trail: Trail, tip: Tip) => {
   const withResolves = trail.export()
@@ -15,7 +18,7 @@ export const resolveLocalFiles = async (trail: Trail, tip: Tip) => {
         case 'read': {
           const { path = '.', options: o = {} } = request.origin.parameters
           assert(typeof path === 'string', 'path must be a string')
-          const options = addressSchema.parse(o) as Address
+          const options = processAddressSchema.parse(o) as ProcessAddress
           switch (command as keyof NappLocal['read']) {
             case 'meta': {
               const result = await tip.read.meta(path, options)

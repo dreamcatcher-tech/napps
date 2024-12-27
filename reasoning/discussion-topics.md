@@ -44,3 +44,6 @@
 9. Additional house rules:
    - use key words to indicate that you have finished speaking and that the llm
      should start processing
+
+10. what is the name of the platform we are making - the base ui - the most
+    general of interfaces ?
