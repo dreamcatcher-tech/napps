@@ -67,3 +67,8 @@ multiple locations
 
 select a prompt to go with the concat, which is based on purpose - probably
 better as a separate package that combines with the concat
+
+include a tree listing at the end optionally in case the bot needs to ask for
+more information.
+
+.svg files should be ignored

@@ -29,8 +29,10 @@ export type Upsert =
 export const processAddressSchema = z
   .object({
     /** Posix style path that locates what process thread we want to communicate
-     * with. In git, this would be branch names, for example: `exe/proc-1/child-2` */
-    path: z.string(),
+     * with. In git, this would be branch names, for example:
+     * `exe/proc-1/child-2`.  If an action is addressed to a branch where there
+     * is no process manager running, the action will be rejected */
+    processPath: z.string(),
 
     /** The cryptographic identifier of the whole repository. This would be the
      * chainId in conventional blockchains, but could be a group of public keys,
@@ -38,7 +40,8 @@ export const processAddressSchema = z
     crypto: z.string(),
 
     /** Whatever snapshot model is used, the branch concept represents an
-     * isolated line of changes. In git, this would be a branch */
+     * isolated line of changes. In git, this would be a branch.  Naming should
+     * follow posix relative path conventions */
     branch: z.string(),
 
     /** Depending on the snapshot format being used, represents the state at a
@@ -54,15 +57,76 @@ export const processAddressSchema = z
 export type ProcessAddress = z.infer<typeof processAddressSchema>
 
 export interface Snapshots<ReadOptions = ProcessAddress> {
-  /** Posix style path that locates what process thread we want to communicate
-   * with. In git, this would be branch names, for example: `exe/proc-1/child-2` */
-  readonly latest: (
-    options?: Omit<ReadOptions, 'snapshot'>,
-  ) => Promise<string | undefined>
+  /**
+   * Get the latest snapshot identifier.  Throws if no snapshot is found.
+   */
+  readonly latest: (options?: Omit<ReadOptions, 'snapshot'>) => Promise<string>
+
+  /**
+   * Get the parent(s) snapshot identifiers.  Throws if given snapshot is not
+   * found. If the snapshot has no parents, an empty array is returned. If no
+   * snapshot is provided, the latest snapshot is used.
+   */
   readonly parents: (options?: ReadOptions) => Promise<string[]>
+
+  /**
+   * Get the history of snapshot identifiers.  Throws if no snapshot is found.
+   * Multiple parents are returned in reverse chronological order.  Throws if
+   * the given snapshot is not found.  If there are no parents, an empty array
+   * is returned.  If no snapshot is provided, the latest snapshot is used.
+   */
   readonly history: (
-    options?: ReadOptions & { count?: number },
+    options?: ReadOptions & { limit?: number },
   ) => Promise<string[]>
+  readonly diff: (
+    // TODO handle diffing actual paths too
+    from: ReadOptions & { path: string },
+    to: ReadOptions & { path: string },
+  ) => Promise<TreeEntry[]>
+}
+
+type BranchAddress = Omit<ProcessAddress, 'processPath'>
+type FromBranch = BranchAddress & { branch: string }
+type ToBranch = BranchAddress & { branch: string; snapshot: never }
+/**
+ * Branching manages multiple lines of data modification.  It is separate from
+ * processes as it provides the ability to modify the data of a branch
+ * separately from a process that does it on the branch.
+ */
+interface Graph {
+  /**
+   * Fork a new branch that is named as the given path.  Fork can only be done
+   * within the same repository it is being called from.
+   */
+  readonly fork: (
+    newBranchPath: string,
+    options?: BranchAddress,
+  ) => Promise<Required<BranchAddress>>
+  /**
+   * Merge the given branch into the current branch, or if the 'to' branch is
+   * given, merge the 'from' branch into the 'to' branch.
+   */
+  readonly merge: (from: FromBranch, to?: ToBranch) => Promise<void>
+  readonly commit: () => Promise<void>
+  readonly reset: () => Promise<void>
+  readonly push: () => Promise<void>
+  readonly pull: () => Promise<void>
+  readonly remote: () => Promise<void>
+  readonly clone: () => Promise<void>
+  // ?? should remote writes be part of branching ?
+}
+
+export interface SnapshotsProvider<ReadOptions = ProcessAddress> {
+  readonly snapshots: Snapshots<ReadOptions>
+  readonly read: Read<ReadOptions>
+  /**
+   * Commit the changes to the snapshot.  Throws if the snapshot is not found.
+   */
+  readonly commit: (
+    upserts: Map<string, Upsert>,
+    deletes: Set<string>,
+    options?: ReadOptions,
+  ) => Promise<string>
 }
 
 export interface Read<ReadOptions = ProcessAddress> {
@@ -77,16 +141,7 @@ export interface Read<ReadOptions = ProcessAddress> {
   readonly ls: (path?: string, options?: ReadOptions) => Promise<TreeEntry[]>
 }
 
-export interface SnapshotsProvider<ReadOptions = ProcessAddress> {
-  readonly snapshots: Snapshots<ReadOptions>
-  readonly read: Read<ReadOptions>
-  readonly commit: (
-    upserts: Map<string, Upsert>,
-    deletes: Set<string>,
-  ) => Promise<void>
-}
-
-export interface NappWrite<WriteOptions = ProcessAddress> {
+export interface Write<WriteOptions = ProcessAddress> {
   readonly json: (
     path: string,
     content: JsonValue,
@@ -120,9 +175,9 @@ type SpawnOptions =
     | { name?: never; readonly prefix: string }
   )
   & {
+    /** List of glob patterns for files to copy into the process */
     readonly files?: string[]
-    /** If process exists, exit gracefully */
-    readonly upsert?: boolean
+
     /** Priority of the process */
     readonly nice?: number
   }
@@ -132,14 +187,14 @@ type MetaResult = {
   readonly outcome: Outcome
 }
 
-interface NappProcesses {
+interface Processes {
   /** start a new process and install the given napp. */
   readonly spawn: (
     napp: keyof NappTypes,
     options: SpawnOptions,
-  ) => Promise<void>
+  ) => Promise<Required<ProcessAddress>>
 
-  /** tear down the specified process, and resturn the result of teardown */
+  /** tear down the specified process, and return the result of teardown */
   readonly rm: (options: ProcessAddress) => Promise<JsonValue>
 
   /** spawns a new process, installs the napp specified in the action, awaits
@@ -176,7 +231,7 @@ interface NappProcesses {
 export const stateSchema = z.record(jsonSchema)
 
 /** State is stored in the process json files */
-interface NappState<ReadOptions = ProcessAddress> {
+interface State<ReadOptions = ProcessAddress> {
   readonly get: <T extends ZodRecord = typeof stateSchema>(
     options: ReadOptions & { schema?: T; fallback?: z.infer<T> },
   ) => Promise<z.infer<T>>
@@ -188,7 +243,7 @@ interface NappState<ReadOptions = ProcessAddress> {
   ) => Promise<void>
 }
 
-interface NappEffects {
+interface Effects {
   /** Side effects can listen to this signal to abort their activities */
   readonly signal: AbortSignal
 
@@ -203,33 +258,14 @@ interface NappEffects {
   get context(): unknown
 }
 
-/**
- * Branching manages multiple lines of data modification.  It is separate from
- * processes as it provides the ability to modify the data of a branch
- * separately from a process that does it on the branch.
- */
-interface NappGraph {
-  readonly fork: () => Promise<void>
-  readonly merge: () => Promise<void>
-  readonly commit: () => Promise<void>
-  readonly reset: () => Promise<void>
-  readonly tag: () => Promise<void>
-  readonly fetch: () => Promise<void>
-  readonly push: () => Promise<void>
-  readonly pull: () => Promise<void>
-  readonly diff: () => Promise<void>
-  readonly remote: () => Promise<void>
-  readonly clone: () => Promise<void>
-  // ?? should remote writes be part of branching ?
-}
-
 export interface NappApi {
-  readonly state: NappState
+  readonly state: State
   readonly read: Read
-  readonly write: NappWrite
-  readonly processes: NappProcesses
-  readonly effects: NappEffects
-  readonly graph: NappGraph
+  readonly write: Write
+  readonly processes: Processes
+  readonly effects: Effects
+  readonly snapshots: Snapshots
+  readonly graph: Graph
 }
 
 /**

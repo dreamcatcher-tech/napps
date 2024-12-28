@@ -1,13 +1,13 @@
 import * as posix from '@std/path/posix'
 import { assert } from '@std/assert/assert'
 import type {
-  NappWrite,
   ProcessAddress,
   Read,
   Snapshots,
   SnapshotsProvider,
   TreeEntry,
   Upsert,
+  Write,
 } from '@artifact/api/napp-api'
 import { FileNotFoundError } from '@artifact/api/napp-api'
 import Debug from 'debug'
@@ -21,7 +21,7 @@ type LocalReadOptions = Pick<ProcessAddress, 'snapshot'>
 
 export interface NappLocal {
   readonly read: Read<LocalReadOptions>
-  readonly write: NappWrite<NoAddressingOptions>
+  readonly write: Write<NoAddressingOptions>
   readonly snapshots: Snapshots<LocalReadOptions>
 }
 

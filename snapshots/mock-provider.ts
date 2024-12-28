@@ -122,8 +122,8 @@ export class MockProvider implements LocalSnapshotsProvider {
     },
     history: async (options = {}) => {
       await Promise.resolve()
-      const { count = 1, snapshot = this.#latest } = options
-      if (count <= 0) {
+      const { limit = 1, snapshot = this.#latest } = options
+      if (limit <= 0) {
         throw new Error('count must be greater than 0')
       }
       if (!snapshot) {
@@ -135,7 +135,7 @@ export class MockProvider implements LocalSnapshotsProvider {
       }
       let current = snapshot
       const history = []
-      for (let i = 0; i < count; i++) {
+      for (let i = 0; i < limit; i++) {
         history.push(current)
         const lineage = this.#snapshots.get(current)
         if (!lineage) {
