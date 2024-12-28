@@ -111,8 +111,15 @@ interface Graph {
   readonly reset: () => Promise<void>
   readonly push: () => Promise<void>
   readonly pull: () => Promise<void>
-  readonly remote: () => Promise<void>
-  readonly clone: () => Promise<void>
+  readonly getRemote: () => Promise<void>
+  readonly setRemote: () => Promise<void>
+  /**
+   * Given a name, some crypto config, and a remote clone address, clone the
+   * repo into the current home directory.
+   */
+  readonly clone: (options?: { alias?: string }) => Promise<void>
+  readonly rm: (branch: BranchAddress) => Promise<void>
+  readonly rmRepo: () => Promise<void>
   // ?? should remote writes be part of branching ?
 }
 
