@@ -161,7 +161,7 @@ const createWrite = (trail: Trail) => {
         tool: 'write/binary',
         parameters: { path, options },
       }
-      await trail.push(action, { data: content })
+      await trail.push(action, { binary: content })
     },
     rm: async (path, options = {}) => {
       const action: Action = {

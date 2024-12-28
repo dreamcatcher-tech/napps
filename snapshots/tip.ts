@@ -1,10 +1,10 @@
 import * as posix from '@std/path/posix'
 import { assert } from '@std/assert/assert'
 import type {
-  NappRead,
-  NappSnapshots,
   NappWrite,
   ProcessAddress,
+  Read,
+  Snapshots,
   SnapshotsProvider,
   TreeEntry,
   Upsert,
@@ -20,9 +20,9 @@ const log = Debug('@artifact/snapshots')
 type LocalReadOptions = Pick<ProcessAddress, 'snapshot'>
 
 export interface NappLocal {
-  readonly read: NappRead<LocalReadOptions>
+  readonly read: Read<LocalReadOptions>
   readonly write: NappWrite<NoAddressingOptions>
-  readonly snapshots: NappSnapshots<LocalReadOptions>
+  readonly snapshots: Snapshots<LocalReadOptions>
 }
 
 export class Tip implements NappLocal {
@@ -105,8 +105,8 @@ export class Tip implements NappLocal {
         if (text !== undefined) {
           return new TextEncoder().encode(text)
         }
-        if ('data' in upsert) {
-          return upsert.data
+        if ('binary' in upsert) {
+          return upsert.binary
         }
         if ('meta' in upsert) {
           const { snapshot, path } = upsert.meta
@@ -198,7 +198,7 @@ export class Tip implements NappLocal {
       assert(path !== '.', 'cannot write to root')
       // TODO ensure cannot write to a directory
       log('writeBinary', path, content)
-      this.#upserts.set(path, { data: content })
+      this.#upserts.set(path, { binary: content })
       this.#deletes.delete(path)
       return Promise.resolve()
     },

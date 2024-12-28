@@ -47,3 +47,6 @@
 
 10. what is the name of the platform we are making - the base ui - the most
     general of interfaces ?
+
+11. need to get more formal in capturing the ideas and lessons that Smax learns
+    from all his toil with the AI

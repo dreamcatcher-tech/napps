@@ -343,7 +343,7 @@ const unwrapUpsert = (upsert: Upsert) => {
     return upsert.text
   }
   if ('data' in upsert) {
-    return upsert.data
+    return upsert.binary
   }
   throw new Error('Invalid upsert')
 }

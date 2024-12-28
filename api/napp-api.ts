@@ -12,41 +12,48 @@ export type TreeEntry = {
   readonly path: string
   /** the hash identifier of the blob or tree */
   readonly oid: string
-  /** the type of object */
-  readonly type: 'blob' | 'tree'
-  /** the snapshot identifier, since lookup by oid is not permitted as there is
-   * no way to lookup permissions cheaply */
+  /** the type of object, where commit indicates a submodule */
+  readonly type: 'blob' | 'tree' | 'commit'
+  /** the snapshot identifier, since lookup by oid alone cannot cheaply
+   * determine permissions */
   readonly snapshot: string
 }
 
 export type Upsert =
+  // TODO could this be a TreeEntry ?
   | { readonly meta: { readonly snapshot: string; readonly path: string } }
   | { readonly json: JsonValue } // TODO implement object cache using structured clone
   | { readonly text: string }
-  | { readonly data: Uint8Array }
+  | { readonly binary: Uint8Array }
 
 export const processAddressSchema = z
   .object({
     /** Posix style path that locates what process thread we want to communicate
      * with. In git, this would be branch names, for example: `exe/proc-1/child-2` */
     path: z.string(),
+
     /** The cryptographic identifier of the whole repository. This would be the
      * chainId in conventional blockchains, but could be a group of public keys,
      * or some other root of trust */
     crypto: z.string(),
-    /** Whatever snapshot model is used, the branch concept represents an isolated
-     * line of changes. In git, this would be a branch */
+
+    /** Whatever snapshot model is used, the branch concept represents an
+     * isolated line of changes. In git, this would be a branch */
     branch: z.string(),
+
     /** Depending on the snapshot format being used, represents the state at a
      * specific point in the history. For write commands, snapshot is used to
      * guarantee the state being changed has not been altered since it was read */
     snapshot: z.string(),
   })
+  /**
+   * Any omitted fields will be filled in by the current process address.
+   */
   .partial()
 
 export type ProcessAddress = z.infer<typeof processAddressSchema>
 
-export interface NappSnapshots<ReadOptions = ProcessAddress> {
+export interface Snapshots<ReadOptions = ProcessAddress> {
   /** Posix style path that locates what process thread we want to communicate
    * with. In git, this would be branch names, for example: `exe/proc-1/child-2` */
   readonly latest: (
@@ -58,7 +65,7 @@ export interface NappSnapshots<ReadOptions = ProcessAddress> {
   ) => Promise<string[]>
 }
 
-export interface NappRead<ReadOptions = ProcessAddress> {
+export interface Read<ReadOptions = ProcessAddress> {
   readonly meta: (path: string, options?: ReadOptions) => Promise<TreeEntry>
   readonly json: <T extends ZodTypeAny = typeof jsonSchema>(
     path: string,
@@ -71,8 +78,8 @@ export interface NappRead<ReadOptions = ProcessAddress> {
 }
 
 export interface SnapshotsProvider<ReadOptions = ProcessAddress> {
-  readonly snapshots: NappSnapshots<ReadOptions>
-  readonly read: NappRead<ReadOptions>
+  readonly snapshots: Snapshots<ReadOptions>
+  readonly read: Read<ReadOptions>
   readonly commit: (
     upserts: Map<string, Upsert>,
     deletes: Set<string>,
@@ -218,7 +225,7 @@ interface NappGraph {
 
 export interface NappApi {
   readonly state: NappState
-  readonly read: NappRead
+  readonly read: Read
   readonly write: NappWrite
   readonly processes: NappProcesses
   readonly effects: NappEffects
