@@ -30,7 +30,7 @@
     "@artifact/evals": "jsr:@artifact/evals@^0.0.1",
     "@artifact/napp-tools": "jsr:@artifact/napp-tools@^0.0.1",
     "@artifact/cli": "jsr:@artifact/cli@^0.0.1",
-    "@artifact/youtube": "jsr:@artifact/youtube@^0.0.1",
+    "@artifact/youtube": "jsr:@artifact/youtube@^0.0.2",
 
     "@apideck/better-ajv-errors": "npm:@apideck/better-ajv-errors",
     "@kitsonk/kv-toolbox": "jsr:@kitsonk/kv-toolbox",

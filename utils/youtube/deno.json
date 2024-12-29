@@ -1,6 +1,6 @@
 {
   "name": "@dreamcatcher/youtube",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Download audio and video from YouTube",
   "tasks": {
     "dev": "deno test -A --watch mod.test.ts",

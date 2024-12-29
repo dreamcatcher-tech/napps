@@ -34,6 +34,7 @@ export const audio = async (
   const options: downloadOptions = {
     filter: 'audioonly',
     quality: lowest ? 'lowestaudio' : 'highestaudio',
+    playerClients: ['IOS'],
   }
   const fileName = await pickFormatAndName(url, prefix, options)
   console.log('fileName', fileName)

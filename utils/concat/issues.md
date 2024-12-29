@@ -76,3 +76,5 @@ more information.
 In each output, indicate how many tokens it is, and how many bytes.
 
 If the context window is exceeded, then concat should error.
+
+No uninstall instructions in the README.
