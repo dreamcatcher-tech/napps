@@ -11,7 +11,7 @@ interface YoutubeOptions {
   path: string
 }
 
-export const youtube = async ({ url, path }: YoutubeOptions) => {
+export const youtube = async ({ url, path }: YoutubeOptions): Promise<void> => {
   if (!(await selfCheckApiKey())) {
     throw new Error('Invalid Deepgram API key')
   }

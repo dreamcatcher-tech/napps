@@ -5,7 +5,7 @@
     "graphviz": "npm:node-graphviz@^0.1.1",
 
     "@std/semver": "jsr:@std/semver",
-    "@std/fs": "jsr:@std/fs",
+    "@std/fs": "jsr:@std/fs@^1.0.8",
     "@std/path": "jsr:@std/path",
     "@std/async": "jsr:@std/async",
     "@std/fmt": "jsr:@std/fmt",
@@ -55,7 +55,7 @@
     "zod-to-json-schema": "npm:zod-to-json-schema",
     "gpt-tokenizer": "npm:gpt-tokenizer",
     "humanize-number": "npm:humanize-number",
-    "commander": "npm:commander",
+    "commander": "npm:commander@^12.1.0",
     "@deepgram/sdk": "npm:@deepgram/sdk@^3.9.0",
     "@ffmpeg/ffmpeg": "npm:@ffmpeg/ffmpeg"
   }
