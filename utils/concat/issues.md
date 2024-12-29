@@ -74,3 +74,5 @@ more information.
 .svg files should be ignored
 
 In each output, indicate how many tokens it is, and how many bytes.
+
+If the context window is exceeded, then concat should error.

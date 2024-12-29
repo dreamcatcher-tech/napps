@@ -7,8 +7,28 @@
   "tools": {
     "transcribe": {
       "description": "Transcribe an audio file into a diarized json object",
+      "required": ["path"],
       "parameters": {
-        "path": "The path to the audio file to transcribe, which must in one of the supported formats: "
+        "path": {
+          "type": "string",
+          "description": "The path to the audio file to transcribe, which must in one of the supported formats in deepgram"
+        },
+        "profanityFilter": {
+          "type": "boolean",
+          "description": "Whether to filter out profanity"
+        },
+        "diarization": {
+          "type": "boolean",
+          "description": "Whether to diarize the audio"
+        },
+        "fillerWords": {
+          "type": "boolean",
+          "description": "Whether to include filler words"
+        }
+      },
+      "returns": {
+        "type": "string",
+        "description": "The path to the output transcript text file"
       }
     }
   }

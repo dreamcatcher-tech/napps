@@ -1,8 +1,12 @@
 {
-  "name": "@artifact/transcriber",
+  "name": "@dreamcatcher/transcriber",
   "version": "0.0.1",
-  "exports": "./mod.ts",
+  "exports": {
+    ".": "./mod.ts",
+    "./cli": "./cli.ts"
+  },
   "tasks": {
+    "cli": "deno run --allow-all cli.ts",
     "dev": "deno test --watch mod.ts",
     "napp": "deno run --watch -A ../../cli/local.ts . youtube --url 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"
   }
