@@ -52,7 +52,7 @@ export const speechToJson = async (
   }
 }
 
-export const selfCheckApiKey = async () => {
+export const selfCheckApiKey = async (): Promise<boolean> => {
   console.log('🔑  Checking Deepgram API key…')
   try {
     const apiKey = Deno.env.get('DEEPGRAM_API_KEY')

@@ -12,7 +12,9 @@ export type TranscriptionOptions = {
   fillerWords?: boolean
 }
 
-export const transcribe = async (options: TranscriptionOptions) => {
+export const transcribe = async (
+  options: TranscriptionOptions,
+): Promise<string> => {
   const json = await speechToJson(options)
   const text = transcriptToText(json)
 
