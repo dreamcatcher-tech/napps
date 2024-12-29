@@ -72,3 +72,5 @@ include a tree listing at the end optionally in case the bot needs to ask for
 more information.
 
 .svg files should be ignored
+
+In each output, indicate how many tokens it is, and how many bytes.

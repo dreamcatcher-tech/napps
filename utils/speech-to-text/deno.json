@@ -1,5 +1,5 @@
 {
-  "name": "@artifact/speech-to-text",
+  "name": "@dreamcatcher/speech-to-text",
   "version": "0.0.1",
   "exports": "./mod.ts",
   "tasks": {
