@@ -1,6 +1,9 @@
 import type { SyncPrerecordedResponse } from '@deepgram/sdk'
 
-export const transcriptToText = (data: SyncPrerecordedResponse): string => {
+export const transcriptToText = (
+  data: SyncPrerecordedResponse,
+  speakerNames: string[] = [],
+): string => {
   const words = data?.results?.channels?.[0]?.alternatives?.[0]?.words
   if (!words || !Array.isArray(words) || words.length === 0) {
     throw new Error('No words found in the transcript')
@@ -17,7 +20,8 @@ export const transcriptToText = (data: SyncPrerecordedResponse): string => {
 
   const conversationStart = firstWord.start
   const conversationEnd = words[words.length - 1]?.end ??
-    words[words.length - 1]?.start ?? 0
+    words[words.length - 1]?.start ??
+    0
   const conversationDuration = (conversationEnd - conversationStart).toFixed(2)
   const speakers = new Set(words.map(({ speaker }) => speaker))
 
@@ -34,11 +38,18 @@ export const transcriptToText = (data: SyncPrerecordedResponse): string => {
   let currentStart = firstWord.start
   let currentText: string[] = []
 
+  // We'll map each numeric speaker ID to an index in `speakerNames`.
+  // If the user gave fewer names than actual IDs, or if a speaker number is out of range,
+  // we fall back to the raw speaker number.
+  function getSpeakerLabel(sp: number) {
+    return speakerNames[sp] ?? `Speaker ${sp}`
+  }
+
   for (let i = 0; i < words.length; i++) {
     const { word = '', speaker = 0, start = 0 } = words[i] || {}
     if (speaker !== currentSpeaker) {
       output.push(
-        `Speaker ${currentSpeaker} (${currentStart}s): ${
+        `${getSpeakerLabel(currentSpeaker)} (${currentStart}s): ${
           currentText.join(' ')
         }`,
       )
@@ -49,8 +60,11 @@ export const transcriptToText = (data: SyncPrerecordedResponse): string => {
     currentText.push(word)
   }
 
+  // push out the last batch
   output.push(
-    `Speaker ${currentSpeaker} (${currentStart}s): ${currentText.join(' ')}`,
+    `${getSpeakerLabel(currentSpeaker)} (${currentStart}s): ${
+      currentText.join(' ')
+    }`,
   )
 
   return `${header}\n\n${output.join('\n')}`
