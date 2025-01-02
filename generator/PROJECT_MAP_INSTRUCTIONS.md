@@ -19,18 +19,25 @@ layout and logic without too much detail.
   - Exported functions for code files, including their TS parameter/return
     types. Do not include functions that are not exported.
   - Top-level headings for knowledge files such as markdown documents.
-  - All tests for test files.
+  - All tests for test files using the description of the test, but only the top
+    level tests. Do not include sub-steps inside the test. Tests do not need an
+    info note due to the description of the test being informative enough.
 - Add a short rationale note (`ℹ`) beneath each item.
 - Skip low-level internal files that aren’t architecturally important.
 - Exclude `PROJECT_MAP.md` from its own map.
-- Exclude `vendor-docs` details deeper than just the file name, as the details
-  are not within our control, being vendor supplied..
+- Exclude `vendor-docs` details deeper than just the folder names, as the
+  details are not within our control, being vendor supplied..
 - Never mention anything about any files that have been omitted from the map.
+- always use kebab-case for file names except for top level .md files like
+  README.md
+- test filenames must follow the format `<name>.test.<extension>`
+- dependencies are pulled out from the deno.json file and a primarily used to
+  link relevant vendor-docs documentation to the usage of the vendor module.
 
 **Structure Example:**
 
 ```text
-📦 PROJECT_ROOT/
+📦 /
 ├─ 📂 src
 │  ├─ 📄 main.ts
 │  │   ℹ Entry point for CLI
@@ -44,18 +51,14 @@ layout and logic without too much detail.
 │  │      ℹ Centralized error handling
 │  └─ (Internal helper files omitted)
 ├─ 📂 tests
-│  ├─ 📄 main_test.ts
+│  ├─ 📄 main.test.ts
 │  │   ℹ Tests runCLI()
-│  │   1. testRunCLI_withValidArgs()
-│  │      ℹ Ensures runCLI() processes valid args correctly
-│  │   2. testRunCLI_withInvalidArgs()
-│  │      ℹ Verifies runCLI() handles invalid args gracefully
-│  ├─ 📄 utils_test.ts
+│  │   1. CLI runs with Valid args
+│  │   2. CLI runs with Invalid args
+│  ├─ 📄 utils.test.ts
 │  │   ℹ Tests utils.ts functions
-│  │   1. testFormatOutput_valid()
-│  │      ℹ Checks correct string formatting
-│  │   2. testHandleError_logsProperly()
-│  │      ℹ Confirms handleError() logs error details as expected
+│  │   1. Correct string formatting
+│  │   2. Logs error details as expected
 ├─ 📄 README.md
 │   ℹ Quick start and top-level overview
 │   1. Introduction
