@@ -3,15 +3,15 @@ import { base32 } from 'multiformats/bases/base32'
 import { jsonSchema } from '../api/actions.ts'
 import { Tip } from './tip.ts'
 import {
+  type Address,
   FileNotFoundError,
   LineageError,
-  type ProcessAddress,
   type SnapshotsProvider,
 } from '../api/napp-api.ts'
 import { ulid } from '@std/ulid/ulid'
 import type { z } from 'zod'
 
-type LocalReadOptions = Pick<ProcessAddress, 'snapshot'>
+type LocalReadOptions = Pick<Address, 'snapshot'>
 type LocalSnapshotsProvider = SnapshotsProvider<LocalReadOptions>
 
 type Lineage = { tip: Tip; parents: string[] }

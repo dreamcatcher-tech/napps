@@ -1,6 +1,10 @@
+This is an approximate ERD of the MoneyWorks database schema, based on
+[this image](https://secure.cognito.co.nz/manual/moneyworks_appendix_simplified_schema.html).
+
 ```mermaid
 erDiagram
 
+    %% Entities
     Account {
         string Code PK
         string Category
@@ -14,6 +18,7 @@ erDiagram
         string Category
         string Classification
         string Concat
+        string TaxCode
     }
 
     Department {
@@ -112,6 +117,11 @@ erDiagram
         int PartCode
     }
 
+    TaxRate {
+        string TaxCode PK
+        float Rate
+    }
+
     User {
         string Key
         string Data
@@ -133,26 +143,48 @@ erDiagram
         
     }
 
-    %% Relationships (best guess from diagram)
+    %% Relationships
 
+    %% Account -> Ledger
     Account ||--o{ Ledger : "Code -> AccountCode"
+
+    %% Department -> Ledger
     Department ||--o{ Ledger : "Code -> Department"
 
+    %% Department -> Link
     Department ||--|{ Link : "Code -> Dept"
+
+    %% Account -> BankRecs
     Account ||--|{ BankRecs : "Code -> Account"
 
+    %% Job -> JobSheet
     Job ||--|{ JobSheet : "Code -> Job"
 
+    %% Transaction -> Detail
     Transaction ||--o{ Detail : "SequenceNumber -> ParentSeq"
+
+    %% Job -> Detail
     Job ||--o{ Detail : "Code -> JobCode"
+
+    %% Department -> Detail
     Department ||--o{ Detail : "Code -> Dept"
+
+    %% Account -> Detail
     Account ||--o{ Detail : "Code -> Account"
+
+    %% Product -> Detail (StockCode)
     Product ||--o{ Detail : "Code -> StockCode"
 
-    Transaction ||--o{ Payments : "SequenceNumber (?)
- → InvoiceID/CashTrans?"
+    %% Transaction -> Payments (assuming)
+    Transaction ||--o{ Payments : "SequenceNumber (?) -> InvoiceID/CashTrans"
 
+    %% Name -> Memo
     Name ||--|{ Memo : "SequenceNumber -> NameSeq"
 
-    %% Others may need clarification
+    %% Any table with TaxCode references TaxRate
+    Ledger }|--|| TaxRate : "TaxCode"
+    Detail }|--|| TaxRate : "TaxCode"
+    Name }|--|| TaxRate : "TaxCode"
+
+    %% (Product, Account, etc. could reference TaxRate if needed)
 ```

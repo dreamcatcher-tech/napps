@@ -89,6 +89,7 @@
     "./utils/speech-to-text",
     "./utils/transcriber",
     "./utils/supercut",
+    "./utils/helpers",
     "./blockchain/tendermint"
   ]
 }

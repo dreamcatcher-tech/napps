@@ -50,3 +50,25 @@
 
 11. need to get more formal in capturing the ideas and lessons that Smax learns
     from all his toil with the AI
+
+12. A stuck needed to be made to cover the provisioning of the local environment
+    suitable to pull from Moneyworks and run the web app / api, reporting on
+    that process, restart on computer restart, restart on failure, logging for
+    capturing faults.
+
+13. xml extraction requires a compilation of the moneyworks docs into a format
+    that is digested by the AI.
+
+14. multiple angles of extraction - this still is not being approached correctly
+
+15. So basically context grabbing is a big enough deal that we probably need
+    that to be a core feature of our platform - the more you can get, and share,
+    and the easier it is, the more useful the LLMs. The software should be
+    entirely free, the tokens near free, but the trade that is faciliated should
+    be skimmed. So we should be building things that grab context, as the
+    strategic stuck.
+
+16. Naming different types of stuck, like the stuck that is the most important,
+    and the stuck that is the most urgent, and the stuck that is the most
+    important and urgent. Horizon Stuck (furthest attainable), Moon Stuck
+    (furthest desired), burning stuck (most urgent).

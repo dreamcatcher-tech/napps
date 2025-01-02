@@ -78,3 +78,7 @@ In each output, indicate how many tokens it is, and how many bytes.
 If the context window is exceeded, then concat should error.
 
 No uninstall instructions in the README.
+
+ignore node_modules folder, pnpm-lock.yaml
+
+.env files should pull in **** blanked out values for the keys

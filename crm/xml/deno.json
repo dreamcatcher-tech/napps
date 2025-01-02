@@ -1,0 +1,9 @@
+{
+    "name": "@dreamcatcher/moneyworks-sync",
+    "version": "0.0.1",
+    "description": "CLI for syncing MoneyWorks XML data with Git storage.",
+    "exports": {
+        ".": "./mod.ts",
+        "./cli": "./cli.ts"
+    }
+}

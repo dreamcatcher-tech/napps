@@ -1,5 +1,6 @@
 {
   "imports": {
+    "@dreamcatcher/helpers": "./utils/helpers/mod.ts",
     "@deno/graph": "jsr:@deno/graph@^0.82",
     "@deno/doc": "jsr:@deno/doc@0.148",
     "graphviz": "npm:node-graphviz@^0.1.1",
@@ -57,6 +58,7 @@
     "humanize-number": "npm:humanize-number",
     "commander": "npm:commander@^12.1.0",
     "@deepgram/sdk": "npm:@deepgram/sdk@^3.9.0",
-    "@ffmpeg/ffmpeg": "npm:@ffmpeg/ffmpeg"
+    "@ffmpeg/ffmpeg": "npm:@ffmpeg/ffmpeg",
+    "@aws-sdk/client-s3": "npm:@aws-sdk/client-s3"
   }
 }
