@@ -61,6 +61,7 @@
     "./actors",
     "./api",
     "./cli",
+    "./crm/moneyworks-sync",
     "./isolation",
     "./dumb-bot",
     "./engine",

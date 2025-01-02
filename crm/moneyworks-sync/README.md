@@ -66,7 +66,7 @@ MoneyWorks, ensuring full two-way synchronization with a reliable audit trail.
 
 ## CLI Usage
 
-You can run this module from the command line with Deno. It requires environment
+You can install and run this module as a CLI using Deno. It requires environment
 variables like MoneyWorks credentials, the git repo URL, and poll intervals.
 
 ### Prerequisites
@@ -75,20 +75,24 @@ variables like MoneyWorks credentials, the git repo URL, and poll intervals.
 - **Git** repo accessible to this module
 - Appropriate permissions for environment variables, file I/O, and network
 
-### Environment Variables
+### Installation
 
-1. **MONEYWORKS_SECURE_URL** – e.g.
-   `https://user:pass@example.moneyworks.net:6710`
-2. **GIT_REPO_URL** – the remote Git repository where XMLs are pushed/pulled
-3. **GIT_REPO_KEY** - the API key for the Git repository
-
-If these aren’t found at startup (from `localStorage` or OS env), the CLI will
-prompt for them.
-
-### Example Run
+Install the CLI script globally with Deno:
 
 ```bash
-deno run --allow-read --allow-write --allow-env --allow-net main.ts
+deno install --allow-read --allow-write --allow-env --allow-net \
+  "jsr:@dreamcatcher/moneyworks-sync/cli"
+```
+
+This will place an executable named `moneyworks-sync` in your Deno bin folder
+(e.g., `~/.deno/bin`).
+
+### Running the CLI
+
+After installation, simply run:
+
+```bash
+moneyworks-sync
 ```
 
 The script will:
@@ -102,13 +106,23 @@ The script will:
      MoneyWorks.
    - Sleep until the next interval.
 
+### Environment Variables
+
+1. **MONEYWORKS_SECURE_URL** – e.g.
+   `https://user:pass@example.moneyworks.net:6710`
+2. **GIT_REPO_URL** – the remote Git repository where XMLs are pushed/pulled
+3. **GIT_REPO_KEY** - the API key for the Git repository
+
+If these aren’t found at startup (from `localStorage` or OS env), the CLI will
+prompt for them.
+
 ### Overriding Stored Variables
 
 Use standard environment variable overrides if you need to switch servers or
 credentials:
 
 ```bash
-MONEYWORKS_URL=https://another.server.net deno run --allow-env --allow-net --allow-read --allow-write main.ts
+MONEYWORKS_URL=https://another.server.net moneyworks-sync
 ```
 
 ## Anonymization

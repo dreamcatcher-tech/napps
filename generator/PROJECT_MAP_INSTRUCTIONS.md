@@ -17,14 +17,15 @@ layout and logic without too much detail.
   - `🧩` for dependent projects
 - Under each file, list:
   - Exported functions for code files, including their TS parameter/return
-    types.
-  - Top-level sections for knowledge files.
+    types. Do not include functions that are not exported.
+  - Top-level headings for knowledge files such as markdown documents.
   - All tests for test files.
 - Add a short rationale note (`ℹ`) beneath each item.
 - Skip low-level internal files that aren’t architecturally important.
 - Exclude `PROJECT_MAP.md` from its own map.
 - Exclude `vendor-docs` details deeper than just the file name, as the details
   are not within our control, being vendor supplied..
+- Never mention anything about any files that have been omitted from the map.
 
 **Structure Example:**
 

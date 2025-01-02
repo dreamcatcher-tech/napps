@@ -1,40 +1,34 @@
-import { Command } from "npm:commander";
-import { promptForEnvKeys } from "../../utils/helpers/envcheck.ts";
-import { syncMoneyWorks } from "./mod.ts";
-import { version } from "./deno.json" with { type: "json" };
+import { Command } from 'npm:commander'
+import { version } from './deno.json' assert { type: 'json' }
+import { promptForEnvKeys } from '@dreamcatcher/helpers'
+import { syncMoneyWorks } from './mod.ts'
 
-const program = new Command();
-
-// Define required environment variables
 const requiredEnvKeys = [
-  { key: "MONEYWORKS_API_KEY", friendlyName: "MoneyWorks API Key" },
-  { key: "MONEYWORKS_URL", friendlyName: "MoneyWorks Server URL" },
-];
+  { key: 'MONEYWORKS_SECURE_URL', friendlyName: 'MoneyWorks Secure URL' },
+  { key: 'GIT_REPO_URL', friendlyName: 'Git Repository URL' },
+  { key: 'GIT_REPO_KEY', friendlyName: 'Git Repository Key' },
+]
+
+const program = new Command()
 
 program
-  .name("moneyworks-sync")
-  .description("CLI for syncing MoneyWorks XML data with Git storage.")
-  .version(version);
-
-program
-  .command("sync")
+  .name('moneyworks-sync')
   .description(
-    "Run a sync cycle (prompts for environment variables if missing).",
+    'Continuously polls MoneyWorks for new/updated records, commits them to a ' +
+      '`moneyworks` branch, and monitors a `changes` branch to apply edits back ' +
+      'into MoneyWorks for full two-way sync.',
   )
-  .option("--poll-interval <seconds>", "Override poll interval", "60")
-  .action(async ({ pollInterval }: { pollInterval: string }) => {
+  .version(version)
+  .action(async () => {
     try {
-      // Verify or prompt for required env vars, then store them in localStorage
-      const envData = await promptForEnvKeys(requiredEnvKeys);
-
-      // Now run the sync cycle
-      await syncMoneyWorks({ pollInterval: parseInt(pollInterval, 10) });
-      Deno.exit(0);
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      console.error("❌ Sync failed:", msg);
-      Deno.exit(1);
+      await promptForEnvKeys(requiredEnvKeys)
+      await syncMoneyWorks()
+      Deno.exit(0)
+    } catch (err) {
+      // deno-lint-ignore no-console
+      console.error('❌ Sync failed:', err instanceof Error ? err.message : err)
+      Deno.exit(1)
     }
-  });
+  })
 
-program.parse(Deno.args, { from: "user" });
+program.parse(Deno.args)

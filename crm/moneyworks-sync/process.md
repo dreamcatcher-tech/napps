@@ -1,56 +1,103 @@
 # Process Overview
 
-This module coordinates synchronization between:
+This module coordinates and enforces a two-way sync between:
 
-- **MoneyWorks Server**: The authoritative data store (via REST).
-- **`moneyworks`**: A git branch mirroring MoneyWorks state.
-- **`changes`**: A git branch where external application processes submit
-  pending updates for MoneyWorks.
-- **Application Processes**: Other modules or services that create/modify
-  records in the `changes` branch.
+- **MoneyWorks Server**: The authoritative data store (exposed via REST).
+- **`moneyworks`**: A Git branch mirroring MoneyWorks data.
+- **`changes`**: A Git branch where external processes submit XML updates.
+- **Application Processes**: Other modules or services creating new or modified
+  XML records that eventually must be pushed into MoneyWorks.
 
-Only this module updates the `moneyworks` branch after polling the MoneyWorks
-Server and applies changes coming from the `changes` branch if prerequisites are
-met.
+Below is a refined version with the **exact** steps for writing into MoneyWorks,
+pausing polling, verifying data, and merging.
+
+---
 
 ## 1. MoneyWorks Branch
 
-- Reflects a faithful snapshot of the MoneyWorks Server.
-- Updated by this module whenever the polling cycle detects new changes from
-  MoneyWorks.
+- Reflects the official state of the MoneyWorks server at any given time.
+- Updated exclusively by this module during normal polling cycles or after
+  applying changes from the `changes` branch.
+
+**Key points**
+
+- **No external commits** should ever go directly to `moneyworks`.
+- Polling runs on a configured interval to detect new or updated records on the
+  MoneyWorks server.
+- Committed changes always include a _sync marker_ (the last modified timestamp)
+  in the commit message or config file.
+
+---
 
 ## 2. Changes Branch
 
-- Holds edits queued by external processes for insertion into MoneyWorks.
-- The `changes` branch does **not** need to reference the exact commit of the
-  `moneyworks` branch; it just needs to be based on a point where `changes` was
-  last synchronized with `moneyworks`.
+- This branch is where external applications place new or modified XML files
+  that must be written into MoneyWorks.
+- **Never** merges into the `moneyworks` branch, but whenever changes occur in
+  the moneyworks branch, the moneyworks branch is merged into the changes branch
+  by outside processes.
+- The module will watch for commits here. When it detects them, it begins a
+  **write** workflow.
+
+---
 
 ## 3. Synchronizing Changes Branch to MoneyWorks
 
-1. The module polls the `changes` branch for new commits.
-2. If the `moneyworks` branch has progressed since the last time `changes` was
-   synchronized, the module looks back to that last synchronization point.
-3. As long as the changes on `changes` aren’t invalidated by subsequent
-   `moneyworks` commits, the new edits are applied to MoneyWorks.
-4. In rare cases, a conflict might arise if the `moneyworks` branch is altered
-   between the time we pull the latest from MoneyWorks and the moment we commit
-   new data. In that case, the commit will fail, and the user will be alerted.
+When new commits appear on `changes`, the module initiates the following
+sequence:
 
-> **Note**: External processes know their changes have been applied by watching
-> for corresponding updates in the main branch. If they see the exact file
-> changes appear, they confirm success. If they see unexpected modifications,
-> they should raise a conflict warning.
+1. **Suspend Polling**\
+   Temporarily pause the regular fetch-from-MoneyWorks cycle to avoid
+   concurrency conflicts.
+
+2. **Ensure `moneyworks` Is Current**\
+   Run one final polling cycle from MoneyWorks to confirm the `moneyworks`
+   branch is fully up to date. This ensures there are no unaccounted-for changes
+   on MoneyWorks’s side.
+
+3. **Compare Commits**\
+   Identify exactly which XML records in `changes` differ from `moneyworks`.
+   (These diffs represent pending edits to be applied to the MoneyWorks server.)
+
+4. **Import Changes into MoneyWorks**\
+   Use MoneyWorks’s REST API (`import`) to insert or update the relevant
+   records. Any mismatch in sequence numbers, collisions, or major data
+   conflicts will halt the process and require manual resolution.
+
+---
 
 ## 4. Verification
 
-- After pushing new edits into MoneyWorks, the module polls again to confirm the
-  remote database state matches the changes.
-- The module **commits** these new changes into the `moneyworks` branch as the
-  canonical representation.
+- The module checks that the newly updated MoneyWorks data **matches** the
+  edited XML from `changes`.
+- If a mismatch arises (e.g. data was altered by another user in MoneyWorks),
+  the sync process will fail, logging a conflict for manual resolution.
+
+---
 
 ## 5. Completion
 
-- If the `moneyworks` branch now reflects the same changes that were in the
-  `changes` branch, the updates have been successfully recorded in MoneyWorks.
-- The `changes` branch remains available for subsequent edits.
+- If no conflicts, the now-merged `moneyworks` branch is the single source of
+  truth reflecting every change from MoneyWorks _and_ from `changes`.
+- External processes know the update succeeded when the corresponding XML commit
+  appears (with identical content) in `moneyworks`.
+- Normal polling continues at the configured interval.
+
+---
+
+### Conflict Handling
+
+- **Non-trivial conflicts** (e.g. the record changed in MoneyWorks after last
+  poll, or the branch diverged unexpectedly) cause the module to halt further
+  writes and log an error.
+- A human operator or external conflict resolution process must decide how to
+  handle these discrepancies before resuming normal operations.
+
+---
+
+### Summary
+
+This process ensures safe, reliable synchronization between MoneyWorks (via
+REST) and the Git repository’s two branches (`moneyworks`, `changes`),
+protecting against conflicts and preserving a complete audit trail of all XML
+changes.

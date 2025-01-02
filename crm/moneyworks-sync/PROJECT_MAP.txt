@@ -1,0 +1,84 @@
+📦 moneyworks-sync/
+├─ 📄 README.md
+│   ℹ High-level module overview and usage
+│   1. # MoneyWorks XML Git Sync
+│   2. ## Overview
+│   3. ## High-Level Flow
+│   4. ## CLI Usage
+│   5. ## Anonymization
+│   6. ## Future Enhancements
+├─ 📄 seed.md
+│   ℹ Requirements and extended goals for this module
+│   1. # Overview
+│   2. # Requirements
+│   3. # Questions
+├─ 📄 process.md
+│   ℹ Explains flow for `moneyworks` and `changes` branches
+│   1. # Process Overview
+│   2. ## 1. MoneyWorks Branch
+│   3. ## 2. Changes Branch
+│   4. ## 3. Synchronizing Changes Branch to MoneyWorks
+│   5. ## 4. Verification
+│   6. ## 5. Completion
+├─ 📄 anonymize.ts
+│   ℹ CLI tool for local XML data randomization
+│   1. readXML(filename?: string): Promise<string>
+│      ℹ Reads XML from file or stdin
+│   2. main(): Promise<void>
+│      ℹ Parses, anonymizes, prints to stdout
+├─ 📄 cli.ts
+│   ℹ Defines CLI commands and entry logic
+│   1. program.action(): Promise<void>
+│      ℹ Prompts for env config, calls sync
+├─ 📄 config.ts
+│   ℹ Configuration interface for server/poll intervals
+│   1. interface Config 
+│      ℹ moneyworks, tables, pollInterval
+├─ 📄 mod.ts
+│   ℹ Main module entry point (placeholder)
+├─ 📄 deno.json
+│   ℹ Deno config & CLI task
+│   1. tasks.cli 
+│      ℹ `deno run` for syncing
+├─ 📄 mock-moneyworks.ts
+│   ℹ Simple mock MoneyWorks server for testing
+│   1. startMockServer(port: number): Promise<void>
+│      ℹ Spins up a mock REST server with minimal data
+│   2. stopMockServer(): Promise<void>
+│      ℹ Cleans up the mock server after tests
+├─ 📄 sync.ts
+│   ℹ Core sync logic for polling and applying updates
+│   1. syncMoneyWorks(): Promise<void>
+│      ℹ Main orchestration: fetch from MoneyWorks, push/pull git updates
+├─ 📄 git-ops.ts
+│   ℹ Git integration for push/pull, merge, and conflict detection
+│   1. cloneOrPullRepo(repoUrl: string): Promise<void>
+│      ℹ Ensures local git repo is up to date
+│   2. checkoutBranch(branchName: string): Promise<void>
+│      ℹ Switches to the specified branch
+│   3. mergeBranches(src: string, dest: string): Promise<boolean>
+│      ℹ Attempts a merge, returns success or conflict
+├─ 📂 tests
+│   ℹ Integration and unit tests
+│   ├─ 📄 sync_test.ts
+│   │   ℹ Tests syncMoneyWorks() with a mock server
+│   │   1. testSyncRetrievesUpdatesCorrectly()
+│   │      ℹ Ensures polling logic fetches new records
+│   │   2. testSyncAppliesChangesToMoneyWorks()
+│   │      ℹ Verifies local changes are pushed back
+│   ├─ 📄 mock_moneyworks_test.ts
+│   │   ℹ Tests the mock server logic
+│   │   1. testMockServerGetRecords()
+│   │      ℹ Checks basic GET responses from the mock server
+│   │   2. testMockServerPostUpdates()
+│   │      ℹ Confirms POST handling simulates MoneyWorks behavior
+│   └─ 📄 git_ops_test.ts
+│       ℹ Ensures git-ops functions work as intended
+│       1. testCloneOrPullRepo()
+│          ℹ Verifies repo is cloned/pulled correctly
+│       2. testMergeBranchesNoConflict()
+│          ℹ Merges branches when no conflicts exist
+│       3. testMergeBranchesWithConflict()
+│          ℹ Detects conflict scenario
+├─ 📂 vendor-docs
+│   ℹ External MoneyWorks documentation (no internal details)
