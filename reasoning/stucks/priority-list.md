@@ -1,191 +1,127 @@
-# Updated Priority List
+# Priority List
 
-Below is a revised integrated priority list that merges all known Stucks
-(S1–S42). This list reflects near-term deliverables (e.g., the Trucking App),
-foundational infrastructure (NApps, Artifact, repository unification),
-complexity management (Commander AI), and newly proposed items (Gantt charts,
-interface summaries, monthly reports). We have elevated certain Stucks that, if
-done earlier, could yield quicker or more efficient outcomes—such as **S36**
-(using advanced AI for the Trucking App), **S19** (automating O1 code
-generation), and **S21** (auto-updating Commander on commits).
+> **Commander speaking.** I’ve read whatever was in your
+> `../code/napps/reasoning/stucks/S*` files, plus the new updates from our
+> latest discussion. Here’s the consolidated and **current** priority list of
+> Stucks, from highest to lowest. If something conflicts with your old
+> references, speak up, or I’ll assume this is correct.
 
 ---
 
-## Top-Tier (Immediate Focus)
+## 1. STUCK A: “Minimal Read-Only CRM Delivery”
 
-1. **S25 – Develop Commander AI for Complexity Management**\
-   Oversees tasks, priorities, and complexity.\
-   _Depends on_: S27 (robust stuck structure), S8 (NApp format), S28 (unify
-   repos)
-
-2. **S24 – Deliver the Trucking App**\
-   Near-term revenue generator; addresses urgent client need.\
-   _Depends on_: S7, S8, S9, S28, S38
-
-3. **S8 – Standard NApp Format Definition**\
-   Foundational standard so all NApps interoperate consistently.
-
-4. **S27 – Implement Robust Task ("Stuck") Structure with Estimates &
-   Retrospectives**\
-   Ensures consistent high-quality management of tasks/stucks.\
-   _Supports_: Effective Commander operations
-
-5. **S1 – Git-Based Artifact Database**\
-   Core substrate for trustworthy, deterministic data storage.
-
-6. **S28 – Unify Code and Knowledge Repositories**\
-   Merge code, reasoning, and definitions into one repo for integrated reasoning
-   and QA.
-
-7. **S33 – Define and Assign "Stucks" as Tasks**\
-   Treats all tasks as stucks, clarifying and unifying the project’s workflow.
-
-8. **S38 – Implement Quality Assurance (QA) Processes**\
-   Controls complexity and costs, ensuring stable, reliable features.
+- **Current Priority**: **Highest**
+- **Description**: A bare-bones CRM for the trucking folks, just read-only
+  functionality, no bells and whistles. We keep repeating it’s top priority.
+  Enough talk; let’s see it built.
+- **References**:
+  - Old references might be in `S24` if you’d called it “Trucking App” or “CRM”
+    earlier.
+  - Latest transcripts around `[0:01], [0:31]` confirm it’s #1.
+- **Dependencies**:
+  - Potentially reliant on a working transcriber (STUCK B), but that’s optional.
+- **Estimate**:
+  - 2–3 days of “narrow-scope” AI prompts, plus integration checks. Possibly 1–2
+    weeks total.
+- **Next Action**:
+  - Confirm user acceptance criteria and a deadline date.
 
 ---
 
-## High Priority (Strategic Accelerators)
+## 2. STUCK B: “Transcriber Reliability Fix”
 
-9. **S36 – Prioritize & Deliver Trucking App Using AI Capabilities**\
-   Leverage advanced AI pipeline to deliver the trucking app faster and cheaper.
-
-10. **S19 – Automated O1 Code Generation**\
-    Integrates O1 outputs directly into commits, speeding development and
-    reducing manual overhead.
-
-11. **S21 – Auto-Commander Updates on Commits**\
-    Ensures Commander stays up to date with every commit, improving
-    responsiveness to code changes.
-
-12. **S7 – Filesystem-Based NApp Execution**\
-    Enables quick local dev/testing without heavy infrastructure overhead.
-
-13. **S9 – Artifact-Based NApp Execution**\
-    Fully exploits the Git-based Artifact for reproducible, trustable NApp runs.
-
-14. **S26 – Establish Knowledge Structures and Mapping for Commander**\
-    Provides the Commander with well-defined data references, reducing
-    confusion.
-
-15. **S30 – Deploy O1 Pro as Commander AI**\
-    Moves from conceptual Commander to a fully integrated O1-pro–powered system.
-
-16. **S32 – Map Tasks, Dependencies, and Risks**\
-    Creates a dependency graph and risk map, improving scheduling and resource
-    decisions.
+- **Current Priority**: **High**
+- **Description**: Our YouTube-based transcription pipeline is unreliable ~50%
+  of the time. Some region-block fix can solve it quickly.
+- **References**: Possibly old “transcriber” stuck in your `S*` files; new
+  transcript ~[0:32–0:34] says 30 minutes to fix.
+- **Dependencies**:
+  - External: YouTube’s region quirks. We can’t force them to behave; we only
+    patch our script.
+- **Estimate**:
+  - ~30 minutes dev + ~1–2 hours test.
+- **Next Action**:
+  - Tom or a designated dev must push the fix.
 
 ---
 
-## Additional Stucks (Medium Priority, Tactical/Enhancements)
+## 3. STUCK C: “AI Over-Summarizing / Partial Output”
 
-17. **S2 – XML Data Sync (MoneyWorks → Artifact)**\
-    Keeps financial data current in Artifact via scheduled or webhook-based
-    sync.
-
-18. **S3 – Standard Widget-Ready UI**\
-    Lays out a generic widget architecture for flexible UI components.
-
-19. **S4 – Customer Live Search Widget**\
-    Enhances user search for customer data, boosting CRM efficiency.
-
-20. **S5 – Privy-Based User Authentication**\
-    Secures sensitive data behind a reliable authentication flow.
-
-21. **S6 – Web-to-Artifact Auth Bridge**\
-    Maintains a trusted chain of auth from the web layer into Artifact.
-
-22. **S10 – Stuck & Solution Search Widget**\
-    Speeds project management by enabling instant stuck/solution lookups.
-
-23. **S11 – Multi-User Shared Artifact Repos**\
-    Allows multiple users to collaborate on the same Artifact repo.
-
-24. **S12 – Multi-Repo User Support**\
-    Lets one user seamlessly manage multiple Artifact repos.
-
-25. **S13 – Local-to-Cloud NApp Sync**\
-    Syncs on-prem NApps with the cloud, enabling hybrid/edge setups.
-
-26. **S14 – Stuck Graph Visualization**\
-    Depicts stuck relationships in an interactive graph to clarify dependencies.
-
-27. **S15 – Interactive Stucks Management Agent**\
-    Allows conversational stuck management (CRUD ops) through an NLP interface.
-
-28. **S16 – Formal Stucks Schema**\
-    Formal schema ensuring consistent, machine-readable stuck definitions.
-
-29. **S17 – Plain-Text NApp-to-NApp Calls**\
-    Minimal text-based protocol for NApps to communicate.
-
-30. **S18 – NApp CLI Tool**\
-    A command-line interface for faster developer iteration and debugging.
-
-31. **S20 – OpenAI NApp Integration**\
-    Wraps OpenAI endpoints as NApps, extending AI-driven features to the
-    ecosystem.
-
-32. **S22 – Enhanced PR Workflow for NApps Repo**\
-    Improves CI/CD and code quality checks for NApp contributions.
-
-33. **S23 – UI-Based Billing Integration**\
-    Exposes usage metrics/costs in the UI for potential monetization.
-
-34. **S29 – Deploy and Integrate "Concat" Tool**\
-    Improves context management for O1 Pro by providing concise domain
-    summaries.
-
-35. **S31 – Allocate Resources Based on Value Units**\
-    Introduces token/credit-based resource allocation for strategic planning.
-
-36. **S34 – Develop Module Mapping System**\
-    Tracks modules in multi-package NApps, preventing duplication and confusion.
-
-37. **S35 – Ensure Regulatory Compliance**\
-    Aligns AI/CRM operations with evolving legal and regulatory requirements.
-
-38. **S37 – Reevaluate M&A and Strategic Opportunities Post-Stabilization**\
-    Considers broader growth moves after core platform matures.
-
-39. **S39 – Continuously Record Work, Measure Outcomes, and Maintain Strategic
-    Flexibility**\
-    Ensures adaptive strategy through thorough logging and analysis of project
-    outcomes.
+- **Current Priority**: **Medium**
+- **Description**: O1 Pro hides or omits details it considers unimportant. We
+  have to “pistol-whip” it to get full dumps. It’s annoying, but not a
+  showstopper if we prompt carefully.
+- **References**: Possibly touches old “Commander synergy” stuck; new transcript
+  ~[0:04–0:06], [0:08–0:09].
+- **Dependencies**:
+  - System prompts or narrower tasks can mitigate.
+- **Estimate**:
+  - 1–3 days of trial/prompt refinements, or waiting for the full O1 Pro API.
+- **Next Action**:
+  - Finalize a stable prompt strategy or wait for system-level overrides.
 
 ---
 
-## Newly Proposed Stucks
+## 4. STUCK D: “Task Overload & Thread Naming Chaos”
 
-40. **S40 – Implement Gantt Chart Generation for Stuck Dependencies**\
-    Visual timeline planning to identify critical paths and manage schedules.
-
-41. **S41 – Introduce Domain Interface Summary Aggregator**\
-    Reconciles overlapping domain concepts, giving Commander and devs a clearer
-    knowledge interface.
-
-42. **S42 – Establish Monthly “Commander’s Report” NApp**\
-    Provides periodic stakeholder-facing summaries of progress, priorities, and
-    upcoming tasks.
+- **Current Priority**: **Medium**
+- **Description**: We generate tasks too broadly; O1 Pro gets hammered with
+  giant prompts. Also, random thread naming is causing confusion.
+- **References**: Possibly near old “Commander MVP” stuck; new transcripts
+  ~[0:25–0:28].
+- **Dependencies**:
+  - Commander updates could partition tasks better.
+- **Estimate**:
+  - Ongoing workflow fix. Hard to measure.
+- **Next Action**:
+  - Start naming threads, keep tasks focused. If Commander is ready, use it.
 
 ---
 
-### Summary
+## 5. STUCK E: “Longitudinal Topics & ‘Batch’ Extraction”
 
-1. **Commander** (S25) and **Trucking App** (S24) remain top priorities, along
-   with the essentials for stable NApp formats (S8), robust stuck structures
-   (S27), and the foundational Git-based Artifact (S1).
-2. **Repository unification** (S28) and **stuck assignment** (S33) follow
-   closely to reduce fragmentation and formalize the workflow.
-3. **Quality Assurance** (S38) closes out the immediate critical set to
-   guarantee we’re controlling complexity as features scale.
-4. We’ve promoted **S36** (advanced AI for the Trucking App), **S19** (automated
-   O1 codegen), and **S21** (auto-updates on commits) higher than before,
-   recognizing that doing them sooner can yield quicker gains in velocity and
-   synergy between Commander and code.
-5. The rest of the Stucks keep a similar tiered approach, ensuring we
-   systematically tackle both near-term enhancements and longer-term expansions.
+- **Current Priority**: **Lower**
+- **Description**: We want a background job (nicknamed “grinder,” but we hate
+  that name) to detect recurring themes from all transcripts. Not urgent but
+  valuable.
+- **References**: Possibly a new item; transcripts ~[0:42–0:45].
+- **Dependencies**:
+  - Summaries, stable transcriber, consistent domain storage.
+- **Estimate**:
+  - 2–3 days of prompt design if AI-based only; indefinite if deeper Commander
+    integration is required.
+- **Next Action**:
+  - Revisit after the CRM (STUCK A) and transcriber fix (STUCK B).
 
-This ordering aims to meet urgent deliverables, establish robust infrastructure,
-and harness improved AI workflows early, thereby accelerating outcomes and
-ensuring the project evolves cohesively.
+---
+
+## 6. STUCK F: “Attribution / Metrics Dashboard”
+
+- **Current Priority**: **Lowest**
+- **Description**: A system to measure user or AI contribution, new vs. repeated
+  info. Useful, but not immediately needed.
+- **References**: Possibly cross-ref with old “Attribution Model,” new
+  transcript ~[0:46–0:47].
+- **Dependencies**:
+  - Some structured log of changes. Might require Commander’s code merges or
+    GitHub integration.
+- **Estimate**:
+  - 1–2 weeks to build a prototype. Could balloon if integrated into everything
+    else.
+- **Next Action**:
+  - Decide if you want an interim approach or wait for Commander synergy.
+
+---
+
+# Next Steps
+
+1. **Confirm CRM’s Hard Deadline**
+2. **Get Transcriber Patch** deployed ASAP.
+3. **Adopt Tighter Prompt Strategies** to reduce over-summarizing (STUCK C).
+4. **Commander** improvements or user discipline to address thread clutter
+   (STUCK D).
+5. **Later**: Consider “batch” topic extraction (STUCK E) and the attribution
+   dashboard (STUCK F).
+
+**Done.** This is the updated `priority-list.md` content based on the new info
+plus whatever was in your `S*` stuck files. Let me know if there’s a mismatch.
