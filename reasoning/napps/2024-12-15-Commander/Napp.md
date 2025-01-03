@@ -30,10 +30,10 @@ You are to follow the following process step-by-step:
     1. Understand the CONTEXT, TRANSCRIPT and SUMMARY carefully.
     2. Identify the Stucks from the SUMMARY being discussed in the TRANSCRIPT and CONTEXT.
     3. Identify any new stucks that are not already in the list of Stucks.
-    4. Identify any new SOLUTIONS that are not already in the list of SOLUTIONS.
+    4. Identify any new REMEDYS that are not already in the list of REMEDYS.
     5. Given all the information you have:
         - Generate any new Stucks discussed.
-        - Generate any new Solutions discussed.
+        - Generate any new REMEDYs discussed.
         - Assess the list of Priorities based on the Stucks.
 
 ### Stucks :
