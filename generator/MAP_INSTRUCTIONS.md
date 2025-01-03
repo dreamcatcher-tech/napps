@@ -1,9 +1,9 @@
 # Project Map Instructions
 
 **Purpose:**\
-`PROJECT_MAP.md` provides a high-level map of the project’s structure, purpose,
-and key components. It helps new contributors quickly understand the overall
-layout and logic without too much detail.
+`MAP.txt` provides a high-level map of the project’s structure, purpose, and key
+components. It helps new contributors quickly understand the overall layout and
+logic without too much detail.
 
 **Key Rules:**
 
@@ -23,8 +23,14 @@ layout and logic without too much detail.
     level tests. Do not include sub-steps inside the test. Tests do not need an
     info note due to the description of the test being informative enough.
 - Add a short rationale note (`ℹ`) beneath each item.
-- Skip low-level internal files that aren’t architecturally important.
-- Exclude `PROJECT_MAP.md` from its own map.
+- Skip files that aren't architecturally important. These are files that could
+  be replaced without materially affecting the project's core structure or
+  purpose. Architecturally important files are those that:
+  - Shape the system's overall design or domain logic
+  - Define core functionality
+  - Handle critical flows
+  - Directly influence how components are structured or interact
+- Exclude `MAP.txt` from its own map.
 - Exclude `vendor-docs` details deeper than just the folder names, as the
   details are not within our control, being vendor supplied..
 - Never mention anything about any files that have been omitted from the map.
@@ -34,7 +40,7 @@ layout and logic without too much detail.
 - dependencies are pulled out from the deno.json file and a primarily used to
   link relevant vendor-docs documentation to the usage of the vendor module.
 
-**Structure Example:**
+**Example Map:**
 
 ```text
 📦 /
@@ -49,7 +55,6 @@ layout and logic without too much detail.
 │  │      ℹ Formats CLI output for readability
 │  │   2. handleError(error: Error): void
 │  │      ℹ Centralized error handling
-│  └─ (Internal helper files omitted)
 ├─ 📂 tests
 │  ├─ 📄 main.test.ts
 │  │   ℹ Tests runCLI()

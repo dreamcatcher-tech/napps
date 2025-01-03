@@ -72,3 +72,16 @@
     and the stuck that is the most urgent, and the stuck that is the most
     important and urgent. Horizon Stuck (furthest attainable), Moon Stuck
     (furthest desired), burning stuck (most urgent).
+
+17. A changing of thinking that we need to be very deliberate and aware about,
+    how we are conditioned to think as tho code and admin costs effort. For
+    example, I threw away perfectly good code today, which one would never
+    normally do.
+
+18. o1-pro rules - cannot seem to ignore data in a file, and cannot ignore files
+    in context provided, so need to narrow the context automatically.
+
+19. what is it like to have a team of AI boosted people working on a large
+    project ? what is that large project ? How much can one person handle ? how
+    does heirarchy work, if at all ? How would this relate to running a country
+    ?

@@ -54,7 +54,9 @@
     "singleQuote": true,
     "exclude": [
       "_tools",
-      ".github"
+      ".github",
+      "**/*SPEC.md",
+      "**/vendor-docs/**"
     ]
   },
   "workspace": [

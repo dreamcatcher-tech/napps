@@ -1,10 +1,3 @@
-Below is a revised README reflecting that **SPEC.md** is the canonical source of
-truth. It references the core sync process in high-level terms without exposing
-the formulas directly, and it removes table-specific references. It also
-preserves and updates the CLI usage and environment variable details:
-
----
-
 # MoneyWorks Git Sync
 
 Continuously synchronizes data between a MoneyWorks server and a Git-based file
@@ -86,7 +79,3 @@ them.
 A lightweight script can be used to replace sensitive data fields with random
 placeholders for testing. This feature is optional and should not be used in
 production syncs.
-
----
-
-For detailed subroutine definitions and exact batch logic, see **SPEC.md**.
