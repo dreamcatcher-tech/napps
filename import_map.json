@@ -20,7 +20,7 @@
     "@std/io": "jsr:@std/io",
     "@std/testing": "jsr:@std/testing",
     "@std/streams": "jsr:@std/streams",
-
+    "@std/http": "jsr:@std/http",
     "@artifact/files": "jsr:@artifact/files@^0.0.1",
     "@artifact/openai": "jsr:@artifact/openai@^0.0.1",
     "@artifact/dumb-bot": "jsr:@artifact/dumb-bot@^0.0.16",

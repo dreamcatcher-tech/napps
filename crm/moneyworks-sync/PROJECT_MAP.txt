@@ -1,4 +1,3 @@
-```text
 📦 moneyworks-sync/
 ├─ 📄 README.md
 │   ℹ High-level module overview and usage
@@ -8,80 +7,90 @@
 │   4. ## CLI Usage
 │   5. ## Anonymization
 │   6. ## Future Enhancements
+├─ 📄 process.md
+│   ℹ Outlines the server-based flow:
+│      1. The module polls MoneyWorks server → commits diffs into `moneyworks`.
+│      2. `changes` branch is read; edits go to MoneyWorks server only.
+│      3. Next poll picks up new server state → commits to `moneyworks`.
+│   1. # Process Overview
+│   2. ## 1. MoneyWorks Branch (Only updated by this module)
+│   3. ## 2. Changes Branch (Module reads, then applies changes to server)
+│   4. ## 3. Synchronizing Changes to MoneyWorks (via server)
+│   5. ## 4. Verification
+│   6. ## 5. Completion
 ├─ 📄 seed.md
-│   ℹ Requirements and extended goals for this module
+│   ℹ Requirements and extended goals
 │   1. # Overview
 │   2. # Requirements
 │   3. # Questions
-├─ 📄 process.md
-│   ℹ Explains flow for `moneyworks` and `changes` branches
-│   1. # Process Overview
-│   2. ## 1. MoneyWorks Branch
-│   3. ## 2. Changes Branch
-│   4. ## 3. Synchronizing Changes Branch to MoneyWorks
-│   5. ## 4. Verification
-│   6. ## 5. Completion
+├─ 📄 issues.md
+│   ℹ Validation and logging concerns
+│   1. moneyworks secure url should be checked...
+│   2. git repo url should be correct format...
+│   3. git repo key should be checked...
+│   4. app should log out the config...
 ├─ 📄 anonymize.ts
 │   ℹ CLI tool for local XML data randomization
 │   1. readXML(filename?: string): Promise<string>
 │      ℹ Reads XML from a file or stdin
 │   2. main(): Promise<void>
-│      ℹ Anonymizes sensitive fields, outputs to stdout
+│      ℹ Randomizes sensitive fields, outputs to stdout
 ├─ 📄 cli.ts
-│   ℹ Defines CLI commands and high-level sync entry logic
+│   ℹ Defines CLI commands and top-level sync logic
 │   1. program.action(): Promise<void>
-│      ℹ Prompts for environment config, triggers sync
+│      ℹ Prompts for env config, triggers entire sync
 ├─ 📄 config.ts
-│   ℹ Configuration interface for server/poll intervals
+│   ℹ Configuration interface (server URL, poll intervals, etc.)
 │   1. interface Config
 │      ℹ moneyworks, tables, pollInterval, etc.
 ├─ 📄 mod.ts
 │   ℹ Main module entry point (placeholder)
 ├─ 📂 services
+│  ℹ Core sync logic: only this module can update `moneyworks`
 │  ├─ 📄 polling-service.ts
-│  │   ℹ Starts/stops periodic MoneyWorks polling
+│  │   ℹ Periodically fetches new data from MoneyWorks server
 │  │   1. startPolling(config: Config): Promise<void>
-│  │      ℹ Kicks off the main polling loop
+│  │      ℹ Loops on a timer, calls server and detects changes
 │  │   2. stopPolling(): void
-│  │      ℹ Halts any running polling cycle
-│  ├─ 📄 change-writer.ts
-│  │   ℹ Applies changes from the `changes` branch to MoneyWorks
+│  │      ℹ Halts polling
+│  ├─ 📄 changes-applier.ts
+│  │   ℹ Reads data from `changes` branch, applies to MoneyWorks server
 │  │   1. applyChanges(xmlRecords: Record<string, unknown>[]): Promise<void>
-│  │      ℹ Imports new/updated records into MoneyWorks via REST
-│  └─ 📄 branch-sync.ts
-│      ℹ Merges the `changes` branch into `moneyworks` post-verification
-│      1. mergeChangesIntoMoneyworks(): Promise<void>
-│         ℹ Finalizes updates in `moneyworks`
+│  │      ℹ Posts new/updated records to the server
+│  └─ 📄 moneyworks-sync.ts
+│      ℹ Commits server-fetched data to `moneyworks` branch
+│      1. syncServerToMoneyworks(): Promise<void>
+│         ℹ Polls the server, detects diffs, commits them to `moneyworks`
 ├─ 📂 mock
+│  ℹ Mocks for local testing
 │  ├─ 📄 mock-moneyworks-server.ts
-│  │   ℹ Simulates MoneyWorks REST endpoints for local tests
+│  │   ℹ Simulates MoneyWorks REST endpoints
 │  │   1. mockRestEndpoint(): void
-│  │      ℹ Provides in-memory mocking of MoneyWorks API
+│  │      ℹ In-memory MoneyWorks API
 │  └─ 📄 mock-git-repo.ts
-│      ℹ Mocks local git commits and merges
+│      ℹ Fake local Git logic
 │      1. mockCommit(message: string): void
-│         ℹ Simulates a commit to a fake local repo
+│         ℹ In-memory commit simulation
 ├─ 📂 tests
 │  ℹ Unit and integration tests
 │  ├─ 📄 polling-service.test.ts
-│  │   ℹ Tests polling start/stop functionality
+│  │   ℹ Tests that polling fetches server data
 │  │   1. Polling begins with valid config
 │  │   2. Polling stops immediately on command
-│  ├─ 📄 change-writer.test.ts
-│  │   ℹ Tests the applyChanges workflow
+│  ├─ 📄 changes-applier.test.ts
+│  │   ℹ Tests sending `changes` branch data up to the server
 │  │   1. Applies valid XML records successfully
 │  │   2. Detects conflict scenario properly
-│  └─ 📄 branch-sync.test.ts
-│      ℹ Tests merging from `changes` to `moneyworks`
-│      1. Successful merge with no conflicts
-│      2. Merge halted on conflict
+│  └─ 📄 moneyworks-sync.test.ts
+│      ℹ Verifies commits from server state into `moneyworks`
+│      1. Syncs new server data into `moneyworks`
+│      2. Skips commit if no changes
 ├─ 📂 vendor-docs
-│   ℹ External MoneyWorks documentation
+│  ℹ External MoneyWorks documentation
 └─ 📂 dependencies
    ├─ 📦 deno-dom
    │   ℹ HTML/XML DOM library
    ├─ 📦 commander
-   │   ℹ CLI argument parsing library
+   │   ℹ CLI argument parsing
    └─ 🧩 @dreamcatcher/helpers
        ℹ Shared helper library
-```

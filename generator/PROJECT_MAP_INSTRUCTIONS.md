@@ -7,7 +7,7 @@ layout and logic without too much detail.
 
 **Key Rules:**
 
-- Start at `📦 PROJECT_ROOT/`.
+- Start at `📦 /`.
 - Organize top-level folders and files first, with important items at the top.
 - Place `dependencies` at the bottom, with `vendor-docs` above it if it exists.
 - Notation:

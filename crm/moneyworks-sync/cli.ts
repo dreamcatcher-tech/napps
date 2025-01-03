@@ -1,7 +1,7 @@
 import { Command } from 'npm:commander'
-import { version } from './deno.json' assert { type: 'json' }
-import { promptForEnvKeys } from '@dreamcatcher/helpers'
-import { syncMoneyWorks } from './mod.ts'
+import denoJson from './deno.json' with { type: 'json' }
+import { clearEnvStorage, promptForEnvKeys } from '@dreamcatcher/helpers'
+// import { syncMoneyWorks } from './mod.ts'
 
 const requiredEnvKeys = [
   { key: 'MONEYWORKS_SECURE_URL', friendlyName: 'MoneyWorks Secure URL' },
@@ -18,11 +18,17 @@ program
       '`moneyworks` branch, and monitors a `changes` branch to apply edits back ' +
       'into MoneyWorks for full two-way sync.',
   )
-  .version(version)
-  .action(async () => {
+  .version(denoJson.version)
+  .option('--clear', 'Clear stored environment variables before running')
+  .action(async (options) => {
     try {
+      if (options.clear) {
+        clearEnvStorage()
+        // deno-lint-ignore no-console
+        console.log('Cleared stored environment variables')
+      }
       await promptForEnvKeys(requiredEnvKeys)
-      await syncMoneyWorks()
+      // await syncMoneyWorks()
       Deno.exit(0)
     } catch (err) {
       // deno-lint-ignore no-console
@@ -31,4 +37,4 @@ program
     }
   })
 
-program.parse(Deno.args)
+program.parse(Deno.args, { from: 'user' })

@@ -54,3 +54,7 @@ export const promptForEnvKeys = async (
 
   return envValues
 }
+
+export const clearEnvStorage = (): void => {
+  localStorage.clear()
+}
