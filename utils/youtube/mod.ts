@@ -22,7 +22,8 @@ const pickFormatAndName = async (
       )
     }
   }
-  return prefix.endsWith(`.${ext}`) ? prefix : `${prefix}.${ext}`
+  const fileName = prefix.endsWith(`.${ext}`) ? prefix : `${prefix}.${ext}`
+  return { fileName, info }
 }
 
 export const audio = async (
@@ -34,15 +35,15 @@ export const audio = async (
   const options: downloadOptions = {
     filter: 'audioonly',
     quality: lowest ? 'lowestaudio' : 'highestaudio',
-    playerClients: ['IOS'],
+    playerClients: ['IOS', 'WEB_CREATOR'],
   }
-  const fileName = await pickFormatAndName(url, prefix, options)
-  console.log('fileName', fileName)
+  const { fileName, info } = await pickFormatAndName(url, prefix, options)
+  console.log('got fileName:', fileName)
 
   let file: Deno.FsFile | null = null
   try {
     file = await Deno.open(fileName, { create: true, write: true })
-    const stream = ytdl(url, options)
+    const stream = ytdl.downloadFromInfo(info, options)
 
     // Manually pipe Node stream to Deno file
     for await (const chunk of stream) {
@@ -75,12 +76,12 @@ export const video = async (
 ): Promise<string> => {
   console.log('ytdl.version', ytdl.version)
   const options = { quality: lowest ? 'lowestvideo' : 'highestvideo' }
-  const fileName = await pickFormatAndName(url, prefix, options)
+  const { fileName, info } = await pickFormatAndName(url, prefix, options)
 
   let file: Deno.FsFile | null = null
   try {
     file = await Deno.open(fileName, { create: true, write: true })
-    const stream = ytdl(url, options)
+    const stream = ytdl.downloadFromInfo(info, options)
 
     for await (const chunk of stream) {
       const data = chunk instanceof Uint8Array ? chunk : new Uint8Array(chunk)

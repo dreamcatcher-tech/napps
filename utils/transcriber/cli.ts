@@ -35,6 +35,9 @@ program
       // youtube audio and transcribe it, then the other to name the speakers
       // and output in a given format
 
+      // but we would give back some examples of the excerpt.  We should write
+      // the files to disk at each stage.
+
       Deno.exit(0)
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : String(error)
