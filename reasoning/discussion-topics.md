@@ -85,3 +85,5 @@
     project ? what is that large project ? How much can one person handle ? how
     does heirarchy work, if at all ? How would this relate to running a country
     ?
+
+20. need to get the math formulas of the dreamcatcher specified

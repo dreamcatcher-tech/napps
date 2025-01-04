@@ -1,96 +1,83 @@
-📦 moneyworks-sync/
-├─ 📄 README.md
-│   ℹ High-level module overview and usage
-│   1. # MoneyWorks XML Git Sync
-│   2. ## Overview
-│   3. ## High-Level Flow
-│   4. ## CLI Usage
-│   5. ## Anonymization
-│   6. ## Future Enhancements
-├─ 📄 process.md
-│   ℹ Outlines the server-based flow:
-│      1. The module polls MoneyWorks server → commits diffs into `moneyworks`.
-│      2. `changes` branch is read; edits go to MoneyWorks server only.
-│      3. Next poll picks up new server state → commits to `moneyworks`.
-│   1. # Process Overview
-│   2. ## 1. MoneyWorks Branch (Only updated by this module)
-│   3. ## 2. Changes Branch (Module reads, then applies changes to server)
-│   4. ## 3. Synchronizing Changes to MoneyWorks (via server)
-│   5. ## 4. Verification
-│   6. ## 5. Completion
-├─ 📄 seed.md
-│   ℹ Requirements and extended goals
-│   1. # Overview
-│   2. # Requirements
-│   3. # Questions
-├─ 📄 issues.md
-│   ℹ Validation and logging concerns
-│   1. moneyworks secure url should be checked...
-│   2. git repo url should be correct format...
-│   3. git repo key should be checked...
-│   4. app should log out the config...
-├─ 📄 anonymize.ts
-│   ℹ CLI tool for local XML data randomization
-│   1. readXML(filename?: string): Promise<string>
-│      ℹ Reads XML from a file or stdin
-│   2. main(): Promise<void>
-│      ℹ Randomizes sensitive fields, outputs to stdout
-├─ 📄 cli.ts
-│   ℹ Defines CLI commands and top-level sync logic
-│   1. program.action(): Promise<void>
-│      ℹ Prompts for env config, triggers entire sync
-├─ 📄 config.ts
-│   ℹ Configuration interface (server URL, poll intervals, etc.)
-│   1. interface Config
-│      ℹ moneyworks, tables, pollInterval, etc.
-├─ 📄 mod.ts
-│   ℹ Main module entry point (placeholder)
-├─ 📂 services
-│  ℹ Core sync logic: only this module can update `moneyworks`
-│  ├─ 📄 polling-service.ts
-│  │   ℹ Periodically fetches new data from MoneyWorks server
-│  │   1. startPolling(config: Config): Promise<void>
-│  │      ℹ Loops on a timer, calls server and detects changes
-│  │   2. stopPolling(): void
-│  │      ℹ Halts polling
-│  ├─ 📄 changes-applier.ts
-│  │   ℹ Reads data from `changes` branch, applies to MoneyWorks server
-│  │   1. applyChanges(xmlRecords: Record<string, unknown>[]): Promise<void>
-│  │      ℹ Posts new/updated records to the server
-│  └─ 📄 moneyworks-sync.ts
-│      ℹ Commits server-fetched data to `moneyworks` branch
-│      1. syncServerToMoneyworks(): Promise<void>
-│         ℹ Polls the server, detects diffs, commits them to `moneyworks`
-├─ 📂 mock
-│  ℹ Mocks for local testing
-│  ├─ 📄 mock-moneyworks-server.ts
-│  │   ℹ Simulates MoneyWorks REST endpoints
-│  │   1. mockRestEndpoint(): void
-│  │      ℹ In-memory MoneyWorks API
-│  └─ 📄 mock-git-repo.ts
-│      ℹ Fake local Git logic
-│      1. mockCommit(message: string): void
-│         ℹ In-memory commit simulation
+📦 /
+├─ 📂 src
+│  ├─ 📄 batched-pull.ts
+│  │   ℹ Repeatedly pulls and commits MoneyWorks records in batches
+│  │   1. pullChanges(mwServer: unknown, lastModifiedMarker: number, batchSize: number): Record[]
+│  │      ℹ Fetches records ≥ lastModifiedMarker (up to batchSize) from mwServer
+│  │   2. commit(mwBranch: MWBranch, delta: Record[]): MWBranch
+│  │      ℹ Appends new records (delta) to mwBranch
+│  │   3. lastModifiedInDelta(delta: Record[]): number
+│  │      ℹ Finds the highest timestamp in delta
+│  │   4. batchedPull(mwBranch: MWBranch, lastModifiedMarker: number, batchSize: number): [MWBranch, number]
+│  │      ℹ Loops pullChanges until no more records, updates mwBranch and lastModifiedMarker
+│  ├─ 📄 read-process.ts
+│  │   ℹ Implements suspended/resumed polling for continuous pulling
+│  │   1. startReadProcess(mwBranch: MWBranch, lastModMarker: number, batchSize: number, pollInterval: number): Promise<void>
+│  │      ℹ Repeatedly calls batchedPull, waits pollInterval, stops if suspended
+│  │   2. suspendPolling(): void
+│  │      ℹ Signals polling to stop safely
+│  │   3. resumePolling(): void
+│  │      ℹ Resumes polling process if suspended
+│  ├─ 📄 write-process.ts
+│  │   ℹ Pushes new commits from chgBranch to MoneyWorks, handles collisions
+│  │   1. deltaRecords(branchA: MWBranch, branchB: MWBranch): Record[]
+│  │      ℹ Returns records in branchA that differ from branchB
+│  │   2. importDelta(delta: Record[], mwServer: unknown): void
+│  │      ℹ Pushes delta to mwServer, halts on conflicts
+│  │   3. triggerWriteProcess(chgBranch: MWBranch, mwBranch: MWBranch, lastModMarker: number, batchSize: number): Promise<void>
+│  │      ℹ Suspends polling, pulls latest from MoneyWorks, imports delta, checks for mismatch, resumes polling
+│  │   4. restartReadProcess(): void
+│  │      ℹ Signals the read process to restart after write completes
+│  ├─ 📄 cli.ts
+│  │   ℹ Deno CLI entry point for moneyworks-sync
+│  │   1. runCLI(args: string[]): Promise<void>
+│  │      ℹ Parses environment variables, prompts for missing data, starts continuous sync loop
+│  ├─ 📄 config.ts
+│  │   ℹ Centralized environment configuration
+│  │   1. getConfig(): { mwUrl: string; gitRepoUrl: string; gitRepoKey: string }
+│  │      ℹ Retrieves and validates environment variables, prompts if missing
+│  ├─ 📄 anonymize.ts
+│  │   ℹ Optional data masking script for testing/demo
+│  │   1. anonymizeRecords(records: Record[]): Record[]
+│  │      ℹ Replaces sensitive data fields with placeholders
+│
 ├─ 📂 tests
-│  ℹ Unit and integration tests
-│  ├─ 📄 polling-service.test.ts
-│  │   ℹ Tests that polling fetches server data
-│  │   1. Polling begins with valid config
-│  │   2. Polling stops immediately on command
-│  ├─ 📄 changes-applier.test.ts
-│  │   ℹ Tests sending `changes` branch data up to the server
-│  │   1. Applies valid XML records successfully
-│  │   2. Detects conflict scenario properly
-│  └─ 📄 moneyworks-sync.test.ts
-│      ℹ Verifies commits from server state into `moneyworks`
-│      1. Syncs new server data into `moneyworks`
-│      2. Skips commit if no changes
+│  ├─ 📄 batched-pull.test.ts
+│  │   ℹ Tests batched-pull.ts functionality
+│  │   1. Pulls records in correct batches
+│  │   2. Commits new delta accurately
+│  ├─ 📄 read-process.test.ts
+│  │   ℹ Tests read-process.ts polling flow
+│  │   1. Starts and suspends polling as expected
+│  │   2. Resumes polling and pulls new data
+│  ├─ 📄 write-process.test.ts
+│  │   ℹ Tests write-process.ts logic
+│  │   1. Pushes deltas without collision
+│  │   2. Detects mismatch errors
+│  ├─ 📄 cli.test.ts
+│  │   ℹ Tests the CLI entry logic
+│  │   1. Prompts for environment variables when missing
+│  │   2. Launches continuous sync loop successfully
+│
+├─ 📄 README.md
+│   ℹ High-level overview and usage info
+│   1. Overview
+│   │  ℹ Summarizes continuous sync between MoneyWorks and Git
+│   2. Installation
+│   │  ℹ Deno install instructions
+│   3. Running the CLI
+│      ℹ How the module executes and loops
+│
+├─ 📄 SPEC.md
+│   ℹ Canonical reference for the sync logic
+│   1. Sync Steps
+│   │  ℹ Exact definitions of batch pulling, collisions, etc.
+│   2. Conflict Handling
+│      ℹ Describes error logging and operator resolution
+│
 ├─ 📂 vendor-docs
-│  ℹ External MoneyWorks documentation
+│  ℹ External documentation
+│  └─ 📄 moneyworks/
+│     ℹ Docs for the MoneyWorks REST API and database schema
 └─ 📂 dependencies
-   ├─ 📦 deno-dom
-   │   ℹ HTML/XML DOM library
-   ├─ 📦 commander
-   │   ℹ CLI argument parsing
-   └─ 🧩 @dreamcatcher/helpers
-       ℹ Shared helper library
+   
